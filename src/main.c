@@ -1,4 +1,4 @@
-#include "src/header/cub3d.h"
+#include "header/cub3d.h"
 
 int main()
 {

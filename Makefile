@@ -1,5 +1,7 @@
 SRCS =	src/main.c
 
+OBJ =	$(SRC:.c=.o)
+
 CC = cc
 
 CFLAGS = -g -Wall -Wextra -Werror
@@ -13,20 +15,23 @@ RM = rm -f
 NAME = cub3d
 
 $(NAME): $(SRCS)
-	make -s -C libft
-	make -s -C mlx
-	$(CC) $(CFLAGS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
+	make -s -C src/libs/libft
+	make -s -C src/libs/mlx
+	$(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
+	@echo "Created"
 
 all: $(NAME)
 
 clean:
-	@cd libft && make clean
-	@cd mlx && make clean
-	$(RM)
+	@cd src/libs/libft && make -s clean
+	@cd src/libs/mlx && make -s clean
+	@$(RM)
+	@echo "clean"
 
 fclean: clean
-	@cd libft && make fclean
-	$(RM) $(NAME)
+	@cd src/libs/libft && make -s fclean
+	@$(RM) $(NAME)
+	@echo "fclean"
 
 re: fclean all
 
