@@ -53,10 +53,9 @@ SRC			=	ft_isalnum.c				\
 				ft_lstiter.c				\
 				ft_lstmap.c					\
 
+OBJ			=	$(addprefix objects/, $(SRC:.c=.o))
 
-OBJ			=	$(SRC:.c=.o)
-
-OBJ_DIR = objects/
+OBJ_DIR		=		objects/
 
 CC			=	cc
 
@@ -73,11 +72,11 @@ CYAN=\033[0;36m
 RESET=\033[0m
 
 objects/%.o: %.c
-			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+			@mkdir -p objects
+			@$(CC) $(CFLAGS) -c $< -o ./objects/$(@F)
 
 $(NAME):	$(OBJ)
 			@echo "$(BLUE)\tCreating .o ...$(RESET)"
-			@$(CC) $(CFLAGS) -c $(SRC)
 			@echo "$(GREEN)\tDone!$(RESET)"
 			@echo "$(BLUE)\tCreating libft.a$(RESET)"
 				@ar rcs $(NAME) $(OBJ)
