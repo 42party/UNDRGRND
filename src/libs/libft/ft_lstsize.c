@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 12:05:58 by vipereir          #+#    #+#             */
-/*   Updated: 2022/06/09 12:06:02 by vipereir         ###   ########.fr       */
+/*   Created: 2022/06/09 12:05:39 by vipereir          #+#    #+#             */
+/*   Updated: 2023/04/01 13:00:48 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*p;
-	t_list	*s;
+	int	i;
 
-	p = lst;
-	s = p;
-	while (p != NULL)
+	i = 0;
+	while (lst)
 	{
-		s = p;
-		p = p->next;
+		lst = lst->next;
+		i++;
 	}
-	return (s);
+	return (i);
 }

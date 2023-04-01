@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"*.txt": "c",
+		"mlx_int.h": "c",
+		"string.h": "c",
+		"gl.h": "c"
+	}
+}

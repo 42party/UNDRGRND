@@ -8,30 +8,51 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 LIBFT = src/libs/libft/libft.a
 
-MLX = src/libs/mlx/libmlx.a
+MLX = src/libs/mlx_linux/libmlx.a
 
 RM = rm -f
 
 NAME = cub3d
 
+RED=\033[0;31m
+GREEN=\033[0;32m
+YELLOW=\033[0;33m
+BLUE=\033[0;34m
+MAGENTA=\033[0;35m
+CYAN=\033[0;36m
+RESET=\033[0m
+
+# mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
+# linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
+
 $(NAME): $(SRCS)
-	make -s -C src/libs/libft
-	make -s -C src/libs/mlx
-	$(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
-	@echo "Created"
+	@echo "$(RED)entering libft$(RESET)"
+	@make -s -C src/libs/libft
+	@echo "$(RED)entering mlx$(RESET)"
+	@echo "$(CYAN)\tgenerate mlx ...$(RESET)"
+	@make -s -C src/libs/mlx_linux
+	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
+	@echo "$(RED)entering cub3d$(RESET)"
+	@echo "$(CYAN)\tgenerate cub3d ...$(RESET)"
+	@$(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
+	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
 
 clean:
+	@echo "$(RED)entering libft$(RESET)"
+	@echo "$(MAGENTA)\tCleaning .o ...$(RESET)"
 	@cd src/libs/libft && make -s clean
-	@cd src/libs/mlx && make -s clean
+	@echo "$(GREEN)\tDone!$(RESET)"
+	@echo "$(RED)entring mlx$(RESET)"
+	@cd src/libs/mlx_linux && make -s clean
+	@echo "$(GREEN)\tlibmlx.a deleted!$(RESET)"
 	@$(RM)
-	@echo "clean"
 
 fclean: clean
+	@echo "$(RED)entering libft$(RESET)"
 	@cd src/libs/libft && make -s fclean
 	@$(RM) $(NAME)
-	@echo "fclean"
 
 re: fclean all
 
