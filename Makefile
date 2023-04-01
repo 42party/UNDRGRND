@@ -1,31 +1,37 @@
-SRCS =	src/main.c
+NAME		=		cub3d
 
-OBJ =	$(SRC:.c=.o)
+SRCS		=		src/main.c
 
-CC = cc
+OBJ			=		$(addprefix objects/, $(SRC:.c=.o))
 
-CFLAGS = -g -Wall -Wextra -Werror
+OBJ_DIR		=		objects/
 
-LIBFT = src/libs/libft/libft.a
+CC			=		cc
 
-MLX = src/libs/mlx_linux/libmlx.a
+CFLAGS		=		-g -Wall -Wextra -Werror
 
-RM = rm -f
+LIBFT		=		src/libs/libft/libft.a
 
-NAME = cub3d
+MLX			=		src/libs/mlx_linux/libmlx.a
 
-RED=\033[0;31m
-GREEN=\033[0;32m
-YELLOW=\033[0;33m
-BLUE=\033[0;34m
-MAGENTA=\033[0;35m
-CYAN=\033[0;36m
-RESET=\033[0m
+RM			=		rm -f
+
+RED			=		\033[0;31m
+GREEN		=		\033[0;32m
+YELLOW		=		\033[0;33m
+BLUE		=		\033[0;34m
+MAGENTA		=		\033[0;35m
+CYAN		=		\033[0;36m
+RESET		=		\033[0m
 
 # mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
 # linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
 
-$(NAME): $(SRCS)
+$(OBJ_DIR)%.o:	%.c
+			@mkdir -p $(OBJ_DIR)
+			@$(CC) $(CFLAGS) -c $< -o ./objects/$(@F)
+
+$(NAME): $(OBJ)
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"
@@ -34,7 +40,7 @@ $(NAME): $(SRCS)
 	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
 	@echo "$(RED)entering cub3d$(RESET)"
 	@echo "$(CYAN)\tgenerate cub3d ...$(RESET)"
-	@$(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT) $(MLX) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
