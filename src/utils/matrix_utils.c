@@ -1,18 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colours.c                                          :+:      :+:    :+:   */
+/*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 11:01:56 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 14:03:45 by rgorki           ###   ########.fr       */
+/*   Created: 2023/04/02 12:36:29 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/02 12:36:30 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-int	create_trgb(int t, int r, int g, int b)
+int	array_counter(char **arr)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+char	**matrix_dup(char **mat)
+{
+	char	**dup;
+	int		i;
+
+	i = 0;
+	dup = ft_calloc(sizeof(char *), array_counter(mat) + 1);
+	while (mat[i])
+	{
+		dup[i] = ft_strdup(mat[i]);
+		i++;
+	}
+	return (dup);
+}
+
+int	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix)
+		return (1);
+	while (matrix[i])
+		free(matrix[i++]);
+	free(matrix);
+	return (1);
 }

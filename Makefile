@@ -1,6 +1,11 @@
 NAME		=		cub3d
 
-SRCS		=		src/main.c
+SRCS		=		src/main.c					\
+					src/utils/colours.c			\
+					src/utils/matrix_utils.c	\
+					src/utils/send_msg_errors.c	\
+					src/utils/utils.c			\
+					src/validations/map/map.c	\
 
 OBJ			=		$(addprefix objects/, $(SRC:.c=.o))
 

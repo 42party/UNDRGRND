@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:43 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 11:01:44 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/02 14:03:50 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,22 @@ typedef struct	s_map
 
 
 //utils
-int ret_value(int i, char *msg);
-int	create_trgb(int t, int r, int g, int b);
-
+int		my_atoi(const char *str);
+int		my_strncmp(const char *s1, const char *s2);
+int		ret_value(int i, char *msg);
+int		create_trgb(int t, int r, int g, int b);
+int		array_counter(char **arr);
+int		free_matrix(char **matrix);
+char	**matrix_dup(char **mat);
 //validations
 
 
 //validations-map
-int check_map_extension(char *map_name);
+int		check_map_extension(char *map_name);
+int		check_map_path_texture_utils(char *temp_map_line, int flag);
+int		check_map_path_texture(int fd, int flag);
+int		check_map_floor_ceilling_utils_1(char **split_numbers);
+int		check_map_floor_ceilling_utils(char **split_line, int flag);
+int		check_map_floor_ceilling(int fd, int flag);
+int		check_map_validations(char *map_file);
+
