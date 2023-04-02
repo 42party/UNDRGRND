@@ -3,6 +3,11 @@
 		"*.txt": "c",
 		"mlx_int.h": "c",
 		"string.h": "c",
-		"gl.h": "c"
-	}
+		"gl.h": "c",
+		"cub3d.h": "c",
+		"libft.h": "c",
+		"stdlib.h": "c",
+		"fcntl.h": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

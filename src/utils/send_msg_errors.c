@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   send_msg_errors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 14:08:16 by rgorki           ###   ########.fr       */
+/*   Created: 2023/04/02 11:01:39 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/02 11:01:48 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/cub3d.h"
+#include "../header/cub3d.h"
 
-static void validations(char **argv)
+int ret_value(int i, char *msg)
 {
-	if (check_map_validations(argv[1]))
-		printf("VALIDATIONS");
-}
-
-int main(int argc, char **argv)
-{
-	(void)argc;
-	validations(argv);
-
-	return (0);
+	printf("Error: \n%s\n", msg);
+	return (i);
 }
