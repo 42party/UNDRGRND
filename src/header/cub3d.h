@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 11:01:43 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 14:03:50 by rgorki           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -41,9 +29,6 @@ typedef struct	s_map
 	int		has_ceilling;
 }				t_map;
 
-#endif
-
-
 //utils
 int		my_atoi(const char *str);
 int		my_strncmp(const char *s1, const char *s2);
@@ -64,3 +49,4 @@ int		check_map_floor_ceilling_utils(char **split_line, int flag);
 int		check_map_floor_ceilling(int fd, int flag);
 int		check_map_validations(char *map_file);
 
+#endif

@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 13:56:42 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/02 16:26:44 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int check_map_path_texture_utils(char *temp_map_line, int flag)
 	if (!split_line || size != 2)
 		return (ret_value(1, "Format incompatible: direction more path texture"));
 	if (my_strncmp("NO", split_line[0]))
-		if (my_strncmp("../../textures/north", split_line[1]))
-			flag += 1 << 3;
+		if (my_strncmp("../textures/north\n", split_line[1]))
+			flag += 8;
 	if (my_strncmp("SO", split_line[0]))
-		if (my_strncmp("../../textures/south", split_line[1]))
-			flag += 1 << 2;
+		if (my_strncmp("../textures/south\n", split_line[1]))
+			flag += 4;
 	if (my_strncmp("WE", split_line[0]))
-		if (my_strncmp("../../textures/west", split_line[1]))
-			flag += 1 << 1;
+		if (my_strncmp("../textures/west\n", split_line[1]))
+			flag += 2;
 	if (my_strncmp("EA", split_line[0]))
-		if (my_strncmp("../../textures/east", split_line[1]))
-			flag += 1 << 0;
+		if (my_strncmp("../textures/east\n", split_line[1]))
+			flag += 1;
 	free_matrix(split_line);
 	return (flag);
 }
@@ -67,16 +67,18 @@ int check_map_floor_ceilling_utils_1(char **split_numbers)
 
 	i = 0;
 	while (split_numbers[i])
+	{
+		j = 0;
+		while(split_numbers[i][j])
 		{
-			j = 0;
-			while(split_numbers[i])
-			{
-				if(my_atoi(split_numbers[i]) < 0 || my_atoi(split_numbers[i]) > 255 || !ft_isdigit(split_numbers[i][j]))
+			if(my_atoi(split_numbers[i]) < 0 ||
+				my_atoi(split_numbers[i]) > 255
+				|| !ft_isdigit(split_numbers[i][j]))
 					return (ret_value(1, "Only numbers [0-255]"));
-				j++;
-			}
-			i++;
+			j++;
 		}
+		i++;
+	}
 	free_matrix(split_numbers);
 	return (0);
 }
@@ -84,22 +86,26 @@ int check_map_floor_ceilling_utils_1(char **split_numbers)
 int check_map_floor_ceilling_utils(char **split_line, int flag)
 {
 	char **split_numbers;
+	char **split_breakline;
+
 	size_t size;
 
-	split_numbers = ft_split(split_line[1], ',');
+	split_breakline = ft_split(split_line[1], 10);
+	split_numbers = ft_split(split_breakline[0], 44);
 	size = array_counter(split_numbers);
 	if (!split_numbers || size != 3)
 		return (ret_value(1, "Wrong Format F or C following [0-255],[0-255],[0-255]"));
 	if (my_strncmp(split_line[0], "F"))
 	{
-		flag += 1 << 1;
+		flag = 2;
 		check_map_floor_ceilling_utils_1(split_numbers);
 	}
 	if (my_strncmp(split_line[0], "C"))
 	{
-		flag += 1 << 0;
+		flag = 1;
 		check_map_floor_ceilling_utils_1(split_numbers);
 	}
+	free_matrix(split_breakline);
 	free_matrix(split_line);
 	return (flag);
 }
@@ -114,7 +120,7 @@ int		check_map_floor_ceilling(int fd, int flag)
 	split_line = ft_split(temp_map_line, 32);
 	size = array_counter(split_line);
 	if (!split_line || size != 2)
-		return (ret_value(1, "Format incompatible F or C"
+		return (ret_value(1, "Format incompatible F or C "
 					"following [0-255], [0-255], [0-255]"));
 	flag += check_map_floor_ceilling_utils(split_line, flag);
 	return (flag);
@@ -131,17 +137,17 @@ int check_map_validations(char *map_file)
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
 		return (ret_value(1, "File does not exist"));
-	count = 6;
-	while(--count >= 3)
-		flag += check_map_path_texture(fd, flag);
+	count = 7;
+	while(count-- > 3)
+		flag = check_map_path_texture(fd, flag);
 	if (flag != 15)
 		return (ret_value(1, "Format NO, SO, WE, EA following path textures"));
 	flag = 0;
 	temp_map_line = get_next_line(fd);
 	if(!my_strncmp(temp_map_line, "\n"))
 		return (ret_value(1, "Need break line after direction textures"));
-	while(--count)
-		flag += check_map_floor_ceilling(fd, flag);
+	while(count--)
+		flag = check_map_floor_ceilling(fd, flag);
 	if (flag != 3)
 		return (ret_value(1, "Need one Floor and Ceilling"));
 	temp_map_line = get_next_line(fd);

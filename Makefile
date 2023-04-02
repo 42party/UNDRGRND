@@ -7,9 +7,9 @@ SRCS		=		src/main.c					\
 					src/utils/utils.c			\
 					src/validations/map/map.c	\
 
-OBJ			=		$(addprefix objects/, $(SRC:.c=.o))
-
 OBJ_DIR		=		objects/
+
+OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 CC			=		cc
 
@@ -33,10 +33,10 @@ RESET		=		\033[0m
 # linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
 
 $(OBJ_DIR)%.o:	%.c
-			@mkdir -p $(OBJ_DIR)
-			@$(CC) $(CFLAGS) -c $< -o ./objects/$(@F)
+		@mkdir -p $(OBJ_DIR)
+		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
 
-$(NAME): $(OBJ)
+$(NAME):	$(OBJ)
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"
@@ -45,7 +45,7 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
 	@echo "$(RED)entering cub3d$(RESET)"
 	@echo "$(CYAN)\tgenerate cub3d ...$(RESET)"
-	@$(CC) $(CFLAGS) $(LIBFT) $(MLX) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
