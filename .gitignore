@@ -10,7 +10,8 @@ Makefile.gen
 ## Other
 .DS_STORE
 
-
+## cub3D
+cub3D
 
 ## Template from https://github.com/github/gitignore
 # Prerequisites
