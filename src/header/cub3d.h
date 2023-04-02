@@ -1,8 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/02 11:01:43 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/02 11:01:44 by rgorki           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
 #include "../libs/libft/libft.h"
 #include "../libs/mlx/mlx.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <math.h>
+#include <fcntl.h>
 
 /* # define NO	1
 # define SO	2
@@ -24,3 +42,14 @@ typedef struct	s_map
 }				t_map;
 
 #endif
+
+
+//utils
+int ret_value(int i, char *msg);
+int	create_trgb(int t, int r, int g, int b);
+
+//validations
+
+
+//validations-map
+int check_map_extension(char *map_name);
