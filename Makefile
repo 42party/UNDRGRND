@@ -1,11 +1,13 @@
 NAME		=		cub3d
 
-SRCS		=		src/main.c					\
-					src/utils/colours.c			\
-					src/utils/matrix_utils.c	\
-					src/utils/send_msg_errors.c	\
-					src/utils/utils.c			\
-					src/validations/map/map.c	\
+SRCS		=		src/main.c								\
+					src/utils/colours.c						\
+					src/utils/matrix_utils.c				\
+					src/utils/send_msg_errors.c				\
+					src/utils/utils.c						\
+					src/validations/map/map.c				\
+					src/validations/map/ceilling_floor.c	\
+					src/validations/map/texture.c			\
 
 OBJ_DIR		=		objects/
 

@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 16:26:44 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/02 17:59:28 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,135 +26,101 @@ int check_map_extension(char *map_name)
 	return (result);
 }
 
-int check_map_path_texture_utils(char *temp_map_line, int flag)
+static int check_map_validations_utils(int fd)
 {
-	char	**split_line;
-	size_t	size;
-
-	split_line = ft_split(temp_map_line, 32);
-	size = array_counter(split_line);
-	if (!split_line || size != 2)
-		return (ret_value(1, "Format incompatible: direction more path texture"));
-	if (my_strncmp("NO", split_line[0]))
-		if (my_strncmp("../textures/north\n", split_line[1]))
-			flag += 8;
-	if (my_strncmp("SO", split_line[0]))
-		if (my_strncmp("../textures/south\n", split_line[1]))
-			flag += 4;
-	if (my_strncmp("WE", split_line[0]))
-		if (my_strncmp("../textures/west\n", split_line[1]))
-			flag += 2;
-	if (my_strncmp("EA", split_line[0]))
-		if (my_strncmp("../textures/east\n", split_line[1]))
-			flag += 1;
-	free_matrix(split_line);
-	return (flag);
-}
-
-int	check_map_path_texture(int fd, int flag)
-{
-	char *temp_map_line;
-
-	temp_map_line = get_next_line(fd);
-	flag = check_map_path_texture_utils(temp_map_line, flag);
-	return (flag);
-}
-
-int check_map_floor_ceilling_utils_1(char **split_numbers)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (split_numbers[i])
-	{
-		j = 0;
-		while(split_numbers[i][j])
-		{
-			if(my_atoi(split_numbers[i]) < 0 ||
-				my_atoi(split_numbers[i]) > 255
-				|| !ft_isdigit(split_numbers[i][j]))
-					return (ret_value(1, "Only numbers [0-255]"));
-			j++;
-		}
-		i++;
-	}
-	free_matrix(split_numbers);
-	return (0);
-}
-
-int check_map_floor_ceilling_utils(char **split_line, int flag)
-{
-	char **split_numbers;
-	char **split_breakline;
-
-	size_t size;
-
-	split_breakline = ft_split(split_line[1], 10);
-	split_numbers = ft_split(split_breakline[0], 44);
-	size = array_counter(split_numbers);
-	if (!split_numbers || size != 3)
-		return (ret_value(1, "Wrong Format F or C following [0-255],[0-255],[0-255]"));
-	if (my_strncmp(split_line[0], "F"))
-	{
-		flag = 2;
-		check_map_floor_ceilling_utils_1(split_numbers);
-	}
-	if (my_strncmp(split_line[0], "C"))
-	{
-		flag = 1;
-		check_map_floor_ceilling_utils_1(split_numbers);
-	}
-	free_matrix(split_breakline);
-	free_matrix(split_line);
-	return (flag);
-}
-
-int		check_map_floor_ceilling(int fd, int flag)
-{
-	char	*temp_map_line;
-	char	**split_line;
-	size_t	size;
-
-	temp_map_line = get_next_line(fd);
-	split_line = ft_split(temp_map_line, 32);
-	size = array_counter(split_line);
-	if (!split_line || size != 2)
-		return (ret_value(1, "Format incompatible F or C "
-					"following [0-255], [0-255], [0-255]"));
-	flag += check_map_floor_ceilling_utils(split_line, flag);
-	return (flag);
-}
-
-int check_map_validations(char *map_file)
-{
-	int fd;
-	int count;
-	int flag;
-	char *temp_map_line;
+	int	count;
+	int	flag;
 
 	flag = 0;
-	fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		return (ret_value(1, "File does not exist"));
-	count = 7;
-	while(count-- > 3)
+	count = 4;
+	while (count--)
 		flag = check_map_path_texture(fd, flag);
 	if (flag != 15)
 		return (ret_value(1, "Format NO, SO, WE, EA following path textures"));
+	return(0);
+}
+
+static int check_map_validations_utils_2(int fd)
+{
+	int	count;
+	int	flag;
+
 	flag = 0;
-	temp_map_line = get_next_line(fd);
-	if(!my_strncmp(temp_map_line, "\n"))
-		return (ret_value(1, "Need break line after direction textures"));
+	count = 2;
 	while(count--)
 		flag = check_map_floor_ceilling(fd, flag);
 	if (flag != 3)
 		return (ret_value(1, "Need one Floor and Ceilling"));
+	return (0);
+}
+
+static int verify_content(char *line, int count)
+{
+	int i;
+	int flag;
+
+	i = 0;
+	flag = 0;
+	while(line[i] && line[i] == 10)
+	{
+		if (line[i] && line[i] == 32)
+			i++;
+		else if (line[i] && (line[i] == '1' || line[i] == '0'))
+			i++;
+		else if(line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+			count--;
+
+	}
+
+	return (0);
+}
+
+static int check_map_x_y(int fd)
+{
+	char	*temp_map_line;
+	int		lines;
+	int		count;
+
+	lines = 0;
+	count = 1;
+	temp_map_line = get_next_line(fd);
+	while (temp_map_line)
+	{
+		if (verify_content(temp_map_line, count))
+			return(ret_value(1, "Only 1, 0, N, S, W, E or Spaces"));
+		free(temp_map_line);
+		temp_map_line = get_next_line(fd);
+		lines++;
+	}
+	if (count != 0)
+		return(ret_value(1, "Cannot put more than one position"));
+
+	return (0);
+}
+
+//fechar fd nos returns
+// free em cada gnl
+
+int check_map_validations(char *map_file)
+{
+	int fd;
+	char *temp_map_line;
+
+	fd = open(map_file, O_RDONLY);
+	if (fd == -1)
+		return (ret_value(1, "File does not exist"));
+	if(check_map_validations_utils(fd))
+		return (1);
 	temp_map_line = get_next_line(fd);
 	if(!my_strncmp(temp_map_line, "\n"))
 		return (ret_value(1, "Need break line after direction textures"));
-	while (temp_map_line)
-		temp_map_line = get_next_line(fd);
+	if(check_map_validations_utils_2(fd))
+		return (1);
+	temp_map_line = get_next_line(fd);
+	if(!my_strncmp(temp_map_line, "\n"))
+		return (ret_value(1, "Need break line after direction textures"));
+	if(check_map_x_y(fd))
+		return (1);
 	close(fd);
 	return (0);
 }

@@ -42,10 +42,7 @@ char	**matrix_dup(char **mat);
 
 //validations-map
 int		check_map_extension(char *map_name);
-int		check_map_path_texture_utils(char *temp_map_line, int flag);
 int		check_map_path_texture(int fd, int flag);
-int		check_map_floor_ceilling_utils_1(char **split_numbers);
-int		check_map_floor_ceilling_utils(char **split_line, int flag);
 int		check_map_floor_ceilling(int fd, int flag);
 int		check_map_validations(char *map_file);
 
