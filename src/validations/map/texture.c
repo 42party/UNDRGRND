@@ -8,7 +8,10 @@ static int	check_map_path_texture_utils(char *temp_map_line, int flag)
 	split_line = ft_split(temp_map_line, 32);
 	size = array_counter(split_line);
 	if (!split_line || size != 2)
+	{
+		free(split_line);
 		return (ret_value(1, "Format incompatible: direction more path texture"));
+	}
 	if (my_strncmp("NO", split_line[0]))
 		if (my_strncmp("../textures/north\n", split_line[1]))
 			flag += 8;
@@ -31,5 +34,6 @@ int	check_map_path_texture(int fd, int flag)
 
 	temp_map_line = get_next_line(fd);
 	flag = check_map_path_texture_utils(temp_map_line, flag);
+	free(temp_map_line);
 	return (flag);
 }

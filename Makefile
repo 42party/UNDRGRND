@@ -8,14 +8,12 @@ SRCS		=		src/main.c								\
 					src/validations/map/map.c				\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/texture.c			\
-
-OBJ_DIR		=		objects/
-
-OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+					src/validations/map/temp_map.c			\
 
 CC			=		cc
 
 CFLAGS		=		-g -Wall -Wextra -Werror
+#-fsanitize=leak
 
 LIBFT		=		src/libs/libft/libft.a
 
@@ -34,11 +32,7 @@ RESET		=		\033[0m
 # mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
 # linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
 
-$(OBJ_DIR)%.o:	%.c
-		@mkdir -p $(OBJ_DIR)
-		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
-
-$(NAME):	$(OBJ)
+$(NAME):
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"

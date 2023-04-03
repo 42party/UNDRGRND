@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:29:20 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 16:33:26 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/03 12:08:34 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,17 @@ static int	check_map_floor_ceilling_utils(char **split_line, int flag)
 {
 	char	**split_numbers;
 	char	**split_breakline;
-
-	size_t size;
+	size_t	size;
 
 	split_breakline = ft_split(split_line[1], 10);
 	split_numbers = ft_split(split_breakline[0], 44);
 	size = array_counter(split_numbers);
 	if (!split_numbers || size != 3)
+	{
+		free_matrix(split_breakline);
+		free_matrix(split_numbers);
 		return (ret_value(1, "Wrong Format F or C following [0-255],[0-255],[0-255]"));
+	}
 	if (my_strncmp(split_line[0], "F"))
 	{
 		flag = 2;
@@ -70,10 +73,14 @@ int	check_map_floor_ceilling(int fd, int flag)
 
 	temp_map_line = get_next_line(fd);
 	split_line = ft_split(temp_map_line, 32);
+	free(temp_map_line);
 	size = array_counter(split_line);
 	if (!split_line || size != 2)
+	{
+		free_matrix(split_line);
 		return (ret_value(1, "Format incompatible F or C "
 					"following [0-255], [0-255], [0-255]"));
+	}
 	flag += check_map_floor_ceilling_utils(split_line, flag);
 	return (flag);
 }
