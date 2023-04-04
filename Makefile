@@ -19,7 +19,7 @@ CFLAGS		=		-g -Wall -Wextra -Werror
 
 LIBFT		=		src/libs/libft/libft.a
 
-MLX			=		src/libs/mlx_linux/libmlx.a
+
 
 RM			=		rm -f
 
@@ -30,6 +30,16 @@ BLUE		=		\033[0;34m
 MAGENTA		=		\033[0;35m
 CYAN		=		\033[0;36m
 RESET		=		\033[0m
+
+ifeq ($(shell uname -s), Darwin)
+	CFLAGS		+= -framework OpenGL -framework AppKit
+	MLX			= src/libs/mlx/libmlx.a	
+	MLX_FOLDER	= src/libs/mlx 
+else
+	CFLAGS		+= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
+	MLX			= src/libs/mlx_linux/libmlx.a
+	MLX_FOLDER	= src/libs/mlx_linux 
+endif
 
 # mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
 # linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
@@ -43,11 +53,13 @@ $(NAME):	$(OBJ)
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"
 	@echo "$(CYAN)\tgenerate mlx ...$(RESET)"
-	@make -s -C src/libs/mlx_linux
+	@make -s -C $(MLX_FOLDER)
 	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
-	@echo "$(RED)entering cub3d$(RESET)"
-	@echo "$(CYAN)\tgenerate cub3d ...$(RESET)"
-	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "$(RED)entering cub3D$(RESET)"
+	@echo "$(CYAN)\tgenerate cub3D ...$(RESET)"
+# @$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+# @$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit  -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
@@ -58,7 +70,7 @@ clean:
 	@cd src/libs/libft && make -s clean
 	@echo "$(GREEN)\tDone!$(RESET)"
 	@echo "$(RED)entring mlx$(RESET)"
-	@cd src/libs/mlx_linux && make -s clean
+	@cd $(MLX_FOLDER) && make -s clean
 	@echo "$(GREEN)\tlibmlx.a deleted!$(RESET)"
 	@$(RM)
 
@@ -66,6 +78,7 @@ fclean: clean
 	@echo "$(RED)entering libft$(RESET)"
 	@cd src/libs/libft && make -s fclean
 	@$(RM) $(NAME)
+	@$(RM) -r $(NAME).dSYM	
 
 re: fclean all
 
