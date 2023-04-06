@@ -46,7 +46,8 @@ $(OBJ_DIR)%.o:	%.c
 		@mkdir -p $(OBJ_DIR)
 		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
 
-$(NAME):	$(OBJ)
+#$(NAME):	$(OBJ)
+$(NAME):	$(SRCS)
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"

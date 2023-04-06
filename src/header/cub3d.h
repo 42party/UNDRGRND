@@ -12,8 +12,8 @@
 
 // config defines
 
-#define DISPLAY_HEIGHT 400
-#define DISPLAY_WIDTH 600
+# define DISPLAY_HEIGHT 400
+# define DISPLAY_WIDTH 600
 
 /* # define NO	1
 # define SO	2
@@ -65,5 +65,16 @@ typedef struct s_player{
 	t_possition possition_on_map;
 	int 		view_direction; // 0 - 360
 }			t_player;
+
+// mlx funcs
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 
 #endif
