@@ -19,8 +19,6 @@ CFLAGS		=		-g -Wall -Wextra -Werror
 
 LIBFT		=		src/libs/libft/libft.a
 
-
-
 RM			=		rm -f
 
 RED			=		\033[0;31m

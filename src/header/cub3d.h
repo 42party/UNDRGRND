@@ -10,6 +10,11 @@
 #include <math.h>
 #include <fcntl.h>
 
+// config defines
+
+#define DISPLAY_HEIGHT 400
+#define DISPLAY_WIDTH 600
+
 /* # define NO	1
 # define SO	2
 # define EO	3
@@ -45,5 +50,20 @@ int		check_map_extension(char *map_name);
 int		check_map_path_texture(int fd, int flag);
 int		check_map_floor_ceilling(int fd, int flag);
 int		check_map_validations(char *map_file);
+
+//player
+
+typedef struct s_possition{
+	int	x;
+	int y;
+} 			t_possition;
+
+# define POV 60
+
+typedef struct s_player{
+	t_possition possition_on_plane;
+	t_possition possition_on_map;
+	int 		view_direction; // 0 - 360
+}			t_player;
 
 #endif
