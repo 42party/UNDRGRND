@@ -34,7 +34,8 @@ ifeq ($(shell uname -s), Darwin)
 	MLX			= src/libs/mlx/libmlx.a	
 	MLX_FOLDER	= src/libs/mlx 
 else
-	CFLAGS		+= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
+#	CFLAGS		+= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
+	LIB_LINK	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
 	MLX			= src/libs/mlx_linux/libmlx.a
 	MLX_FOLDER	= src/libs/mlx_linux 
 endif
@@ -56,9 +57,9 @@ $(NAME):	$(SRCS)
 	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
 	@echo "$(RED)entering cub3D$(RESET)"
 	@echo "$(CYAN)\tgenerate cub3D ...$(RESET)"
-# @$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-# @$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit  -o $(NAME)
-	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -o $(NAME)
+#	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+#	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit  -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) $(LIB_LINK) -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
