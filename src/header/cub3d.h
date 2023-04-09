@@ -76,5 +76,27 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct s_window {
+	void	*mlx;
+	void	*win;
+	t_data	img;
+
+
+}t_window;
+
+
+# ifndef __linux__ //linux keymaps
+
+enum {
+	KEY_UP = 0x67; //103
+};
+
+# elif defined(__APPLE__) // mac keymaps
+
+enum {
+	KEY_UP = 0x67; //103
+};
+# endif
+
 
 #endif
