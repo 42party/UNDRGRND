@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/09 15:42:33 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/09 17:53:22 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 // config defines
 
-# define DISPLAY_HEIGHT 400
+# define DISPLAY_HEIGHT 400  // isso tmb é colunar e linhas
 # define DISPLAY_WIDTH 600
 
 # ifdef __linux__ //linux keymaps
@@ -53,6 +53,12 @@ enum {   //verificar os valores no mac
 
 # endif
 
+enum {
+	PLAYER = 'P',
+	WALL = '1',
+	FLOOR = '0'
+};
+
 /* # define NO	1
 # define SO	2
 # define EO	3
@@ -66,8 +72,9 @@ enum {   //verificar os valores no mac
 
 //type defs && structs
 
-typedef struct	s_map
-{
+typedef struct	s_map {
+	int		lines;
+	int		collumns;
 	char	**map;
 	int		has_direction;
 	int		has_textures;
@@ -84,13 +91,6 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-
-typedef struct s_window {
-	void	*mlx;
-	void	*win;
-	t_data	img;
-}t_window;
-
 typedef struct s_possition{
 	int	x;
 	int y;
@@ -103,6 +103,17 @@ typedef struct s_player{
 	t_possition possition_on_map;
 	int 		view_direction; // 0 - 360
 }			t_player;
+
+
+
+
+typedef struct s_window {
+	void	*mlx;
+	void	*win;
+	t_data	img;
+	t_map	map;
+	t_player  player; // to pensando em chamar de game, t_game
+}	t_window;
 
 // mlx funcs
 //utils
@@ -123,9 +134,11 @@ int		check_map_validations(char *map_file);
 
 //player
 
+void	get_player_possition(char **map, int lines);
 
 // window management
 
+void	load_game(t_window *win);
 void	init_window(t_window *win);
 
 // exit functions

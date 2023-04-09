@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/09 15:41:58 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:02:46 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 int	get_key(int keycode, t_window *win)
 {
 	(void)win;
-	printf("keycode: %i\n", keycode);
+	//printf("keycode: %i\n", keycode);
 	if (keycode == KEY_ESC)
 		close_game(win);
 	return (0);
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
 	// gerando a tela
 	init_window(&win);
-	// laod game
+	load_game(&win);
 
 	// key hooks
 	mlx_hook(win.win, CLICK_X, 0, close_game, &win);
