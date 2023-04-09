@@ -34,18 +34,14 @@ CYAN		=		\033[0;36m
 RESET		=		\033[0m
 
 ifeq ($(shell uname -s), Darwin)
-	CFLAGS		+= -framework OpenGL -framework AppKit
+	INCLUDES	= -framework OpenGL -framework AppKit
 	MLX			= src/libs/mlx/libmlx.a
 	MLX_FOLDER	= src/libs/mlx
 else
-#	CFLAGS		+= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
-	LIB_LINK	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
+	INCLUDES	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
 	MLX			= src/libs/mlx_linux/libmlx.a
 	MLX_FOLDER	= src/libs/mlx_linux
 endif
-
-# mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
-# linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
 
 $(OBJ_DIR)%.o:	%.c
 		@mkdir -p $(OBJ_DIR)
@@ -61,9 +57,7 @@ $(NAME):	$(SRCS)
 	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
 	@echo "$(RED)entering cub3D$(RESET)"
 	@echo "$(CYAN)\tgenerate cub3D ...$(RESET)"
-#	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-#	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit  -o $(NAME)
-	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) $(LIB_LINK) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) $(INCLUDES) -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
