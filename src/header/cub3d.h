@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/09 15:09:02 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:42:33 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # ifdef __linux__ //linux keymaps
 
 enum {
+	CLICK_X = 17,
 	KEY_ESC = 65307,
 	// movement based on WASD standard
 	KEY_UP = 119,	// W
@@ -41,6 +42,7 @@ enum {
 # elif defined(__APPLE__) // mac keymaps
 
 enum {   //verificar os valores no mac
+	CLICK_X = 17,
 	KEY_ESC = 53,
 	// movement based on WASD standard
 	KEY_UP = 13,	// W
@@ -121,8 +123,13 @@ int		check_map_validations(char *map_file);
 
 //player
 
+
+// window management
+
+void	init_window(t_window *win);
+
 // exit functions
 
-void	close_game(t_window *win);
+int		close_game(t_window *win);
 
 #endif

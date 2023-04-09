@@ -9,6 +9,7 @@ SRCS		=		src/main.c								\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/texture.c			\
 					src/exit_functions/close_game.c			\
+					src/window_management/init_window.c		\
 
 OBJ_DIR		=		objects/
 
