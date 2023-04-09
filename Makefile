@@ -8,6 +8,7 @@ SRCS		=		src/main.c								\
 					src/validations/map/map.c				\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/texture.c			\
+					src/exit_functions/close_game.c			\
 
 OBJ_DIR		=		objects/
 
@@ -31,13 +32,13 @@ RESET		=		\033[0m
 
 ifeq ($(shell uname -s), Darwin)
 	CFLAGS		+= -framework OpenGL -framework AppKit
-	MLX			= src/libs/mlx/libmlx.a	
-	MLX_FOLDER	= src/libs/mlx 
+	MLX			= src/libs/mlx/libmlx.a
+	MLX_FOLDER	= src/libs/mlx
 else
 #	CFLAGS		+= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
 	LIB_LINK	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
 	MLX			= src/libs/mlx_linux/libmlx.a
-	MLX_FOLDER	= src/libs/mlx_linux 
+	MLX_FOLDER	= src/libs/mlx_linux
 endif
 
 # mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
@@ -78,7 +79,7 @@ fclean: clean
 	@echo "$(RED)entering libft$(RESET)"
 	@cd src/libs/libft && make -s fclean
 	@$(RM) $(NAME)
-	@$(RM) -r $(NAME).dSYM	
+	@$(RM) -r $(NAME).dSYM
 
 re: fclean all
 
