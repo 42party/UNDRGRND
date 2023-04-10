@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:29:20 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/03 12:08:34 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:00:45 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,12 @@ static int	check_map_floor_ceilling_utils(char **split_line, int flag)
 	return (flag);
 }
 
-int	check_map_floor_ceilling(int fd, int flag)
+int	check_map_floor_ceilling(char *map, int flag)
 {
-	char	*temp_map_line;
 	char	**split_line;
 	size_t	size;
 
-	temp_map_line = get_next_line(fd);
-	split_line = ft_split(temp_map_line, 32);
-	free(temp_map_line);
+	split_line = ft_split(map, 32);
 	size = array_counter(split_line);
 	if (!split_line || size != 2)
 	{

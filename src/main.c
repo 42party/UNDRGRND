@@ -6,36 +6,57 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/03 13:00:39 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/10 14:22:52 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cub3d.h"
 
-static int validations(t_map *map, char **argv)
+static int validations(t_map *maps, char **argv)
 {
-	(void)map;
 	if (check_map_extension(argv[1]))
 		return (1);
-	if (get_info_maps(map, argv[1]))
+	if (get_line_map(maps, argv[1]))
 		return (1);
-	if (check_map_validations(argv[1]))
+	if (get_info_map(maps, argv[1]))
+		return (1);
+	 if (check_map_validations(maps))
 		return (1);
 	return (0);
 }
 
-int main(int argc, char **argv)
+static void free_maps(t_map *maps)
 {
-	t_map *map;
+	free_matrix(maps->map);
+	free(maps);
+}
 
-	map = malloc(sizeof(t_map));
-	(void)argc;
-	if (validations(map, argv))
+static void argc_verify(int argc)
+{
+	if (argc != 2)
 	{
-		free(map);
+		printf("Invalid map or format\n");
+		printf("example: ./cub3D src/maps/mapname.cub\n");
 		exit(1);
 	}
+}
 
-	free(map);
+int main(int argc, char **argv)
+{
+	t_map *maps;
+
+	argc_verify(argc);
+	maps = malloc(sizeof(t_map));
+	if (validations(maps, argv))
+	{
+		free_maps(maps);
+		exit(1);
+	}
+	int i ;
+	i = 0;
+	while(maps->map[i])
+		printf("%s\n", maps->map[i++]);
+
+	free_maps(maps);
 	return (0);
 }

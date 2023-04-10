@@ -24,10 +24,6 @@ typedef struct	s_map
 {
 	char	**map;
 	int		lines;
-	int		has_direction;
-	int		has_textures;
-	int		has_floor;
-	int		has_ceilling;
 }				t_map;
 
 //utils
@@ -43,9 +39,11 @@ char	**matrix_dup(char **mat);
 
 //validations-map
 int		check_map_extension(char *map_name);
-int		check_map_path_texture(int fd, int flag);
-int		check_map_floor_ceilling(int fd, int flag);
-int		check_map_validations(char *map_file);
-int		get_info_maps(t_map *map, char *map_file);
+int		check_map_path_texture(char *map, int flag);
+int		check_map_floor_ceilling(char *map, int flag);
+int		check_map_validations(t_map *maps);
+int		get_line_map(t_map *maps, char *map_file);
+int		get_info_map(t_map *maps, char *map_file);
+
 
 #endif
