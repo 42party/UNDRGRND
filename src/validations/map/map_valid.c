@@ -1,46 +1,81 @@
-/* static int verify_content(char *line, int count)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_valid.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 16:22:45 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/10 17:24:31 by rgorki           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../header/cub3d.h"
+
+int verify_content(t_map *maps, int flag)
 {
 	int i;
+	int j;
 
-
-	i = 0;
-
-	while(line[i] && line[i] == 10)
+	i = 8;
+	while(i < maps->lines)
 	{
-		if (line[i] && line[i] == 32)
-			i++;
-		else if (line[i] && (line[i] == '1' || line[i] == '0'))
-			i++;
-		else if(line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
-			count--;
-
+		j = 0;
+		while (maps->map[i][j])
+		{
+			if (maps->map[i][j] && (maps->map[i][j] == 'N'
+				|| maps->map[i][j] == 'S' || maps->map[i][j] == 'W'
+				|| maps->map[i][j] == 'E'))
+					flag--;
+			if (maps->map[i][j] && (maps->map[i][j] != 32
+				|| maps->map[i][j] != '1' || maps->map[i][j] != '0'
+				|| maps->map[i][j] != 'N' || maps->map[i][j] != 'S'
+				|| maps->map[i][j] != 'W' || maps->map[i][j] != 'E' ))
+					return(ret_value(1, "Only 1, 0, N, S, W, E or Spaces"));
+			j++;
+		}
+		i++;
 	}
-
-	return (0);
+	if (flag != 0)
+		return(ret_value(1, "Cannot put more than one position"));
+	return (flag);
 }
 
-static int check_map_x_y(int fd)
+static int check_obliteration_map(t_map *maps)
 {
-	char	*temp_map_line;
-	int		lines;
-	int		count;
 
-	lines = 0;
-	count = 1;
-	temp_map_line = get_next_line(fd);
-	while (temp_map_line)
+}
+
+static int verify_walls(t_map *maps)
+{
+	int line;
+	int col;
+
+	line = 8;
+	while (line <= maps->lines)
 	{
-		if (verify_content(temp_map_line, count))
-			return(ret_value(1, "Only 1, 0, N, S, W, E or Spaces"));
-		free(temp_map_line);
-		temp_map_line = get_next_line(fd);
-		lines++;
+		col = 0;
+		while (maps->map[line][col])
+		{
+			if (line == 8 && (maps->map[line][col] != 32
+				|| maps->map[line][col] != 1))
+				return(ret_value(1, "Close map "));
+			if (maps->map[line][col] == 32)
+				if (check_obliteration_map(maps))
+					return(ret_value(1, "Close map around spaces"));
+		}
+		line ++;
 	}
-	if (count != 0)
-		return(ret_value(1, "Cannot put more than one position"));
+	return (0);
+}
+int check_map_x_y(t_map *maps)
+{
+	verify_walls(maps);
+
+			return(ret_value(1, "Only 1, 0, N, S, W, E or Spaces"));
 
 	return (0);
 }
 
 //fechar fd nos returns
-// free em cada gnl */
+// free em cada gnl
