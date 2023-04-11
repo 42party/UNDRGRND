@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/09 18:02:46 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:22:27 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ int main(int argc, char **argv)
 	init_window(&win);
 	load_game(&win);
 
-	// key hooks
+	// key hookaaaas
 	mlx_hook(win.win, CLICK_X, 0, close_game, &win);
 	mlx_key_hook(win.win, get_key, &win);
 	mlx_loop(win.mlx);
 	return (0);
 }
-
