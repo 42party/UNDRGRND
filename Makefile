@@ -8,11 +8,14 @@ SRCS		=		src/main.c								\
 					src/validations/map/map.c				\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/texture.c			\
+					src/validations/map/temp_map.c			\
+					src/validations/map/map_valid.c			\
 					src/exit_functions/close_game.c			\
 					src/window_management/init_window.c		\
 					src/window_management/load_game.c		\
 					src/player/get_player_position.c		\
-          src/validations/map/temp_map.c			\
+
+
 
 OBJ_DIR		=		objects/
 

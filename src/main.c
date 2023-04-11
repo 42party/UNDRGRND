@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/11 12:22:27 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:38:45 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	get_key(int keycode, t_window *win)
 	//printf("keycode: %i\n", keycode);
 	if (keycode == KEY_ESC)
 		close_game(win);
+	return (0);
+}
 
 static int validations(t_map *maps, char **argv)
 {
