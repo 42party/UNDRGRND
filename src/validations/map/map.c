@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/10 16:57:03 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/11 12:15:01 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ static int check_map_validations_mapxy(t_map *maps)
 	int flag;
 	int min_len;
 
+	i = 8;
 	min_len = ft_strlen(maps->map[i]);
 	if (min_len < 4)
 		return(ret_value(1, "minimap size 4x3"));
-	i = 8;
 	flag = 1;
 	flag = verify_content(maps, flag);
 	if (flag != 0)
 		return (1);
-	check_map_x_y(maps);
+	//check_map_x_y(maps);
 	return (flag);
 }
 

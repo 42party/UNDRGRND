@@ -47,6 +47,7 @@ int		get_info_map(t_map *maps, char *map_file);
 int		check_map_x_y(t_map *maps);
 int		verify_content(t_map *maps, int flag);
 
+
 #endif
 
 
