@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/10 14:22:52 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/11 12:22:27 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cub3d.h"
+
+int	get_key(int keycode, t_window *win)
+{
+	(void)win;
+	//printf("keycode: %i\n", keycode);
+	if (keycode == KEY_ESC)
+		close_game(win);
 
 static int validations(t_map *maps, char **argv)
 {
@@ -22,6 +29,7 @@ static int validations(t_map *maps, char **argv)
 		return (1);
 	 if (check_map_validations(maps))
 		return (1);
+
 	return (0);
 }
 
@@ -44,6 +52,7 @@ static void argc_verify(int argc)
 int main(int argc, char **argv)
 {
 	t_map *maps;
+    t_window	win;
 
 	argc_verify(argc);
 	maps = malloc(sizeof(t_map));
@@ -57,6 +66,17 @@ int main(int argc, char **argv)
 	while(maps->map[i])
 		printf("%s\n", maps->map[i++]);
 	free_maps(maps);
+  
+
+
+	// gerando a tela
+	init_window(&win);
+	load_game(&win);
+
+	// key hookaaaas
+	mlx_hook(win.win, CLICK_X, 0, close_game, &win);
+	mlx_key_hook(win.win, get_key, &win);
+	mlx_loop(win.mlx);
+
 	return (0);
 }
-

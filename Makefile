@@ -8,7 +8,17 @@ SRCS		=		src/main.c								\
 					src/validations/map/map.c				\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/texture.c			\
-					src/validations/map/temp_map.c			\
+					src/exit_functions/close_game.c			\
+					src/window_management/init_window.c		\
+					src/window_management/load_game.c		\
+					src/player/get_player_position.c		\
+          src/validations/map/temp_map.c			\
+
+OBJ_DIR		=		objects/
+
+OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+
+
 
 CC			=		cc
 
@@ -16,8 +26,6 @@ CFLAGS		=		-g -Wall -Wextra -Werror
 #-fsanitize=leak
 
 LIBFT		=		src/libs/libft/libft.a
-
-
 
 RM			=		rm -f
 
@@ -30,19 +38,22 @@ CYAN		=		\033[0;36m
 RESET		=		\033[0m
 
 ifeq ($(shell uname -s), Darwin)
-	CFLAGS		+= -framework OpenGL -framework AppKit
-	MLX			= src/libs/mlx/libmlx.a	
-	MLX_FOLDER	= src/libs/mlx 
+	INCLUDES	= -framework OpenGL -framework AppKit
+	MLX			= src/libs/mlx/libmlx.a
+	MLX_FOLDER	= src/libs/mlx
 else
-	CFLAGS		+= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
+	INCLUDES	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
 	MLX			= src/libs/mlx_linux/libmlx.a
-	MLX_FOLDER	= src/libs/mlx_linux 
+	MLX_FOLDER	= src/libs/mlx_linux
 endif
 
-# mac $(CC) $(CFLAGS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit $(SRCS) -o $(NAME)
-# linux $(CC) $(CFLAGS) $(LIBFT) $(MLX)  -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz $(SRCS) -o $(NAME)
 
-$(NAME):
+$(OBJ_DIR)%.o:	%.c
+		@mkdir -p $(OBJ_DIR)
+		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
+
+$(NAME):	$(SRCS)
+
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"
@@ -51,9 +62,7 @@ $(NAME):
 	@echo "$(GREEN)\tlibmlx.a generated successfully!$(RESET)"
 	@echo "$(RED)entering cub3D$(RESET)"
 	@echo "$(CYAN)\tgenerate cub3D ...$(RESET)"
-# @$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-# @$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -framework OpenGL -framework AppKit  -o $(NAME)
-	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) $(INCLUDES) -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
 
 all: $(NAME)
@@ -72,7 +81,7 @@ fclean: clean
 	@echo "$(RED)entering libft$(RESET)"
 	@cd src/libs/libft && make -s fclean
 	@$(RM) $(NAME)
-	@$(RM) -r $(NAME).dSYM	
+	@$(RM) -r $(NAME).dSYM
 
 re: fclean all
 

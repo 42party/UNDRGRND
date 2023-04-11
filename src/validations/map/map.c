@@ -62,6 +62,7 @@ static int check_map_validations_mapxy(t_map *maps)
 {
 	int i;
 	int flag;
+
 	int min_len;
 
 	i = 8;

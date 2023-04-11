@@ -9,6 +9,7 @@ Makefile.gen
 
 ## Other
 .DS_STORE
+*.swp
 
 ## cub3D
 cub3D
