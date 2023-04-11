@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:27:40 by vipereir          #+#    #+#             */
-/*   Updated: 2022/09/27 10:36:10 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:59:43 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*ft_gnl_strjoin(char const *s1, char const	*s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	str = (char *)malloc(ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1);
+	str = (char *)malloc(sizeof(char) *
+			(ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1));
 	if (str == NULL)
 		return (NULL);
 	while (s1[i])
@@ -69,7 +70,7 @@ char	*ft_gnl_strdup(const char	*s1)
 	size_t	i;
 
 	i = 0;
-	string = (char *)malloc(sizeof(*string) * (ft_gnl_strlen(s1) + 1));
+	string = (char *)malloc(sizeof(char) * (ft_gnl_strlen(s1) + 1));
 	if (string == NULL)
 		return (NULL);
 	while (s1[i])
@@ -91,7 +92,7 @@ char	*ft_gnl_substr(char const	*s, unsigned int start, size_t len)
 		return (NULL);
 	if (ft_gnl_strlen(s) < len)
 		len = ft_gnl_strlen(s);
-	str = (char *)malloc(len * sizeof(*str) + 1);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
 	if (start >= ft_gnl_strlen(s))

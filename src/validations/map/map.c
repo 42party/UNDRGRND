@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/08 11:10:46 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:15:01 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,102 +26,64 @@ int check_map_extension(char *map_name)
 	return (result);
 }
 
-static int check_map_validations_utils(int fd)
+static int check_map_validations_texture(t_map *maps)
 {
 	int	count;
 	int	flag;
 
 	flag = 0;
-	count = 4;
-	while (count--)
-		flag = check_map_path_texture(fd, flag);
+	count = 0;
+	while (count <= 3)
+		flag = check_map_path_texture(maps->map[count++], flag);
 	if (flag != 15)
 		return (ret_value(1, "Format NO, SO, WE, EA following path textures"));
 	return(0);
 }
 
-static int check_map_validations_utils_2(int fd)
+static int check_map_validations_ceilling(t_map *maps)
 {
 	int	count;
 	int	flag;
 
 	flag = 0;
-	count = 2;
-	while(count--)
-		flag = check_map_floor_ceilling(fd, flag);
+	count = 5;
+	if(!my_strncmp(maps->map[4], "\n"))
+		return (ret_value(1, "Need break line after direction textures"));
+	while(count < 7)
+		flag = check_map_floor_ceilling(maps->map[count++], flag);
+	if(!my_strncmp(maps->map[7], "\n"))
+		return (ret_value(1, "Need break line after direction textures"));
 	if (flag != 3)
 		return (ret_value(1, "Need one Floor and Ceilling"));
 	return (0);
 }
 
-static int verify_content(char *line, int count)
+static int check_map_validations_mapxy(t_map *maps)
 {
 	int i;
 	int flag;
 
-	i = 0;
-	flag = 0;
-	(void)flag;
-	while(line[i] && line[i] == 10)
-	{
-		if (line[i] && line[i] == 32)
-			i++;
-		else if (line[i] && (line[i] == '1' || line[i] == '0'))
-			i++;
-		else if(line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
-			count--;
+	int min_len;
 
-	}
-
-	return (0);
+	i = 8;
+	min_len = ft_strlen(maps->map[i]);
+	if (min_len < 4)
+		return(ret_value(1, "minimap size 4x3"));
+	flag = 1;
+	flag = verify_content(maps, flag);
+	if (flag != 0)
+		return (1);
+	//check_map_x_y(maps);
+	return (flag);
 }
 
-static int check_map_x_y(int fd)
+int check_map_validations(t_map *maps)
 {
-	char	*temp_map_line;
-	int		lines;
-	int		count;
-
-	lines = 0;
-	count = 1;
-	temp_map_line = get_next_line(fd);
-	while (temp_map_line)
-	{
-		if (verify_content(temp_map_line, count))
-			return(ret_value(1, "Only 1, 0, N, S, W, E or Spaces"));
-		free(temp_map_line);
-		temp_map_line = get_next_line(fd);
-		lines++;
-	}
-	if (count != 0)
-		return(ret_value(1, "Cannot put more than one position"));
-
-	return (0);
-}
-
-//fechar fd nos returns
-// free em cada gnl
-
-int check_map_validations(char *map_file)
-{
-	int fd;
-	char *temp_map_line;
-
-	fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		return (ret_value(1, "File does not exist"));
-	if(check_map_validations_utils(fd))
+	if(check_map_validations_texture(maps))
 		return (1);
-	temp_map_line = get_next_line(fd);
-	if(!my_strncmp(temp_map_line, "\n"))
-		return (ret_value(1, "Need break line after direction textures"));
-	if(check_map_validations_utils_2(fd))
+	if(check_map_validations_ceilling(maps))
 		return (1);
-	temp_map_line = get_next_line(fd);
-	if(!my_strncmp(temp_map_line, "\n"))
-		return (ret_value(1, "Need break line after direction textures"));
-	if(check_map_x_y(fd))
+	if(check_map_validations_mapxy(maps))
 		return (1);
-	close(fd);
 	return (0);
 }

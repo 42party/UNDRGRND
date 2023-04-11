@@ -76,10 +76,7 @@ typedef struct	s_map {
 	int		lines;
 	int		collumns;
 	char	**map;
-	int		has_direction;
-	int		has_textures;
-	int		has_floor;
-	int		has_ceilling;
+	int		lines;
 }				t_map;
 
 
@@ -128,9 +125,14 @@ char	**matrix_dup(char **mat);
 
 //validations-map
 int		check_map_extension(char *map_name);
-int		check_map_path_texture(int fd, int flag);
-int		check_map_floor_ceilling(int fd, int flag);
-int		check_map_validations(char *map_file);
+int		check_map_path_texture(char *map, int flag);
+int		check_map_floor_ceilling(char *map, int flag);
+int		check_map_validations(t_map *maps);
+int		get_line_map(t_map *maps, char *map_file);
+int		get_info_map(t_map *maps, char *map_file);
+int		check_map_x_y(t_map *maps);
+int		verify_content(t_map *maps, int flag);
+
 
 //player
 
@@ -146,3 +148,19 @@ void	init_window(t_window *win);
 int		close_game(t_window *win);
 
 #endif
+
+
+/*         1111111111111111111111111
+        1000000000110000000000001
+       11110000011100000000100001
+        1001000000000000000000001
+111111111011000001110000000000001
+100000000011000001110111111111111
+11110111111111011100000010001
+11110111111111011101010010001
+11000000110101011100000010001
+10000000000000001100000010001
+10000000000000001101010010001
+11000001110101011111011110N0111
+11110111 1110101 101111010001
+11111111 1111111 111111111111 */

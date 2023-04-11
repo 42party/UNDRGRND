@@ -12,14 +12,18 @@ SRCS		=		src/main.c								\
 					src/window_management/init_window.c		\
 					src/window_management/load_game.c		\
 					src/player/get_player_position.c		\
+          src/validations/map/temp_map.c			\
 
 OBJ_DIR		=		objects/
 
 OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
+
+
 CC			=		cc
 
 CFLAGS		=		-g -Wall -Wextra -Werror
+#-fsanitize=leak
 
 LIBFT		=		src/libs/libft/libft.a
 
@@ -43,12 +47,13 @@ else
 	MLX_FOLDER	= src/libs/mlx_linux
 endif
 
+
 $(OBJ_DIR)%.o:	%.c
 		@mkdir -p $(OBJ_DIR)
 		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
 
-#$(NAME):	$(OBJ)
 $(NAME):	$(SRCS)
+
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
 	@echo "$(RED)entering mlx$(RESET)"
