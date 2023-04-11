@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:47:20 by vipereir          #+#    #+#             */
-/*   Updated: 2022/06/14 10:09:46 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:43:56 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t	count, size_t	size)
 	if (size == 0 || count == 0)
 	{
 		count = 1;
-		size = count;
+		size = 1;
 	}
 	vp = malloc(count * size);
 	if (vp == NULL)
