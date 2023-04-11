@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   temp_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:57:00 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/10 11:49:39 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:04:14 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,59 @@ int get_info_map(t_map *maps, char *map_file)
 	close(fd);
 	return (0);
 }
+
+static int get_bigger_line(t_map *maps)
+{
+	size_t big_line;
+	int i;
+
+	i = 0;
+	big_line = 0;
+	while(maps->map[i])
+	{
+		if (big_line < ft_strlen(maps->map[i]))
+			big_line = ft_strlen(maps->map[i]);
+		i++;
+	}
+	return (big_line);
+}
+
+static char *fill_space(char *str, int big_line)
+{
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(str);
+	while(len < big_line)
+	{
+		str[i] = 32;
+		i++;
+		len++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+int clone_map(t_map *maps)
+{
+	size_t big_line;
+	int i;
+
+	i = 0;
+	big_line = get_bigger_line(maps);
+	while(maps->map[i])
+	{
+		if (big_line < ft_strlen(maps->map[i]))
+			maps->temp_map[i] = ft_strjoin(maps->map[i], fill_space(maps->map[i], big_line));
+		else
+			maps->temp_map[i] = ft_strdup(maps->map[i]);
+		i++;
+	}
+	return (0);
+}
+
+// static int proliferation(t_map *maps)
+// {
+
+// }

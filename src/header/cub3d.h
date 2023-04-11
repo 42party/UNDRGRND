@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/11 12:34:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:38:13 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,13 @@ enum {
 //type defs && structs
 
 typedef struct	s_map {
-	int		lines;
 	char	**map;
+	char	**textures;
+	char	**floor_ceilling;
+	char	**map_square;
+	int		lines;
+	int		big_line;
+	char	**temp_map;
 }				t_map;
 
 
@@ -130,6 +135,7 @@ int		get_line_map(t_map *maps, char *map_file);
 int		get_info_map(t_map *maps, char *map_file);
 int		check_map_x_y(t_map *maps);
 int		verify_content(t_map *maps, int flag);
+int clone_map(t_map *maps);
 
 
 //player
