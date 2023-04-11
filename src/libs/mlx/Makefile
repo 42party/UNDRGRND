@@ -10,12 +10,12 @@ CFLAGS+=-O2
 
 # add to match string put with X11 in size and position
 CFLAGS+= -DSTRINGPUTX11
-
+CFLAGS+= -w
 all: $(NOM)
 
 $(NOM):	$(OBJ)
-	ar -r $(NOM) $(OBJ)
-	ranlib $(NOM)
+	@ar qc $(NOM) $(OBJ)
+	@ranlib $(NOM)
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

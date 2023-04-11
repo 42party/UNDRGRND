@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
 /*   Updated: 2023/04/10 14:22:52 by rgorki           ###   ########.fr       */
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 	i = 0;
 	while(maps->map[i])
 		printf("%s\n", maps->map[i++]);
-
 	free_maps(maps);
 	return (0);
 }
+
