@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:57:00 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/10 11:49:39 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/12 17:51:15 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ int get_line_map(t_map *maps, char *map_file)
 	int fd;
 	char *temp_map_line;
 
-	maps->lines = 0;
+	maps->max_line = 0;
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
 		return (ret_value(1, "File does not exist"));
 	temp_map_line = get_next_line(fd);
-	maps->lines++;
+	maps->max_line++;
 	while(temp_map_line)
 	{
 		free(temp_map_line);
 		temp_map_line = get_next_line(fd);
-		maps->lines++;
+		maps->max_line++;
 	}
 	free(temp_map_line);
 	close(fd);
-	if (maps->lines < 11)
+	if (maps->max_line < 11)
 		return (1);
 	return (0);
 }
@@ -62,22 +62,78 @@ int get_info_map(t_map *maps, char *map_file)
 	int i;
 	char *temp_map_line;
 
-	if(!(maps->map = ft_calloc(sizeof(char *), maps->lines + 1)))
+	if(!(maps->filecub = ft_calloc(sizeof(char *), maps->max_line + 1)))
 		return (1);
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
 		return (ret_value(1, "File does not exist"));
 	i = 0;
 	temp_map_line = get_next_line(fd);
-	maps->map[i++] = ft_strdup(remove_breakline(temp_map_line));
+	maps->filecub[i++] = ft_strdup(remove_breakline(temp_map_line));
 	while(temp_map_line)
 	{
 		free(temp_map_line);
 		temp_map_line = get_next_line(fd);
 		if (temp_map_line)
-			maps->map[i++] = ft_strdup(remove_breakline(temp_map_line));
+			maps->filecub[i++] = ft_strdup(remove_breakline(temp_map_line));
 	}
 	free(temp_map_line);
 	close(fd);
 	return (0);
 }
+
+/* static int get_bigger_line(t_map *maps)
+{
+	size_t big_line;
+	int i;
+
+	i = 0;
+	big_line = 0;
+	while(maps->filecub[i])
+	{
+		if (big_line < ft_strlen(maps->filecub[i]))
+			big_line = ft_strlen(maps->filecub[i]);
+		i++;
+	}
+	return (big_line);
+}
+
+static char *fill_space(char *str, int big_line)
+{
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(str);
+	while(len < big_line)
+	{
+		str[i] = 32;
+		i++;
+		len++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+int clone_map(t_map *maps)
+{
+	size_t big_line;
+	int i;
+
+	i = 0;
+	big_line = get_bigger_line(maps);
+	while(maps->filecub[i])
+	{
+		if (big_line < ft_strlen(maps->filecub[i]))
+			maps->temp_map[i] = ft_strjoin(maps->filecub[i], fill_space(maps->filecub[i], big_line));
+		else
+			maps->temp_map[i] = ft_strdup(maps->filecub[i]);
+		i++;
+	}
+	return (0);
+} */
+
+// static int proliferation(t_map *maps)
+// {
+
+// }
