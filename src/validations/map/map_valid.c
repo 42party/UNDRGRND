@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:22:45 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/11 15:17:57 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/12 17:46:38 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int verify_content(t_map *maps, int flag)
 	int i;
 	int j;
 
-	i = 8;
-	while(i < maps->lines)
+	i = 0;
+	while(i < maps->size_map - 1)
 	{
 		j = 0;
 		while (maps->map[i][j])
@@ -27,7 +27,6 @@ int verify_content(t_map *maps, int flag)
 				|| maps->map[i][j] == 'S' || maps->map[i][j] == 'W'
 				|| maps->map[i][j] == 'E'))
 					flag--;
-			printf("SAI\n");
 			if (maps->map[i] && (maps->map[i][j] != 32
 				&& maps->map[i][j] != '1' && maps->map[i][j] != '0'
 				&& maps->map[i][j] != 'N' && maps->map[i][j] != 'S'
@@ -38,7 +37,7 @@ int verify_content(t_map *maps, int flag)
 		i++;
 	}
 	if (flag != 0)
-		return(ret_value(1, "Cannot put more than one position"));
+		return(ret_value(1, "Need a position (N, S, W, or E)"));
 	return (flag);
 }
 

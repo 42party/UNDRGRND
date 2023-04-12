@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/11 15:38:13 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/12 17:11:33 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ enum {
 //type defs && structs
 
 typedef struct	s_map {
+	char	**filecub;
 	char	**map;
-	char	**textures;
-	char	**floor_ceilling;
-	char	**map_square;
-	int		lines;
-	int		big_line;
+	int		ctrl_line;
+	int		max_line;
+	int		max_col;
+	int		size_map;
 	char	**temp_map;
 }				t_map;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/11 15:04:33 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/12 17:53:00 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int validations(t_map *maps, char **argv)
 
 static void free_maps(t_map *maps)
 {
-	free_matrix(maps->map);
+	free_matrix(maps->filecub);
 	free(maps);
 }
 
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 		free_maps(maps);
 		exit(1);
 	}
-	 clone_map(maps);
+	// clone_map(maps);
 	int i ;
 	i = 0;
 	while(maps->map[i])
