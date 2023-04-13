@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:57:00 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/12 17:51:15 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/13 14:48:32 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,58 +82,39 @@ int get_info_map(t_map *maps, char *map_file)
 	return (0);
 }
 
-/* static int get_bigger_line(t_map *maps)
-{
-	size_t big_line;
-	int i;
-
-	i = 0;
-	big_line = 0;
-	while(maps->filecub[i])
-	{
-		if (big_line < ft_strlen(maps->filecub[i]))
-			big_line = ft_strlen(maps->filecub[i]);
-		i++;
-	}
-	return (big_line);
-}
-
-static char *fill_space(char *str, int big_line)
+static char *fill_space(char *str, int max_col)
 {
 	int		len;
-	int		i;
+	char	*temp_str;
 
-	i = 0;
 	len = ft_strlen(str);
-	while(len < big_line)
-	{
-		str[i] = 32;
-		i++;
-		len++;
-	}
-	str[i] = '\0';
-	return (str);
+	temp_str = my_realloc(str, max_col);
+	while (len < max_col)
+		temp_str[len++] = 32;
+	return (temp_str);
 }
 
 int clone_map(t_map *maps)
 {
-	size_t big_line;
 	int i;
+	char *temp;
 
 	i = 0;
-	big_line = get_bigger_line(maps);
-	while(maps->filecub[i])
+	maps->temp_map = ft_calloc(sizeof(char *), maps->size_map);
+	if (!maps->temp_map)
+		return (1);
+	while(maps->map[i])
 	{
-		if (big_line < ft_strlen(maps->filecub[i]))
-			maps->temp_map[i] = ft_strjoin(maps->filecub[i], fill_space(maps->filecub[i], big_line));
+		if (maps->max_col > ft_strlen(maps->map[i]))
+		{
+			temp = ft_strdup(maps->map[i]);
+			temp = fill_space(temp, maps->max_col);
+			maps->temp_map[i] = ft_strdup(temp);
+			free(temp);
+		}
 		else
-			maps->temp_map[i] = ft_strdup(maps->filecub[i]);
+			maps->temp_map[i] = ft_strdup(maps->map[i]);
 		i++;
 	}
 	return (0);
-} */
-
-// static int proliferation(t_map *maps)
-// {
-
-// }
+}

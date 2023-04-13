@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/12 17:53:00 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/13 16:15:47 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,38 @@ int	get_key(int keycode, t_window *win)
 	return (0);
 }
 
+static int free_validation(t_map *maps, int flag)
+{
+	if (flag == 0)
+		return (0);
+	if (flag == 1)
+		return (1);
+	if (flag > 1)
+		free_matrix(maps->filecub);
+	if (flag > 2)
+		free_matrix(maps->map);
+	free(maps);
+	return (1);
+}
+
 static int validations(t_map *maps, char **argv)
 {
-	if (check_map_extension(argv[1]))
-		return (1);
-	if (get_line_map(maps, argv[1]))
-		return (1);
-	if (get_info_map(maps, argv[1]))
-		return (1);
-	 if (check_map_validations(maps))
-		return (1);
+	int	flag;
 
-	return (0);
+	flag = 0;
+	if (check_map_extension(argv[1]))
+		flag += 1;
+	if (get_line_map(maps, argv[1]))
+		flag += 1;
+	if (get_info_map(maps, argv[1]))
+		flag += 1;
+	 if (check_map_validations(maps))
+		flag += 1;
+	free_validation(maps, flag);
+	return (flag);
 }
+
+
 
 static void free_maps(t_map *maps)
 {
@@ -59,15 +78,8 @@ int main(int argc, char **argv)
 	argc_verify(argc);
 	maps = malloc(sizeof(t_map));
 	if (validations(maps, argv))
-	{
-		free_maps(maps);
 		exit(1);
-	}
-	// clone_map(maps);
-	int i ;
-	i = 0;
-	while(maps->map[i])
-		printf("%s\n", maps->map[i++]);
+	free_matrix(maps->map);
 	free_maps(maps);
 
 
