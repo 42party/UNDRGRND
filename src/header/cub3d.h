@@ -6,7 +6,7 @@
 /*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/12 17:11:33 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/13 14:25:36 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct	s_map {
 	char	**map;
 	int		ctrl_line;
 	int		max_line;
-	int		max_col;
+	size_t	max_col;
 	int		size_map;
 	char	**temp_map;
 }				t_map;
@@ -135,7 +135,9 @@ int		get_line_map(t_map *maps, char *map_file);
 int		get_info_map(t_map *maps, char *map_file);
 int		check_map_x_y(t_map *maps);
 int		verify_content(t_map *maps, int flag);
-int clone_map(t_map *maps);
+int		clone_map(t_map *maps);
+void	get_max_col(t_map *maps);
+char*	my_realloc(char* str, size_t new_size);
 
 
 //player

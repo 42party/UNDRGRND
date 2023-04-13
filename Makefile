@@ -6,6 +6,7 @@ SRCS		=		src/main.c								\
 					src/utils/send_msg_errors.c				\
 					src/utils/utils.c						\
 					src/validations/map/map.c				\
+					src/validations/map/utils_map.c			\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/texture.c			\
 					src/validations/map/temp_map.c			\
