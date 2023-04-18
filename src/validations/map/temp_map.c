@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   temp_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:57:00 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/13 14:48:32 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/18 12:03:12 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,53 @@ static char *fill_space(char *str, int max_col)
 	char	*temp_str;
 
 	len = ft_strlen(str);
+	temp_str = my_realloc(str, max_col + 2);
+	while (len < max_col + 1)
+		temp_str[len++] = 32;
+	return (temp_str);
+}
+
+static void fill_topdown(t_map *maps)
+{
+	int max_size;
+	int last_line;
+
+	last_line = maps->size_map;
+	max_size = maps->max_col + 1;
+	maps->temp_map[0] = ft_calloc(sizeof(char), max_size);
+	maps->temp_map[last_line] = ft_calloc(sizeof(char), max_size);
+	maps->temp_map[0] = fill_space(maps->temp_map[0], max_size);
+	maps->temp_map[last_line] = fill_space(maps->temp_map[last_line], max_size);
+
+}
+
+int clone_map(t_map *maps)
+{
+	int i;
+	int j;
+	char *temp;
+
+	i = 0;
+	j = 1;
+	maps->temp_map = ft_calloc(sizeof(char *), maps->size_map + 2);
+	if (!maps->temp_map)
+		return (1);
+	fill_topdown(maps);
+	while(maps->map[i] && i < maps->size_map)
+	{
+		temp = ft_strjoin(" ", maps->map[i]);
+		maps->temp_map[j++] = fill_space(temp, maps->max_col + 1);
+		i++;
+	}
+	return (0);
+}
+
+/* static char *fill_space(char *str, int max_col)
+{
+	int		len;
+	char	*temp_str;
+
+	len = ft_strlen(str);
 	temp_str = my_realloc(str, max_col);
 	while (len < max_col)
 		temp_str[len++] = 32;
@@ -117,4 +164,4 @@ int clone_map(t_map *maps)
 		i++;
 	}
 	return (0);
-}
+} */

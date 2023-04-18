@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:22:45 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/13 16:14:00 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/18 11:44:11 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ static int verify_walls(t_map *maps)
  		 col = 0;
  		 while (maps->map[line][col])
  		 {
- 		 	if (line == 8 && (maps->map[line][col] != 32
- 		 	|| maps->map[line][col] != 1))
- 		 		return(ret_value(1, "Close map "));
+ 		 	if (line == 8)
+ 		 			return(ret_value(1, "Close map "));
  		 	 if (maps->map[line][col] == 32)
  		 	 		return(ret_value(1, "Close map around spaces"));
  		 }
