@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   main_validations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 15:31:38 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/19 14:20:13 by rgorki           ###   ########.fr       */
+/*   Created: 2023/04/19 13:37:07 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/19 13:37:53 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/cub3d.h"
+#include "../../header/cub3d.h"
 
-void	init_window(t_window *win)
+void	argc_verify(int argc)
 {
-	win->mlx = mlx_init();
-	win->win = mlx_new_window(win->mlx,
-			DISPLAY_WIDTH, DISPLAY_HEIGHT, "fvck!");
-	win->img.img = mlx_new_image(win->mlx,
-			DISPLAY_WIDTH, DISPLAY_HEIGHT);
+	if (argc != 2)
+	{
+		printf("Invalid map or format\n");
+		printf("example: ./cub3D src/maps/mapname.cub\n");
+		exit(1);
+	}
 }

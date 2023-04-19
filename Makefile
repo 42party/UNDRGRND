@@ -5,9 +5,14 @@ SRCS		=		src/main.c								\
 					src/utils/matrix_utils.c				\
 					src/utils/send_msg_errors.c				\
 					src/utils/utils.c						\
+					src/utils/freeables.c					\
+					src/validations/main/main_validations.c	\
 					src/validations/map/map.c				\
+					src/validations/map/map_name.c				\
 					src/validations/map/utils_map.c			\
+					src/validations/map/read_file.c			\
 					src/validations/map/ceilling_floor.c	\
+					src/validations/map/map_validations.c	\
 					src/validations/map/texture.c			\
 					src/validations/map/temp_map.c			\
 					src/validations/map/map_valid.c			\

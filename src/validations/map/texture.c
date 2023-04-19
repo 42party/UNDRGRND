@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/19 14:10:31 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/19 14:11:01 by rgorki           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../header/cub3d.h"
 
 int	check_map_path_texture(char *map, int flag)
@@ -10,8 +22,9 @@ int	check_map_path_texture(char *map, int flag)
 	if (!split_line || size != 2)
 	{
 		free(split_line);
-		return (ret_value(1, "Format incompatible: direction more path texture"));
-	} // verificar esse error pra ver se limpa todos os leaks
+		return (ret_value(1, "Format incompatible: "
+				"direction more path texture"));
+	}
 	if (my_strncmp("NO", split_line[0]))
 		if (my_strncmp("../textures/north", split_line[1]))
 			flag += 8;

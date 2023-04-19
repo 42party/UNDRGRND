@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   send_msg_errors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:39 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 11:01:48 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/19 13:52:51 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-int ret_value(int i, char *msg)
+int	ret_value(int i, char *msg)
 {
 	printf("Error: \n%s\n", msg);
 	return (i);
