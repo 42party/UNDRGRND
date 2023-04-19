@@ -3,52 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/13 14:25:36 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/19 14:48:03 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "../libs/libft/libft.h"
-#include "../libs/mlx/mlx.h"
+# include "../libs/libft/libft.h"
+# include "../libs/mlx/mlx.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <math.h>
-#include <fcntl.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
+# include <fcntl.h>
 
 // config defines
 
-# define DISPLAY_HEIGHT 400  // isso tmb é colunar e linhas
+# define DISPLAY_HEIGHT 400
 # define DISPLAY_WIDTH 600
 
-# ifdef __linux__ //linux keymaps
+# ifdef __linux__
 
 enum {
 	CLICK_X = 17,
 	KEY_ESC = 65307,
-	// movement based on WASD standard
-	KEY_UP = 119,	// W
-	KEY_LEFT = 97,	// A
-	KEY_DOWN = 115,	// S
-	KEY_RIGHT = 100	// D
+	KEY_UP = 119,
+	KEY_LEFT = 97,
+	KEY_DOWN = 115,
+	KEY_RIGHT = 100
 };
 
-# elif defined(__APPLE__) // mac keymaps
+# elif defined(__APPLE__)
 
-enum {   //verificar os valores no mac
+enum {
 	CLICK_X = 17,
 	KEY_ESC = 53,
-	// movement based on WASD standard
-	KEY_UP = 13,	// W
-	KEY_LEFT = 0,	// A
-	KEY_DOWN = 1,	// S
-	KEY_RIGHT = 2	// D
+	KEY_UP = 13,
+	KEY_LEFT = 0,
+	KEY_DOWN = 1,
+	KEY_RIGHT = 2
 };
 
 # endif
@@ -69,10 +67,8 @@ enum {
 # define WE ./path_to_the_west_texture
 # define EA ./path_to_the_east_texture */
 
-
 //type defs && structs
-
-typedef struct	s_map {
+typedef struct s_map {
 	char	**filecub;
 	char	**map;
 	int		ctrl_line;
@@ -80,10 +76,11 @@ typedef struct	s_map {
 	size_t	max_col;
 	int		size_map;
 	char	**temp_map;
+	int		tmp_max_line;
+	int		tmp_max_col;
 }				t_map;
 
-
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -93,26 +90,23 @@ typedef struct	s_data {
 
 typedef struct s_possition{
 	int	x;
-	int y;
-} 			t_possition;
+	int	y;
+}				t_possition;
 
 # define POV 60
 
 typedef struct s_player{
-	t_possition possition_on_plane;
-	t_possition possition_on_map;
-	int 		view_direction; // 0 - 360
-}			t_player;
-
-
-
+	t_possition	possition_on_plane;
+	t_possition	possition_on_map;
+	int			view_direction;
+}				t_player;
 
 typedef struct s_window {
-	void	*mlx;
-	void	*win;
-	t_data	img;
-	t_map	map;
-	t_player  player; // to pensando em chamar de game, t_game
+	void		*mlx;
+	void		*win;
+	t_data		img;
+	t_map		map;
+	t_player	player;
 }	t_window;
 
 // mlx funcs
@@ -124,49 +118,37 @@ int		create_trgb(int t, int r, int g, int b);
 int		array_counter(char **arr);
 int		free_matrix(char **matrix);
 char	**matrix_dup(char **mat);
-//validations
+void	free_maps(t_map *maps);
+
+//validations-main
+void	argc_verify(int argc);
 
 //validations-map
 int		check_map_extension(char *map_name);
 int		check_map_path_texture(char *map, int flag);
 int		check_map_floor_ceilling(char *map, int flag);
 int		check_map_validations(t_map *maps);
+int		check_map_validations_texture(t_map *maps);
+int		check_map_validations_ceilling(t_map *maps);
+int		check_map_validations_mapxy(t_map *maps);
 int		get_line_map(t_map *maps, char *map_file);
 int		get_info_map(t_map *maps, char *map_file);
 int		check_map_x_y(t_map *maps);
 int		verify_content(t_map *maps, int flag);
 int		clone_map(t_map *maps);
 void	get_max_col(t_map *maps);
-char*	my_realloc(char* str, size_t new_size);
-
+char	*my_realloc(char *str, size_t new_size);
+int		radar_validation(t_map *maps);
+int		validations(t_map *maps, char **argv);
 
 //player
-
 void	get_player_possition(char **map, int lines);
 
 // window management
-
 void	load_game(t_window *win);
 void	init_window(t_window *win);
 
 // exit functions
-
 int		close_game(t_window *win);
 
 #endif
-
-
-/*         1111111111111111111111111
-        1000000000110000000000001
-       11110000011100000000100001
-        1001000000000000000000001
-111111111011000001110000000000001
-100000000011000001110111111111111
-11110111111111011100000010001
-11110111111111011101010010001
-11000000110101011100000010001
-10000000000000001100000010001
-10000000000000001101010010001
-11000001110101011111011110N0111
-11110111 1110101 101111010001
-11111111 1111111 111111111111 */

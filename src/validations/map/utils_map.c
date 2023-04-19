@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/19 14:11:16 by rgorki            #+#    #+#             */
+/*   Updated: 2023/04/19 14:13:05 by rgorki           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../header/cub3d.h"
 
-void get_max_col(t_map *maps)
+void	get_max_col(t_map *maps)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	maps->max_col = 0;
-	while(maps->map[i])
+	while (maps->map[i])
 	{
 		if (maps->max_col < ft_strlen(maps->map[i]))
 			maps->max_col = ft_strlen(maps->map[i]);
@@ -14,19 +26,20 @@ void get_max_col(t_map *maps)
 	}
 }
 
-char* my_realloc(char* str, size_t new_size)
+char	*my_realloc(char *str, size_t new_size)
 {
-	size_t old_size;
+	size_t	old_size;
+	char	*new_str;
 
 	old_size = ft_strlen(str) + 1;
 	if (new_size == 0)
 	{
 		free(str);
-		return NULL;
+		return (NULL);
 	}
-	char* new_str = ft_calloc(sizeof(char), new_size + 1);
+	new_str = ft_calloc(sizeof(char), new_size + 1);
 	if (!new_str)
-		return NULL;
+		return (NULL);
 	if (str)
 	{
 		if (old_size < new_size)

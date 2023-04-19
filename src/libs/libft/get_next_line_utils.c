@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:27:40 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/03 12:59:43 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/19 13:52:02 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*ft_gnl_strjoin(char const *s1, char const	*s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) *
-			(ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1));
+	str = (char *)malloc(sizeof(char)
+			* (ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1));
 	if (str == NULL)
 		return (NULL);
 	while (s1[i])

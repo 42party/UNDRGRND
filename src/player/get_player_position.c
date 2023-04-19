@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:47:26 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/09 17:50:06 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:37:40 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 // faça uma função que procure x em um arry de caracteres
 
-#include "../header/cub3d.h"
+#include	"../header/cub3d.h"
 
 void	get_player_possition(char **map, int lines)
 {
@@ -36,5 +36,5 @@ void	get_player_possition(char **map, int lines)
 		j = 0;
 		i++;
 	}
-	//return (-1);
+	// return (-1);
 }

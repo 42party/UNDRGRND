@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki <rgorki@student.42.rio>             +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 12:38:06 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/02 15:56:37 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/19 13:53:01 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	my_strncmp(const char *s1, const char *s2)
 	return (1);
 }
 
-int my_atoi(const char *str)
+int	my_atoi(const char *str)
 {
 	int	res;
 	int	i;
