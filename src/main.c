@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 15:25:52 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/20 09:42:20 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int	main(int argc, char **argv)
 	argc_verify(argc);
 	maps = malloc(sizeof(t_map));
 	if (validations(maps, argv))
-	{
-		printf("saí aqui!\n");
 		exit(1);
-	}
 	init_window(&win);
 	load_game(&win);
 	mlx_hook(win.win, CLICK_X, 0, close_game, &win);
