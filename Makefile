@@ -76,6 +76,12 @@ $(NAME):	$(SRCS)
 
 all: $(NAME)
 
+run:
+	make && clear && ./cub3d src/maps/example.cub
+
+val:
+	clear && valgrind --memcheck:leak-check=full --show-reachable=yes ./cub3D src/maps/example.cub
+
 clean:
 	@echo "$(RED)entering libft$(RESET)"
 	@echo "$(MAGENTA)\tCleaning .o ...$(RESET)"

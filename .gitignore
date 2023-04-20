@@ -4,6 +4,8 @@ Makefile.gen
 
 ## Editor
 .vscode/*
+.vscode
+.vscode/settings.json
 *~
 \#*\#
 
@@ -38,6 +40,7 @@ cub3D
 *.a
 *.la
 *.lo
+*.log
 
 # Shared objects (inc. Windows DLLs)
 *.dll
