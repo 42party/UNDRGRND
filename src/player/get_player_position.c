@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:47:26 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/19 14:37:40 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 13:18:30 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include	"../header/cub3d.h"
 
-void	get_player_possition(char **map, int lines)
+void	get_player_position(char **map, int lines)
 {
 	int		i;
 	int		j;
@@ -28,7 +28,7 @@ void	get_player_possition(char **map, int lines)
 		{
 			if (map[i][j] == PLAYER)
 			{
-				printf("possition %i\n", (i * lines + j));
+				printf("position %i\n", (i * lines + j));
 				return ;
 			}
 			j++;

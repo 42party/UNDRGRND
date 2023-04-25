@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/20 09:42:20 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 13:56:04 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ int	main(int argc, char **argv)
 		exit(1);
 	init_window(&win);
 	load_game(&win);
+
 	mlx_hook(win.win, CLICK_X, 0, close_game, &win);
 	mlx_key_hook(win.win, get_key, &win);
+	initialize_graphics(maps, &win);
 	mlx_loop(win.mlx);
+
 	free_maps(maps);
 	return (0);
 }

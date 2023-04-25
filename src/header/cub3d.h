@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/19 14:48:03 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:33:21 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,11 @@ enum {
 	FLOOR = '0'
 };
 
-/* # define NO	1
-# define SO	2
-# define EO	3
-# define WO	4
-
-# define NO ./path_to_the_north_texture
-# define SO ./path_to_the_south_texture
-# define WE ./path_to_the_west_texture
-# define EA ./path_to_the_east_texture */
-
-//type defs && structs
+typedef struct s_color {
+	int	red;
+	int	green;
+	int	blue;
+}				t_color;
 typedef struct s_map {
 	char	**filecub;
 	char	**map;
@@ -78,6 +72,8 @@ typedef struct s_map {
 	char	**temp_map;
 	int		tmp_max_line;
 	int		tmp_max_col;
+	t_color	ceiling;
+	t_color	floor;
 }				t_map;
 
 typedef struct s_data {
@@ -88,16 +84,16 @@ typedef struct s_data {
 	int		endian;
 }				t_data;
 
-typedef struct s_possition{
+typedef struct s_position{
 	int	x;
 	int	y;
-}				t_possition;
+}				t_position;
 
 # define POV 60
 
 typedef struct s_player{
-	t_possition	possition_on_plane;
-	t_possition	possition_on_map;
+	t_position	position_on_plane;
+	t_position	position_on_map;
 	int			view_direction;
 }				t_player;
 
@@ -109,13 +105,17 @@ typedef struct s_window {
 	t_player	player;
 }	t_window;
 
-// mlx funcs
+// graphics
+void	initialize_graphics(t_map *maps, t_window *win);
+void	paint_floor(t_map *maps, t_window *win);
+
 //utils
 int		my_atoi(const char *str);
 int		my_strncmp(const char *s1, const char *s2);
 int		ret_value(int i, char *msg);
 int		create_trgb(int t, int r, int g, int b);
 int		array_counter(char **arr);
+void	my_mlx_pixel_put(t_window *win, int x, int y, int color);
 int		free_matrix(char **matrix);
 char	**matrix_dup(char **mat);
 void	free_maps(t_map *maps);
@@ -126,7 +126,7 @@ void	argc_verify(int argc);
 //validations-map
 int		check_map_extension(char *map_name);
 int		check_map_path_texture(char *map, int flag);
-int		check_map_floor_ceilling(char *map, int flag);
+int		check_map_floor_ceilling(t_map *maps, char *map, int flag);
 int		check_map_validations(t_map *maps);
 int		check_map_validations_texture(t_map *maps);
 int		check_map_validations_ceilling(t_map *maps);

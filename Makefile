@@ -3,6 +3,7 @@ NAME		=		cub3D
 SRCS		=		src/main.c								\
 					src/utils/colours.c						\
 					src/utils/matrix_utils.c				\
+					src/utils/my_mlx.c						\
 					src/utils/send_msg_errors.c				\
 					src/utils/utils.c						\
 					src/utils/freeables.c					\
@@ -20,6 +21,8 @@ SRCS		=		src/main.c								\
 					src/window_management/init_window.c		\
 					src/window_management/load_game.c		\
 					src/player/get_player_position.c		\
+					src/graphics/loading_game.c				\
+					src/graphics/paint_pixels.c				\
 
 
 
