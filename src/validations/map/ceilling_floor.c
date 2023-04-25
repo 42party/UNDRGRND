@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:29:20 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/25 08:31:34 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 12:45:15 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,26 @@ static int loop_check_floor_ceilling(char **split_numbers, int i, int j)
 	return (0);
 }
 
-static void floor_ceiling_color(t_map *maps, char floor_ceiling, int i)
+static void floor_ceiling_color(t_map *maps, char **split_numbers, char floor_ceiling, int i)
 {
-	if (floor_ceiling == 'F')
+	if (floor_ceiling == 'C')
 	{
-		maps->ceiling.red = ;
+		if (i == 0)
+			maps->ceiling.red = ft_atoi(split_numbers[i]);
+		else if (i == 1)
+			maps->ceiling.green = ft_atoi(split_numbers[i]);
+		else
+			maps->ceiling.blue = ft_atoi(split_numbers[i]);
 	}
-	else
-
-
+	else if (floor_ceiling == 'F')
+	{
+		if (i == 0)
+			maps->floor.red = ft_atoi(split_numbers[i]);
+		else if (i == 1)
+			maps->floor.green = ft_atoi(split_numbers[i]);
+		else
+			maps->floor.blue = ft_atoi(split_numbers[i]);
+	}
 }
 
 static int	check_map_floor_ceilling_utils_2(t_map *maps, char **split_numbers, char floor_ceiling)
@@ -46,7 +57,7 @@ static int	check_map_floor_ceilling_utils_2(t_map *maps, char **split_numbers, c
 			if (loop_check_floor_ceilling(split_numbers, i, j++))
 				return (ret_value(1, "Only numbers [0-255]"));
 		}
-		floor_ceiling_color(maps, floor_ceiling, i);
+		floor_ceiling_color(maps, split_numbers, floor_ceiling, i);
 		i++;
 	}
 	free_matrix(split_numbers);
