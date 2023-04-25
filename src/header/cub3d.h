@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/25 08:28:14 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:33:21 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ typedef struct s_position{
 # define POV 60
 
 typedef struct s_player{
-	t_position	possition_on_plane;
-	t_position	possition_on_map;
+	t_position	position_on_plane;
+	t_position	position_on_map;
 	int			view_direction;
 }				t_player;
 
@@ -105,13 +105,17 @@ typedef struct s_window {
 	t_player	player;
 }	t_window;
 
-// mlx funcs
+// graphics
+void	initialize_graphics(t_map *maps, t_window *win);
+void	paint_floor(t_map *maps, t_window *win);
+
 //utils
 int		my_atoi(const char *str);
 int		my_strncmp(const char *s1, const char *s2);
 int		ret_value(int i, char *msg);
 int		create_trgb(int t, int r, int g, int b);
 int		array_counter(char **arr);
+void	my_mlx_pixel_put(t_window *win, int x, int y, int color);
 int		free_matrix(char **matrix);
 char	**matrix_dup(char **mat);
 void	free_maps(t_map *maps);
