@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 14:44:43 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 08:25:08 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	utils_ceilling(t_map *maps)
 		{
 			if (count <= 1)
 			{
-				flag = check_map_floor_ceilling(maps->filecub[maps->ctrl_line],
+				flag = check_map_floor_ceilling(maps, maps->filecub[maps->ctrl_line],
 						flag);
 				count++;
 			}

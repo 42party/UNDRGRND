@@ -6,13 +6,33 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:29:20 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 14:00:45 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/25 08:31:34 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
 
-static int	check_map_floor_ceilling_utils_2(char **split_numbers)
+static int loop_check_floor_ceilling(char **split_numbers, int i, int j)
+{
+	if (my_atoi(split_numbers[i]) < 0
+		|| my_atoi(split_numbers[i]) > 255
+		|| !ft_isdigit(split_numbers[i][j]))
+			return (1);
+	return (0);
+}
+
+static void floor_ceiling_color(t_map *maps, char floor_ceiling, int i)
+{
+	if (floor_ceiling == 'F')
+	{
+		maps->ceiling.red = ;
+	}
+	else
+
+
+}
+
+static int	check_map_floor_ceilling_utils_2(t_map *maps, char **split_numbers, char floor_ceiling)
 {
 	int	i;
 	int	j;
@@ -23,12 +43,10 @@ static int	check_map_floor_ceilling_utils_2(char **split_numbers)
 		j = 0;
 		while (split_numbers[i][j])
 		{
-			if (my_atoi(split_numbers[i]) < 0
-				|| my_atoi(split_numbers[i]) > 255
-				|| !ft_isdigit(split_numbers[i][j]))
+			if (loop_check_floor_ceilling(split_numbers, i, j++))
 				return (ret_value(1, "Only numbers [0-255]"));
-			j++;
 		}
+		floor_ceiling_color(maps, floor_ceiling, i);
 		i++;
 	}
 	free_matrix(split_numbers);
@@ -41,7 +59,7 @@ static void	free_ceilling_utils(char **split, char **split_utils)
 	free_matrix(split_utils);
 }
 
-static int	check_map_floor_ceilling_utils(char **split_line, int flag)
+static int	check_map_floor_ceilling_utils(t_map *maps, char **split_line, int flag)
 {
 	char	**split_numbers;
 	char	**split_breakline;
@@ -59,18 +77,18 @@ static int	check_map_floor_ceilling_utils(char **split_line, int flag)
 	if (my_strncmp(split_line[0], "F"))
 	{
 		flag = 2;
-		check_map_floor_ceilling_utils_2(split_numbers);
+		check_map_floor_ceilling_utils_2(maps, split_numbers, split_line[0][0]);
 	}
 	if (my_strncmp(split_line[0], "C"))
 	{
 		flag = 1;
-		check_map_floor_ceilling_utils_2(split_numbers);
+		check_map_floor_ceilling_utils_2(maps, split_numbers, split_line[0][0]);
 	}
 	free_ceilling_utils(split_breakline, split_line);
 	return (flag);
 }
 
-int	check_map_floor_ceilling(char *map, int flag)
+int	check_map_floor_ceilling(t_map *maps, char *map, int flag)
 {
 	char	**split_line;
 	size_t	size;
@@ -83,6 +101,6 @@ int	check_map_floor_ceilling(char *map, int flag)
 		return (ret_value(1, "Format incompatible F or C "
 				"following [0-255], [0-255], [0-255]"));
 	}
-	flag += check_map_floor_ceilling_utils(split_line, flag);
+	flag += check_map_floor_ceilling_utils(maps, split_line, flag);
 	return (flag);
 }
