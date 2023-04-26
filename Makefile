@@ -15,6 +15,7 @@ SRCS		=		src/main.c								\
 					src/validations/map/ceilling_floor.c	\
 					src/validations/map/map_validations.c	\
 					src/validations/map/texture.c			\
+					src/validations/map/squaring_map.c		\
 					src/validations/map/temp_map.c			\
 					src/validations/map/map_valid.c			\
 					src/exit_functions/close_game.c			\

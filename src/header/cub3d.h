@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/25 15:33:21 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/26 09:07:13 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ typedef struct s_color {
 typedef struct s_map {
 	char	**filecub;
 	char	**map;
-	int		ctrl_line;
-	int		max_line;
-	size_t	max_col;
-	int		size_map;
+	char	**map_square;
 	char	**temp_map;
 	int		tmp_max_line;
 	int		tmp_max_col;
+	int		ctrl_line;
+	int		max_line;
+	int		size_map;
+	size_t	max_col;
 	t_color	ceiling;
 	t_color	floor;
 }				t_map;
@@ -136,10 +137,11 @@ int		get_info_map(t_map *maps, char *map_file);
 int		check_map_x_y(t_map *maps);
 int		verify_content(t_map *maps, int flag);
 int		clone_map(t_map *maps);
-void	get_max_col(t_map *maps);
-char	*my_realloc(char *str, size_t new_size);
 int		radar_validation(t_map *maps);
 int		validations(t_map *maps, char **argv);
+void	get_max_col(t_map *maps);
+void	square_map(t_map *maps);
+char	*my_realloc(char *str, size_t new_size);
 
 //player
 void	get_player_possition(char **map, int lines);
