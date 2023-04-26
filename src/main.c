@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/25 13:56:04 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/26 10:10:27 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	maps = malloc(sizeof(t_map));
 	if (validations(maps, argv))
 		exit(1);
+	square_map(maps);
 	init_window(&win);
 	load_game(&win);
 
