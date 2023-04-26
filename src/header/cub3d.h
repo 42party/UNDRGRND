@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/26 09:07:13 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:24:27 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,17 @@ typedef struct s_position{
 	int	y;
 }				t_position;
 
-# define POV 60
+# define FOV 60
 
 typedef struct s_player{
-	t_position	position_on_plane;
-	t_position	position_on_map;
-	int			view_direction;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	time;
+	double	old_time;
 }				t_player;
 
 typedef struct s_window {
