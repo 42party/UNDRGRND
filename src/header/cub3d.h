@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/26 15:27:33 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/27 15:17:31 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct s_position{
 typedef struct s_player
 {
 	char	start_pos;
+	int		line;
+	int		column;
 	double	posX;
 	double	posY;
 	double	dirX;
@@ -115,7 +117,6 @@ typedef struct s_window {
 
 // graphics
 void	initialize_graphics(t_map *maps, t_window *win);
-void	paint_floor(t_map *maps, t_window *win, char c);
 void	pait_square(t_map *maps, t_window *win);
 
 //utils
@@ -152,8 +153,9 @@ void	square_map(t_map *maps);
 char	*my_realloc(char *str, size_t new_size);
 
 //player
-void	get_player_possition(char **map, int lines);
-
+void	get_player_position(t_map *maps, t_player *player);
+int		move_player(t_window *win, t_player *players, t_map *maps, int keycode);
+void square(t_window *win, int color);
 // window management
 void	load_game(t_window *win);
 void	init_window(t_window *win);

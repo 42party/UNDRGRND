@@ -22,6 +22,7 @@ SRCS		=		src/main.c								\
 					src/window_management/init_window.c		\
 					src/window_management/load_game.c		\
 					src/player/get_player_position.c		\
+					src/player/move_player.c				\
 					src/graphics/loading_game.c				\
 					src/graphics/paint_pixels.c				\
 
@@ -30,8 +31,6 @@ SRCS		=		src/main.c								\
 OBJ_DIR		=		objects/
 
 OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
-
-
 
 CC			=		cc
 
