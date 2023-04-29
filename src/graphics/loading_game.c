@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   loading_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:36 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/26 15:25:31 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/29 11:13:40 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-void initialize_graphics(t_map *maps, t_window *win)
+void initialize_graphics(t_map *maps, t_game *game)
 {
-	//paint_floor(maps, win);
-	pait_square(maps, win);
+//	init_player();
+	(void)game;
+	(void)maps;
+//	paint_floor(maps, game);
+	pait_square(maps, game);
+
+//	raycasting();
 }

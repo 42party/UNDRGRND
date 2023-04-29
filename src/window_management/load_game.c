@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:56:30 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/19 14:37:02 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/29 11:06:20 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	collumns_counter(char **map)
 	return (bigger_line);
 }
 
-void	load_game(t_window *win)
+void	load_game(t_game *game)
 {
-	(void)win;
+	(void)game;
 
 	//	int	lines;
 	//	int	collumns;

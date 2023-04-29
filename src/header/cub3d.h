@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/27 15:17:31 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/29 10:55:15 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,23 +101,25 @@ typedef struct s_player
 	double	posY;
 	double	dirX;
 	double	dirY;
+	int		mapX;
+	int		mapY;
 	double	planeX;
 	double	planeY;
 	double	time;
 	double	old_time;
 }				t_player;
 
-typedef struct s_window {
+typedef struct s_game {
 	void		*mlx;
 	void		*win;
 	t_data		img;
 	t_map		map;
 	t_player	player;
-}	t_window;
+}	t_game;
 
 // graphics
-void	initialize_graphics(t_map *maps, t_window *win);
-void	pait_square(t_map *maps, t_window *win);
+void	initialize_graphics(t_map *maps, t_game *game);
+void	pait_square(t_map *maps, t_game *game);
 
 //utils
 int		my_atoi(const char *str);
@@ -125,7 +127,7 @@ int		my_strncmp(const char *s1, const char *s2);
 int		ret_value(int i, char *msg);
 int		create_trgb(int t, int r, int g, int b);
 int		array_counter(char **arr);
-void	my_mlx_pixel_put(t_window *win, int x, int y, int color);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		free_matrix(char **matrix);
 char	**matrix_dup(char **mat);
 void	free_maps(t_map *maps);
@@ -154,13 +156,13 @@ char	*my_realloc(char *str, size_t new_size);
 
 //player
 void	get_player_position(t_map *maps, t_player *player);
-int		move_player(t_window *win, t_player *players, t_map *maps, int keycode);
-void square(t_window *win, int color);
+int		move_player(t_game *game, t_player *players, t_map *maps, int keycode);
+void square(t_game *game, int color);
 // window management
-void	load_game(t_window *win);
-void	init_window(t_window *win);
+void	load_game(t_game *game);
+void	init_game(t_game *game);
 
 // exit functions
-int		close_game(t_window *win);
+int		close_game(t_game *game);
 
 #endif

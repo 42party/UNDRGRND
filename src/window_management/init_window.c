@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   init_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,13 @@
 
 #include "../header/cub3d.h"
 
-void	init_window(t_window *win)
+void	init_game(t_game *game)
 {
-	win->mlx = mlx_init();
-	win->win = mlx_new_window(win->mlx,
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx,
 			DISPLAY_WIDTH, DISPLAY_HEIGHT, "fvck!");
-	win->img.img = mlx_new_image(win->mlx,
+	game->img.img = mlx_new_image(game->mlx,
 			24, 24);
-	win->img.addr = mlx_get_data_addr(win->img.img, &win->img.bits_per_pixel, &win->img.line_length,
-								&win->img.endian);
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length,
+								&game->img.endian);
 }

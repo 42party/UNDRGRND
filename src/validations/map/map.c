@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/25 08:25:08 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/04/29 10:33:04 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ static int	utils_ceilling(t_map *maps)
 
 int	check_map_validations_ceilling(t_map *maps)
 {
-	int	count;
+//	int	count;
 	int	flag;
 
 	flag = 0;
-	count = 0;
+//	count = 0;
 	if (!my_strncmp(maps->filecub[maps->ctrl_line], "\n"))
 		return (ret_value(1, "Need break line after direction textures"));
 	flag = utils_ceilling(maps);
