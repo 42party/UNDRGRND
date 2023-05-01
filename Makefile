@@ -29,6 +29,7 @@ SRCS		=		src/main.c								\
 					src/graphics/draw_vertical_line.c		\
 
 
+HEADER 		= 		src/header/cub3d.h
 
 OBJ_DIR		=		objects/
 
@@ -66,7 +67,7 @@ $(OBJ_DIR)%.o:	%.c
 		@mkdir -p $(OBJ_DIR)
 		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
 
-$(NAME):	$(SRCS)
+$(NAME):	$(SRCS) $(HEADER)
 
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft

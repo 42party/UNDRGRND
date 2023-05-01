@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/29 19:58:02 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 10:39:46 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // config defines
 
 # define DISPLAY_HEIGHT 800
-# define DISPLAY_WIDTH 800
+# define DISPLAY_WIDTH 1000
 
 # ifdef __linux__
 
@@ -117,7 +117,8 @@ typedef struct s_fps {
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
-	t_data		img;
+	t_data		img; // renomerar para layner // layer do 3d
+	t_data		minimap_layer;
 	t_map		map;
 	t_player	player;
 	t_fps		fps;

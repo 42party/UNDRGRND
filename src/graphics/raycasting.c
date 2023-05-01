@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/04/29 20:05:52 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 11:24:31 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,36 @@ int raycasting(t_game *game)
 {
     (void)game;
     int x;
-    double  cameraX;
-    double  rayDirX;
-    double  rayDirY;
-
-	double	sideDistX;
-	double	sideDistY;
-
-	double	deltaDistX;
-	double	deltaDistY;
-
-    double	perpWallDist;
-
-	int		stepX;
-	int		stepY;
-
-	int		hit;
-	int		side;
-
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-
-	int		color;
-
-
     x = 0;
+
     while (x < DISPLAY_WIDTH)
     {
+
+    double  cameraX = 0;
+    double  rayDirX = 0;
+    double  rayDirY = 0;
+
+	double	sideDistX = 0;
+	double	sideDistY = 0;
+
+	double	deltaDistX = 0;
+	double	deltaDistY = 0;
+
+    double	perpWallDist = 0;
+
+	int		stepX =0;
+	int		stepY = 0;
+
+	int		hit = 0;
+	int		side = 0;
+
+	int		line_height = 0;
+	int		draw_start = 0;
+	int		draw_end = 0;
+
+	int		color = 0;
+
+
         cameraX = 2 * x / (double)DISPLAY_WIDTH - 1;
 		rayDirX = game->player.dirX + game->player.planeX * cameraX;
 		rayDirY = game->player.dirY + game->player.planeY * cameraX;
@@ -59,7 +61,6 @@ int raycasting(t_game *game)
 			deltaDistY = 1e30;
 		else
 			deltaDistY = sqrt(1 + (pow(rayDirX, 2) / pow(rayDirY, 2)));
-
 
 		if (rayDirX < 0)
 		{
@@ -96,7 +97,7 @@ int raycasting(t_game *game)
 				game->player.mapY += stepY;
 				side = 1;
 			}
-			if (game->map.map_square[game->player.mapX][game->player.mapY] != '0')
+			if (game->map.map_square[game->player.mapY][game->player.mapX] != '0')
 				hit = 1;
 		}
 
@@ -115,15 +116,15 @@ int raycasting(t_game *game)
 			draw_end = DISPLAY_HEIGHT - 1;
 
 		if (side == 0)
-			color = 0x03fce3;
+			color = 0x00FF00;
 		else
-			color = 0x00b8ab;
+			color = 0x0000FF;
 		
-//		printf("x: %i\nstart: %i\n end: %i\n", x, draw_start, draw_end);
-
 		draw_vertical_line(x, draw_start, draw_end, color, game);
         x++;
     }
+
+	//mlx_put_image_to_window(game->mlx, game->win, game->img.img, x, 0);
     
     return (0);
 }
