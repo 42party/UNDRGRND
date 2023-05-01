@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/01 11:24:31 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 15:17:05 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,17 @@ int raycasting(t_game *game)
 			draw_end = DISPLAY_HEIGHT - 1;
 
 		if (side == 0)
-			color = 0x00FF00;
+			color = 0x0080FF;
 		else
 			color = 0x0000FF;
 		
 		draw_vertical_line(x, draw_start, draw_end, color, game);
-        x++;
+        x += 1;
     }
 
-	//mlx_put_image_to_window(game->mlx, game->win, game->img.img, x, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	mlx_destroy_image(game->mlx,game->img.img);
+    game->img.img = mlx_new_image(game->mlx, DISPLAY_WIDTH, DISPLAY_HEIGHT);
     
     return (0);
 }
-//printf("ray: %f\n", rayDirY);

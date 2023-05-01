@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/01 10:39:46 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 15:20:47 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // config defines
 
 # define DISPLAY_HEIGHT 800
-# define DISPLAY_WIDTH 1000
+# define DISPLAY_WIDTH 800
 
 # ifdef __linux__
 

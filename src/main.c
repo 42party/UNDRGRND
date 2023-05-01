@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/01 11:16:28 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 14:30:51 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 int	get_key(int keycode, t_game *game)
 {
+
+	double moveSpeed = 0.3;
 	if (keycode == KEY_ESC)
 		close_game(game);
 	if (keycode == KEY_UP)
 	{
-		game->player.posX += game->player.dirX;
-		game->player.posY += game->player.dirY;
+		if (game->map.map_square[(int)(game->player.posY)][(int)(game->player.posX + game->player.dirX * moveSpeed)] == '0')
+			game->player.posX += game->player.dirX * moveSpeed;
+		if (game->map.map_square[(int)(game->player.posY + game->player.dirY * moveSpeed)][(int)(game->player.posX)] == '0')
+			game->player.posY += game->player.dirY * moveSpeed;
 		raycasting(game);
 	}
 	if (keycode == KEY_DOWN)
 	{
-		game->player.posX -= game->player.dirX;
-		game->player.posY -= game->player.dirY;
+		if (game->map.map_square[(int)(game->player.posY)][(int)(game->player.posX - game->player.dirX * moveSpeed)] == '0')
+			game->player.posX -= game->player.dirX * moveSpeed;
+		if (game->map.map_square[(int)(game->player.posY - game->player.dirY * moveSpeed)][(int)(game->player.posX)] == '0')
+			game->player.posY -= game->player.dirY * moveSpeed;
 		raycasting(game);
 	}
 
