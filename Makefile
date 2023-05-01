@@ -24,9 +24,12 @@ SRCS		=		src/main.c								\
 					src/player/get_player_position.c		\
 					src/player/move_player.c				\
 					src/graphics/loading_game.c				\
+					src/graphics/raycasting.c				\
 					src/graphics/paint_pixels.c				\
+					src/graphics/draw_vertical_line.c		\
 
 
+HEADER 		= 		src/header/cub3d.h
 
 OBJ_DIR		=		objects/
 
@@ -34,7 +37,7 @@ OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 CC			=		cc
 
-CFLAGS		=		-g -Wall -Wextra -Werror
+CFLAGS		=		-g -Wall -Wextra #-Werror
 #-fsanitize=leak
 
 LIBFT		=		src/libs/libft/libft.a
@@ -64,7 +67,7 @@ $(OBJ_DIR)%.o:	%.c
 		@mkdir -p $(OBJ_DIR)
 		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
 
-$(NAME):	$(SRCS)
+$(NAME):	$(SRCS) $(HEADER)
 
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft

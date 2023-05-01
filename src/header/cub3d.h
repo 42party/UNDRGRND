@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/29 10:55:15 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 10:39:46 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // config defines
 
 # define DISPLAY_HEIGHT 800
-# define DISPLAY_WIDTH 800
+# define DISPLAY_WIDTH 1000
 
 # ifdef __linux__
 
@@ -54,7 +54,9 @@ enum {
 enum {
 	PLAYER = 'P',
 	WALL = '1',
-	FLOOR = '0'
+	FLOOR = '0',
+	SIDE_X = 0,
+	SIDE_Y = 0
 };
 
 typedef struct s_color {
@@ -105,16 +107,21 @@ typedef struct s_player
 	int		mapY;
 	double	planeX;
 	double	planeY;
+}				t_player;
+
+typedef struct s_fps {
 	double	time;
 	double	old_time;
-}				t_player;
+} t_fps;
 
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
-	t_data		img;
+	t_data		img; // renomerar para layner // layer do 3d
+	t_data		minimap_layer;
 	t_map		map;
 	t_player	player;
+	t_fps		fps;
 }	t_game;
 
 // graphics
@@ -161,6 +168,10 @@ void square(t_game *game, int color);
 // window management
 void	load_game(t_game *game);
 void	init_game(t_game *game);
+int		raycasting(t_game *game);
+void    draw_vertical_line(int  display_X, int draw_start,
+            int draw_end, int color, t_game *game);
+
 
 // exit functions
 int		close_game(t_game *game);

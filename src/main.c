@@ -6,7 +6,7 @@
 /*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/29 11:12:56 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/01 11:16:28 by sxpph            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,49 @@ int	get_key(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		close_game(game);
-	if (keycode == KEY_LEFT)
-		move_player(game, &(game)->player, &(game)->map, 0);
-	if (keycode == KEY_DOWN)
-		move_player(game, &(game)->player, &(game)->map, 1);
-	if (keycode == KEY_RIGHT)
-		move_player(game, &(game)->player, &(game)->map, 2);
 	if (keycode == KEY_UP)
-		move_player(game, &(game)->player, &(game)->map, 13);
+	{
+		game->player.posX += game->player.dirX;
+		game->player.posY += game->player.dirY;
+		raycasting(game);
+	}
+	if (keycode == KEY_DOWN)
+	{
+		game->player.posX -= game->player.dirX;
+		game->player.posY -= game->player.dirY;
+		raycasting(game);
+	}
+
+	double rotSpeed = 0.3;
+	
+	if (keycode == KEY_RIGHT)
+	{
+		double oldDirX = game->player.dirX;
+		game->player.dirX = game->player.dirX * cos(-rotSpeed) - game->player.dirY * sin(-rotSpeed);
+		game->player.dirY = oldDirX * sin(-rotSpeed) + game->player.dirY * cos(-rotSpeed);
+		double oldPlaneX = game->player.planeX;
+		game->player.planeX = game->player.planeX * cos(-rotSpeed) - game->player.planeY * sin(-rotSpeed);
+		game->player.planeY = oldPlaneX * sin(-rotSpeed) + game->player.planeY * cos(-rotSpeed);
+		raycasting(game);
+	}
+	if (keycode == KEY_LEFT)
+	{
+		double oldDirX = game->player.dirX;
+		game->player.dirX = game->player.dirX * cos(rotSpeed) - game->player.dirY * sin(rotSpeed);
+		game->player.dirY = oldDirX * sin(rotSpeed) + game->player.dirY * cos(rotSpeed);
+		double oldPlaneX = game->player.planeX;
+		game->player.planeX = game->player.planeX * cos(rotSpeed) - game->player.planeY * sin(rotSpeed);
+		game->player.planeY = oldPlaneX * sin(rotSpeed) + game->player.planeY * cos(rotSpeed);
+		raycasting(game);
+	}
+
+	//	move_player(game, &(game)->player, &(game)->map, 1);
+/* 	//	move_player(game, &(game)->player, &(game)->map, 0);
+	if (keycode == KEY_RIGHT)
+		move_player(game, &(game)->player, &(game)->map, 1);
+	//	move_player(game, &(game)->player, &(game)->map, 2);
+	if (keycode == KEY_UP) */
+	//	move_player(game, &(game)->player, &(game)->map, 13);
 	//mlx_clear_window(game->mlx,game->win);
 	//pait_square(&game->map, win);
 	//mlx_put_image_to_window(game->mlx, game->win, game->img.img, (win)->player.line*20, (win)->player.column*20);
