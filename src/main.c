@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/01 14:30:51 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/02 10:37:23 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_key(int keycode, t_game *game)
 	}
 
 	double rotSpeed = 0.3;
-	
+
 	if (keycode == KEY_RIGHT)
 	{
 		double oldDirX = game->player.dirX;
@@ -80,9 +80,9 @@ int	main(int argc, char **argv)
 
 	argc_verify(argc);
 	maps = malloc(sizeof(t_map));
-	players = malloc(sizeof(t_player));
 	if (validations(maps, argv))
 		exit(1);
+	players = malloc(sizeof(t_player));
 	square_map(maps);
 	get_player_position(maps, players);
 	init_game(&game);
@@ -92,9 +92,8 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, CLICK_X, 0, close_game, &game);
 	mlx_key_hook(game.win, get_key, &game);
 	initialize_graphics(maps, &game);
-	
 	mlx_loop(game.mlx);
-
 	free_maps(maps);
+	free(players);
 	return (0);
 }

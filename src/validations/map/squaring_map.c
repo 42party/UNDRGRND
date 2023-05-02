@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 08:54:27 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/26 10:10:09 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/02 10:38:26 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static char	*fill_space(char *str, int max_col)
 void square_map(t_map *maps)
 {
 	int	i;
+	char	*temp;
 
 	i = 0;
 	maps->map_square = ft_calloc(sizeof(char *), maps->size_map);
@@ -37,7 +38,10 @@ void square_map(t_map *maps)
 		if (ft_strlen(maps->map[i]) == maps->max_col)
 			maps->map_square[i] = ft_strdup(maps->map[i]);
 		else
-			maps->map_square[i] = fill_space(maps->map[i], maps->max_col + 1);
+		{
+			temp = ft_strdup(maps->map[i]);
+			maps->map_square[i] = fill_space(temp, maps->max_col + 1);
+		}
 		i++;
 	}
 }
