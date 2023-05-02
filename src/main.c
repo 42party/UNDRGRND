@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/02 15:41:30 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/02 16:31:59 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_key(int keycode, t_game *game)
 		raycasting(game);
 	}
 
-	double rotSpeed = 0.3;
+	double rotSpeed = 0.1;
 
 	if (keycode == KEY_RIGHT)
 	{
