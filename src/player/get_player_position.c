@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:47:26 by vipereir          #+#    #+#             */
-/*   Updated: 2023/04/27 11:15:59 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/02 10:49:57 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_player_position(t_map *maps, t_player *player)
 				player->line = i;
 				player->column = j;
 				player->start_pos = maps->map_square[i][j];
-				maps->map_square[i][j] = 'P';
+				maps->map_square[i][j] = '0';
 			}
 			j++;
 		}
