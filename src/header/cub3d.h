@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/01 15:20:47 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/02 16:43:02 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,20 @@ typedef struct s_fps {
 	double	time;
 	double	old_time;
 } t_fps;
+
+
+typedef struct s_texture {
+	void	*north_texture;
+	char	*north_path;
+	void	*south_texture;
+	char	*south_path;
+	void	*east_texture;
+	char	*east_path;
+	void	*west_texture;
+	char		*west_path;
+	
+} t_texture;
+
 
 typedef struct s_game {
 	void		*mlx;
