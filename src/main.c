@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/02 10:37:23 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/02 15:41:30 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 	game.map = *maps;
 	game.player = *players;
 	mlx_hook(game.win, CLICK_X, 0, close_game, &game);
-	mlx_key_hook(game.win, get_key, &game);
+	mlx_hook(game.win, 2, 1L<<0, get_key, &game);
 	initialize_graphics(maps, &game);
 	mlx_loop(game.mlx);
 	free_maps(maps);
