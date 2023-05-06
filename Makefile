@@ -83,7 +83,7 @@ $(NAME):	$(SRCS) $(HEADER)
 all: $(NAME)
 
 run:
-	make && clear && ./cub3d src/maps/example.cub
+	make && clear && ./cub3D src/maps/example.cub
 
 val:
 	clear && valgrind --memcheck:leak-check=full --show-reachable=yes ./cub3D src/maps/example.cub

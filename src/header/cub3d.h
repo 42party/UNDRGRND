@@ -69,6 +69,8 @@ typedef struct s_map {
 	char	**map;
 	char	**map_square;
 	char	**temp_map;
+	char	**textures;
+	char	**floor_ceilling;
 	int		tmp_max_line;
 	int		tmp_max_col;
 	int		ctrl_line;
@@ -144,7 +146,7 @@ void	argc_verify(int argc);
 
 //validations-map
 int		check_map_extension(char *map_name);
-int		check_map_path_texture(char *map, int flag);
+int		check_map_path_texture(t_map *maps, char *map);
 int		check_map_floor_ceilling(t_map *maps, char *map, int flag);
 int		check_map_validations(t_map *maps);
 int		check_map_validations_texture(t_map *maps);
@@ -157,9 +159,11 @@ int		verify_content(t_map *maps, int flag);
 int		clone_map(t_map *maps);
 int		radar_validation(t_map *maps);
 int		validations(t_map *maps, char **argv);
+int		separete_cub(t_map *maps);
 void	get_max_col(t_map *maps);
 void	square_map(t_map *maps);
 char	*my_realloc(char *str, size_t new_size);
+
 
 //player
 void	get_player_position(t_map *maps, t_player *player);
