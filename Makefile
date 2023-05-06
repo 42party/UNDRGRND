@@ -27,6 +27,7 @@ SRCS		=		src/main.c								\
 					src/graphics/raycasting.c				\
 					src/graphics/paint_pixels.c				\
 					src/graphics/draw_vertical_line.c		\
+					src/player_movement/get_key.c			\
 					src/player_movement/wasd_mov.c			\
 					src/player_movement/rotate_camera.c
 

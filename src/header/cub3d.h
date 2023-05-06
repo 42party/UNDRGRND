@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 13:44:19 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:14:40 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void	square(t_game *game, int color);
 
 // player movement and camera view
 
+int		get_key(int keycode, t_game *game);
 void    move_forward(t_game *game);
 void    move_backward(t_game *game);
 void    move_left(t_game *game);
