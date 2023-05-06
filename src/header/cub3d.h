@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/01 15:20:47 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/06 14:14:40 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ enum {
 	KEY_UP = 119,
 	KEY_LEFT = 97,
 	KEY_DOWN = 115,
-	KEY_RIGHT = 100
+	KEY_RIGHT = 100,
+	CAM_ARROW_RIGHT = 65363,
+	CAM_ARROW_LEFT = 65361
 };
 
 # elif defined(__APPLE__)
@@ -56,7 +58,7 @@ enum {
 	WALL = '1',
 	FLOOR = '0',
 	SIDE_X = 0,
-	SIDE_Y = 0
+	SIDE_Y = 0,
 };
 
 typedef struct s_color {
@@ -107,12 +109,28 @@ typedef struct s_player
 	int		mapY;
 	double	planeX;
 	double	planeY;
+	double	moveSpeed;
+	double	rotSpeed;
 }				t_player;
 
 typedef struct s_fps {
 	double	time;
 	double	old_time;
 } t_fps;
+
+
+typedef struct s_texture {
+	void	*north_texture;
+	char	*north_path;
+	void	*south_texture;
+	char	*south_path;
+	void	*east_texture;
+	char	*east_path;
+	void	*west_texture;
+	char	*west_path;
+	
+} t_texture;
+
 
 typedef struct s_game {
 	void		*mlx;
@@ -164,7 +182,18 @@ char	*my_realloc(char *str, size_t new_size);
 //player
 void	get_player_position(t_map *maps, t_player *player);
 int		move_player(t_game *game, t_player *players, t_map *maps, int keycode);
-void square(t_game *game, int color);
+void	square(t_game *game, int color);
+
+// player movement and camera view
+
+int		get_key(int keycode, t_game *game);
+void    move_forward(t_game *game);
+void    move_backward(t_game *game);
+void    move_left(t_game *game);
+void    move_right(t_game *game);
+void    rotate_camera_left(t_game *game);
+void    rotate_camera_right(t_game *game);
+
 // window management
 void	load_game(t_game *game);
 void	init_game(t_game *game);

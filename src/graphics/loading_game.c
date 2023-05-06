@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loading_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:36 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/01 10:55:17 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/06 13:40:14 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	init_player(t_game	*game)
 	game->player.dirX = -1;
 	game->player.dirY = 0;
 	game->player.planeX = 0;
-	game->player.planeY = 0.66;
+	game->player.planeY = 0.666;
 	game->fps.time = 0;
 	game->fps.old_time = 0;
+	game->player.moveSpeed = 0.3;
+	game->player.rotSpeed = 0.1;
 }
 
 void initialize_graphics(t_map *maps, t_game *game)
