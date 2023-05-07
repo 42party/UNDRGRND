@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 21:00:03 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 21:31:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,10 @@ typedef struct s_fps {
 
 
 typedef struct s_texture {
-	t_data	north_texture;
-	t_data	south_texture;
-	t_data	east_texture;
-	t_data	west_texture;
+	t_data	north;
+	t_data	south;
+	t_data	east;
+	t_data	west;
 	t_color	ceiling;
 	t_color	floor;
 } t_texture;

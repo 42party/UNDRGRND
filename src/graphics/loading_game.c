@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:36 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/06 21:17:49 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 21:34:58by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,31 @@ unsigned int	get_pixel_color(t_data	img, int x, int y)
 	return (*(unsigned int*)dest);
 }
 
-void	load_textures(t_game *game)
+void	load_texture(t_game *game, t_data *texture, char *texture_path)
 {
-	game->texture_conf.path_N_texture = "./src/textures/Marshmallow.xpm"; // isso deveria se feito antes,  qnd cata do mapa vai pegar esse path, ou via ficar o padão nosso
- 	game->texture.north_texture.img = mlx_xpm_file_to_image(game->mlx,
-									game->texture_conf.path_N_texture,
-									&game->texture.north_texture.sprite_width,
-									&game->texture.north_texture.sprite_height);
-	if (game->texture.north_texture.img == NULL)
+ 	texture->img = mlx_xpm_file_to_image(game->mlx,
+									texture_path,
+									&texture->sprite_width,
+									&texture->sprite_height);
+	if (texture->img == NULL)
 	{
 		printf("error\n");
 		exit(0);
 	}
- 	game->texture.north_texture.addr = mlx_get_data_addr(game->texture.north_texture.img,
-									&game->texture.north_texture.bits_per_pixel,
-									&game->texture.north_texture.line_length,
-									&game->texture.north_texture.endian);
-
-//	char *dest = game->texture.north_texture.addr + get_addr_locale(game->texture.north_texture, 2, 2);
-	printf("color: %x\n", get_pixel_color(game->texture.north_texture, 2, 2));
+ 	texture->addr = mlx_get_data_addr(texture->img,
+									&texture->bits_per_pixel,
+									&texture->line_length,
+									&texture->endian);
+	printf("color %x\n", get_pixel_color(*texture, 2, 2));
 }
 
 void initialize_graphics(t_game *game)
 {
 	init_player(game);
-	load_textures(game);
+	load_texture(game, &game->texture.north, "./src/textures/Marshmallow.xpm"); // esse caminho já deve estar setado do .cub
+	load_texture(game, &game->texture.south, "./src/textures/Marshmallow.xpm");
+	load_texture(game, &game->texture.east, "./src/textures/Marshmallow.xpm");
+	load_texture(game, &game->texture.west, "./src/textures/Marshmallow.xpm");
 
 
 	// first raycasting
