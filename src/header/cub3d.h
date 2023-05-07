@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 21:31:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:44:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,12 +205,15 @@ void    rotate_camera_left(t_game *game);
 void    rotate_camera_right(t_game *game);
 
 // window management
+unsigned int	get_pixel_color(t_data	img, int x, int y);
 int		get_addr_locale(t_data img, int x, int y);
 void	load_game(t_game *game);
 void	init_game(t_game *game);
 int		raycasting(t_game *game);
 void    draw_vertical_line(int  display_X, int draw_start,
             int draw_end, int color, t_game *game);
+void    draw_texturized_vertical_line(int  display_x, int draw_start,
+            int draw_end, double step, double textPos, int side, int texX, t_game *game);
 
 
 // exit functions

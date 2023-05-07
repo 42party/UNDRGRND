@@ -70,11 +70,6 @@ void initialize_graphics(t_game *game)
 	load_texture(game, &game->texture.east, "./src/textures/Marshmallow.xpm");
 	load_texture(game, &game->texture.west, "./src/textures/Marshmallow.xpm");
 
-
 	// first raycasting
 	raycasting(game);
 }
-
-
-//	paint_floor(maps, game);
-//	pait_square(maps, game);

@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/06 15:11:57 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:46:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,39 @@ int raycasting(t_game *game)
 		if (draw_end >= DISPLAY_HEIGHT)
 			draw_end = DISPLAY_HEIGHT - 1;
 
-		if (side == 0)
+
+		// ccalcula exetamente aonde o raio bateu na parede.
+		double wallX;
+
+		if (side == SIDE_X)
+			wallX = game->player.posY + perpWallDist * rayDirY;
+		else
+			wallX = game->player.posX + perpWallDist * rayDirX;
+		wallX -= floor(wallX);
+
+		int	texX;
+
+		texX = (int)(wallX * (double)game->texture.north.sprite_width);
+		if (side == SIDE_X && rayDirX > 0)
+			texX = game->texture.north.sprite_width - texX - 1;
+		if (side == SIDE_Y && rayDirY < 0)
+			texX = game->texture.north.sprite_width - texX - 1;
+
+		double step;
+
+		step = 1.0 * game->texture.north.sprite_height / line_height;
+		
+		double textPos;
+
+		textPos = (draw_start - DISPLAY_HEIGHT / 2 + line_height / 2) * step;
+
+		draw_texturized_vertical_line(x, draw_start, draw_end, step, textPos, side, texX, game);
+/* 		if (side == 0)
 			color = 0x0080FF;
 		else
 			color = 0x0000FF;
 		
-		draw_vertical_line(x, draw_start, draw_end, color, game);
+		draw_vertical_line(x, draw_start, draw_end, color, game); */
         x += 1;
     }
 
