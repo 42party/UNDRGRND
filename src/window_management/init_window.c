@@ -18,6 +18,7 @@ void	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx,
 			DISPLAY_WIDTH, DISPLAY_HEIGHT, "fvck!");
 	game->img.img = mlx_new_image(game->mlx, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length,
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
+								&game->img.line_length,
 								&game->img.endian);
 }

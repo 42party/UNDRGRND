@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 14:13:52 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 14:14:16 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:18:48 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	get_key(int keycode, t_game *game)
 {
+
+//	printf("diry: %f\n", game->player.dirY);
 	if (keycode == KEY_ESC)
 		close_game(game);
 	if (keycode == KEY_UP)
@@ -28,5 +30,9 @@ int	get_key(int keycode, t_game *game)
 		rotate_camera_right(game);
 	if (keycode == CAM_ARROW_LEFT)
 		rotate_camera_left(game);
+	printf("dirx: %f\n", game->player.dirX);
+	printf("diry: %f\n", game->player.dirY);
+	printf("planex: %f\n", game->player.planeX);
+	printf("planey: %f\n\n", game->player.planeY);
 	return (0);
 }

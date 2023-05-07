@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/01 15:17:05 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/06 15:11:57 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,16 @@ int raycasting(t_game *game)
 
 
         cameraX = 2 * x / (double)DISPLAY_WIDTH - 1;
+		
+		// calcula direção do raio
 		rayDirX = game->player.dirX + game->player.planeX * cameraX;
 		rayDirY = game->player.dirY + game->player.planeY * cameraX;
 
+
+		// posição no mapa em int
 		game->player.mapX = (int)game->player.posX;
 		game->player.mapY = (int)game->player.posY;
+
 
 		if (rayDirX == 0)
 			deltaDistX = 1e30;
@@ -62,6 +67,9 @@ int raycasting(t_game *game)
 		else
 			deltaDistY = sqrt(1 + (pow(rayDirX, 2) / pow(rayDirY, 2)));
 
+		// side dist é a distancia do Player para o proximo x ou y
+
+		// delta dist é a distancia de um X ou Y para o proximo x ou y
 		if (rayDirX < 0)
 		{
 			stepX = -1;

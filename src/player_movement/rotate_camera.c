@@ -6,13 +6,13 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 12:10:18 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 13:54:57 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:36:17 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-void    rotate_camera_right(t_game *game)
+void    rotate_camera_left(t_game *game)
 {
     double oldDirX;
     double oldPlaneX;
@@ -26,7 +26,7 @@ void    rotate_camera_right(t_game *game)
 	raycasting(game);
 }
 
-void    rotate_camera_left(t_game *game)
+void    rotate_camera_right(t_game *game)
 {
     double oldDirX;
     double oldPlaneX;
