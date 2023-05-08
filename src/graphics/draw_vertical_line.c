@@ -46,9 +46,10 @@ void    draw_texturized_vertical_line(int  display_x, int draw_start,
     {
         texY = (int)textPos & (game->texture.north.sprite_height - 1);
         textPos += step;
-        color = get_pixel_color(game->texture.north, texX, texY);
+        color = get_pixel_color(game->texture.west, texX, texY);
         if (side == SIDE_Y)
-            color = (color >> 1) & 8355711; // macete pra escurecer a cor.
+            color = get_pixel_color(game->texture.east, texX, texY);
+          //  color = (color >> 1) & 8355711; // macete pra escurecer a cor.
         my_mlx_pixel_put(game, display_x, y++, color);
     }
     while (y < DISPLAY_HEIGHT)
