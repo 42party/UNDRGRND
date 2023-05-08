@@ -14,67 +14,44 @@
 
 int	check_map_validations_texture(t_map *maps)
 {
-	int	count;
-	int	flag;
-	int	i;
+	char	**split_line;
+	int		i;
+	int		fd;
 
 	i = 0;
-	flag = 0;
-	count = 0;
-	while (maps->filecub[i] && count <= 3)
+	while (maps->textures[i])
 	{
-		if (maps->filecub[i] && (!my_strncmp(maps->filecub[i], "\n")))
+		split_line = ft_split(maps->textures[i], 32);
+		/* fd = open(split_line[1], O_RDONLY);
+		if (fd == -1)
 		{
-			if (count <= 3)
-				flag = check_map_path_texture(maps->filecub[count++], flag);
+			close(fd);
+			printf("Error\n%s: File does not exist\n", split_line[1]);
+			free_matrix(split_line);
+			return (1);
 		}
+		else
+		{
+			free(split_line);
+			close(fd);
+		} */
+		free_matrix(split_line);
 		i++;
 	}
-	if (flag != 15)
-		return (ret_value(1, "Format NO, SO, WE, EA following path textures"));
-	maps->ctrl_line = i;
+
 	return (0);
-}
-
-static int	utils_ceilling(t_map *maps)
-{
-	int	count;
-	int	flag;
-
-	flag = 0;
-	count = 0;
-	while (maps->filecub[maps->ctrl_line] && count <= 1)
-	{
-		if (maps->filecub[maps->ctrl_line]
-			&& (!my_strncmp(maps->filecub[maps->ctrl_line], "\n")))
-		{
-			if (count <= 1)
-			{
-				flag = check_map_floor_ceilling(maps, maps->filecub[maps->ctrl_line],
-						flag);
-				count++;
-			}
-		}
-		maps->ctrl_line++;
-	}
-	return (flag);
 }
 
 int	check_map_validations_ceilling(t_map *maps)
 {
-//	int	count;
+	int	i;
 	int	flag;
 
 	flag = 0;
-//	count = 0;
-	if (!my_strncmp(maps->filecub[maps->ctrl_line], "\n"))
-		return (ret_value(1, "Need break line after direction textures"));
-	flag = utils_ceilling(maps);
-	if (!my_strncmp(maps->filecub[maps->ctrl_line++], "\n"))
-		return (ret_value(1, "Need break line after direction textures"));
-	if (flag != 3)
-		return (ret_value(1, "Need one Floor and Ceilling"));
-	return (0);
+	i = 0;
+	while (maps->floor_ceilling[i])
+		check_map_floor_ceilling(maps, maps->floor_ceilling[i++], flag);
+	return (flag);
 }
 
 static int	check_map_breakline(t_map *maps)
@@ -88,6 +65,9 @@ static int	check_map_breakline(t_map *maps)
 	if (maps->size_map < 4)
 		return (ret_value(1, "For a minimap valid is size 4x3"));
 	maps->map = ft_calloc(sizeof(char *), maps->size_map);
+
+	printf("s: %i m: %i c: %i\n", maps->size_map, maps->max_line, maps->ctrl_line);
+	//remover
 	if (!maps->map)
 		return (1);
 	while (maps->filecub[maps->ctrl_line])
