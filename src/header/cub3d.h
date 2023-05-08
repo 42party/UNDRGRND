@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 14:14:40 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:44:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_map {
 	int		max_line;
 	int		size_map;
 	size_t	max_col;
-	t_color	ceiling;
+	t_color	ceiling; // mudar isso para a t_texture;
 	t_color	floor;
 }				t_map;
 
@@ -87,6 +87,9 @@ typedef struct s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	// for texture only usage
+	int		sprite_width;
+	int		sprite_height;
 }				t_data;
 
 typedef struct s_position{
@@ -120,16 +123,21 @@ typedef struct s_fps {
 
 
 typedef struct s_texture {
-	void	*north_texture;
-	char	*north_path;
-	void	*south_texture;
-	char	*south_path;
-	void	*east_texture;
-	char	*east_path;
-	void	*west_texture;
-	char	*west_path;
-	
+	t_data	north;
+	t_data	south;
+	t_data	east;
+	t_data	west;
+	t_color	ceiling;
+	t_color	floor;
 } t_texture;
+
+
+typedef struct s_config {
+	char	*path_N_texture;
+	char	*path_S_texture;
+	char	*path_E_texture;
+	char	*path_W_texture;
+} t_config;
 
 
 typedef struct s_game {
@@ -140,10 +148,12 @@ typedef struct s_game {
 	t_map		map;
 	t_player	player;
 	t_fps		fps;
+	t_texture	texture;
+	t_config	texture_conf;
 }	t_game;
 
 // graphics
-void	initialize_graphics(t_map *maps, t_game *game);
+void initialize_graphics(t_game *game);
 void	pait_square(t_map *maps, t_game *game);
 
 //utils
@@ -195,11 +205,15 @@ void    rotate_camera_left(t_game *game);
 void    rotate_camera_right(t_game *game);
 
 // window management
+unsigned int	get_pixel_color(t_data	img, int x, int y);
+int		get_addr_locale(t_data img, int x, int y);
 void	load_game(t_game *game);
 void	init_game(t_game *game);
 int		raycasting(t_game *game);
 void    draw_vertical_line(int  display_X, int draw_start,
             int draw_end, int color, t_game *game);
+void    draw_texturized_vertical_line(int  display_x, int draw_start,
+            int draw_end, double step, double textPos, int side, int texX, t_game *game);
 
 
 // exit functions
