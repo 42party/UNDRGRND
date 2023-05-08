@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:47:26 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/02 10:49:57 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/06 12:11:08 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-// faça uma função que procure x em um arry de caracteres
-
-#include	"../header/cub3d.h"
+#include "../header/cub3d.h"
 
 void	get_player_position(t_map *maps, t_player *player)
 {

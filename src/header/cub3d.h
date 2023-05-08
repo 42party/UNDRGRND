@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sxpph <sxpph@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/01 15:20:47 by sxpph            ###   ########.fr       */
+/*   Updated: 2023/05/06 22:44:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ enum {
 	KEY_UP = 119,
 	KEY_LEFT = 97,
 	KEY_DOWN = 115,
-	KEY_RIGHT = 100
+	KEY_RIGHT = 100,
+	CAM_ARROW_RIGHT = 65363,
+	CAM_ARROW_LEFT = 65361
 };
 
 # elif defined(__APPLE__)
@@ -56,7 +58,7 @@ enum {
 	WALL = '1',
 	FLOOR = '0',
 	SIDE_X = 0,
-	SIDE_Y = 0
+	SIDE_Y = 0,
 };
 
 typedef struct s_color {
@@ -77,7 +79,7 @@ typedef struct s_map {
 	int		max_line;
 	int		size_map;
 	size_t	max_col;
-	t_color	ceiling;
+	t_color	ceiling; // mudar isso para a t_texture;
 	t_color	floor;
 }				t_map;
 
@@ -87,6 +89,9 @@ typedef struct s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	// for texture only usage
+	int		sprite_width;
+	int		sprite_height;
 }				t_data;
 
 typedef struct s_position{
@@ -109,12 +114,33 @@ typedef struct s_player
 	int		mapY;
 	double	planeX;
 	double	planeY;
+	double	moveSpeed;
+	double	rotSpeed;
 }				t_player;
 
 typedef struct s_fps {
 	double	time;
 	double	old_time;
 } t_fps;
+
+
+typedef struct s_texture {
+	t_data	north;
+	t_data	south;
+	t_data	east;
+	t_data	west;
+	t_color	ceiling;
+	t_color	floor;
+} t_texture;
+
+
+typedef struct s_config {
+	char	*path_N_texture;
+	char	*path_S_texture;
+	char	*path_E_texture;
+	char	*path_W_texture;
+} t_config;
+
 
 typedef struct s_game {
 	void		*mlx;
@@ -124,10 +150,12 @@ typedef struct s_game {
 	t_map		map;
 	t_player	player;
 	t_fps		fps;
+	t_texture	texture;
+	t_config	texture_conf;
 }	t_game;
 
 // graphics
-void	initialize_graphics(t_map *maps, t_game *game);
+void initialize_graphics(t_game *game);
 void	pait_square(t_map *maps, t_game *game);
 
 //utils
@@ -168,13 +196,28 @@ char	*my_realloc(char *str, size_t new_size);
 //player
 void	get_player_position(t_map *maps, t_player *player);
 int		move_player(t_game *game, t_player *players, t_map *maps, int keycode);
-void square(t_game *game, int color);
+void	square(t_game *game, int color);
+
+// player movement and camera view
+
+int		get_key(int keycode, t_game *game);
+void    move_forward(t_game *game);
+void    move_backward(t_game *game);
+void    move_left(t_game *game);
+void    move_right(t_game *game);
+void    rotate_camera_left(t_game *game);
+void    rotate_camera_right(t_game *game);
+
 // window management
+unsigned int	get_pixel_color(t_data	img, int x, int y);
+int		get_addr_locale(t_data img, int x, int y);
 void	load_game(t_game *game);
 void	init_game(t_game *game);
 int		raycasting(t_game *game);
 void    draw_vertical_line(int  display_X, int draw_start,
             int draw_end, int color, t_game *game);
+void    draw_texturized_vertical_line(int  display_x, int draw_start,
+            int draw_end, double step, double textPos, int side, int texX, t_game *game);
 
 
 // exit functions

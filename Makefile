@@ -9,7 +9,7 @@ SRCS		=		src/main.c								\
 					src/utils/freeables.c					\
 					src/validations/main/main_validations.c	\
 					src/validations/map/map.c				\
-					src/validations/map/map_name.c				\
+					src/validations/map/map_name.c			\
 					src/validations/map/utils_map.c			\
 					src/validations/map/read_file.c			\
 					src/validations/map/ceilling_floor.c	\
@@ -27,6 +27,9 @@ SRCS		=		src/main.c								\
 					src/graphics/raycasting.c				\
 					src/graphics/paint_pixels.c				\
 					src/graphics/draw_vertical_line.c		\
+					src/player_movement/get_key.c			\
+					src/player_movement/wasd_mov.c			\
+					src/player_movement/rotate_camera.c
 
 
 HEADER 		= 		src/header/cub3d.h
@@ -83,7 +86,7 @@ $(NAME):	$(SRCS) $(HEADER)
 all: $(NAME)
 
 run:
-	make && clear && ./cub3D src/maps/example.cub
+	make && clear && ./$(NAME) src/maps/example.cub
 
 val:
 	clear && valgrind --memcheck:leak-check=full --show-reachable=yes ./cub3D src/maps/example.cub
