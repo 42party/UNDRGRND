@@ -73,6 +73,8 @@ typedef struct s_map {
 	char	**temp_map;
 	char	**textures;
 	char	**floor_ceilling;
+	int		count_fc;
+	int		count_texture;
 	int		tmp_max_line;
 	int		tmp_max_col;
 	int		ctrl_line;
@@ -187,7 +189,7 @@ int		verify_content(t_map *maps, int flag);
 int		clone_map(t_map *maps);
 int		radar_validation(t_map *maps);
 int		validations(t_map *maps, char **argv);
-int		separete_cub(t_map *maps);
+int		separete_cub(t_map *maps, int flag);
 void	get_max_col(t_map *maps);
 void	square_map(t_map *maps);
 char	*my_realloc(char *str, size_t new_size);

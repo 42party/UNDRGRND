@@ -26,7 +26,7 @@ static char	*fill_space(char *str, int max_col)
 
 void square_map(t_map *maps)
 {
-	int	i;
+	int		i;
 	char	*temp;
 
 	i = 0;

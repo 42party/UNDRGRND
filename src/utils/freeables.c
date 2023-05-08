@@ -14,10 +14,10 @@
 
 void	free_maps(t_map *maps)
 {
-	free_matrix(maps->filecub);
 	free_matrix(maps->textures);
 	free_matrix(maps->floor_ceilling);
 	free_matrix(maps->map_square);
+	free_matrix(maps->filecub);
 	free_matrix(maps->map);
 	free(maps);
 }

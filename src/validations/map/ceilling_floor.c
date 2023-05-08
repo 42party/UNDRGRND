@@ -76,14 +76,16 @@ static int	check_map_floor_ceilling_utils(t_map *maps, char **split_line, int fl
 	char	**split_breakline;
 	size_t	size;
 
+
 	split_breakline = ft_split(split_line[1], 10);
-	split_numbers = ft_split(split_breakline[0], 44);
+	split_numbers = ft_split(split_line, 44);
+
 	size = array_counter(split_numbers);
-	if (!split_numbers || size != 3)
+		printf("%s\n", split_line[2]);
+	if (!split_numbers)
 	{
 		free_ceilling_utils(split_breakline, split_numbers);
-		return (ret_value(1, "Wrong Format F or C following"
-				"[0-255],[0-255],[0-255]"));
+		return (1);
 	}
 	if (my_strncmp(split_line[0], "F"))
 	{
@@ -106,11 +108,10 @@ int	check_map_floor_ceilling(t_map *maps, char *map, int flag)
 
 	split_line = ft_split(map, 32);
 	size = array_counter(split_line);
-	if (!split_line || size != 2)
+	if (!split_line)
 	{
 		free_matrix(split_line);
-		return (ret_value(1, "Format incompatible F or C "
-				"following [0-255], [0-255], [0-255]"));
+		return (1);
 	}
 	flag += check_map_floor_ceilling_utils(maps, split_line, flag);
 	return (flag);
