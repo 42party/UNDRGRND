@@ -3,7 +3,7 @@ SO ../textures/south
 WE ../textures/west
 EA ../textures/east
 
-C 255,184,201
+C 0,0,0
 F 0,0,0
 
         1111111111111111111111111
