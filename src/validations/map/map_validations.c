@@ -110,7 +110,7 @@ int separete_cub(t_map *maps)
 			free_matrix(split_line);
 			return (i);
 		}
-		free(split_line);
+		free_matrix(split_line);
 		i++;
 		split_line = ft_split(maps->filecub[i], 32);
 

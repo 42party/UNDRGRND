@@ -35,9 +35,10 @@ int	check_map_validations_texture(t_map *maps)
 			free(split_line);
 			close(fd);
 		} */
+		free_matrix(split_line);
 		i++;
 	}
-	free_matrix(split_line);
+
 	return (0);
 }
 
@@ -64,7 +65,9 @@ static int	check_map_breakline(t_map *maps)
 	if (maps->size_map < 4)
 		return (ret_value(1, "For a minimap valid is size 4x3"));
 	maps->map = ft_calloc(sizeof(char *), maps->size_map);
+
 	printf("s: %i m: %i c: %i\n", maps->size_map, maps->max_line, maps->ctrl_line);
+	//remover
 	if (!maps->map)
 		return (1);
 	while (maps->filecub[maps->ctrl_line])
