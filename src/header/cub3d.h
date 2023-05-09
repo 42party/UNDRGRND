@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 22:44:23 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:33:29 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ enum {
 	KEY_UP = 13,
 	KEY_LEFT = 0,
 	KEY_DOWN = 1,
-	KEY_RIGHT = 2
+	KEY_RIGHT = 2,
+	CAM_ARROW_RIGHT = 124,
+	CAM_ARROW_LEFT = 123
 };
 
 # endif
@@ -73,6 +75,9 @@ typedef struct s_map {
 	char	**temp_map;
 	char	**textures;
 	char	**floor_ceilling;
+	int		flag;
+	int		count_fc;
+	int		count_texture;
 	int		tmp_max_line;
 	int		tmp_max_col;
 	int		ctrl_line;

@@ -65,19 +65,13 @@ static int	check_map_breakline(t_map *maps)
 	if (maps->size_map < 4)
 		return (ret_value(1, "For a minimap valid is size 4x3"));
 	maps->map = ft_calloc(sizeof(char *), maps->size_map);
-
-	printf("s: %i m: %i c: %i\n", maps->size_map, maps->max_line, maps->ctrl_line);
-	//remover
 	if (!maps->map)
 		return (1);
 	while (maps->filecub[maps->ctrl_line])
 	{
 		if (maps->filecub[maps->ctrl_line]
 			&& (my_strncmp(maps->filecub[maps->ctrl_line], "\n")))
-		{
-			free_matrix(maps->map);
 			return (ret_value(1, "Cannot put a breakline inside map"));
-		}
 		else
 			maps->map[i++] = ft_strdup(maps->filecub[maps->ctrl_line++]);
 	}
