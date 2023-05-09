@@ -31,7 +31,7 @@ void    draw_vertical_line(int  display_x, int draw_start,
 }
 
 void    draw_texturized_vertical_line(int  display_x, int draw_start,
-            int draw_end, double step, double textPos, int side, int texX, t_game *game)
+            int draw_end, double step, double textPos, int side, int texX, t_game *game, double rayDirX, double rayDirY)
 {
     int y;
     int texY;
@@ -41,19 +41,24 @@ void    draw_texturized_vertical_line(int  display_x, int draw_start,
     while (y < draw_start)
         my_mlx_pixel_put(game, display_x, y++, create_trgb(0,
              game->texture.ceiling.red, game->texture.ceiling.green,
-             game->texture.ceiling.blue));
+             game->texture.ceiling.blue) * 0);
     while (y >= draw_start && y <= draw_end)
     {
         texY = (int)textPos & (game->texture.north.sprite_height - 1);
         textPos += step;
-        color = get_pixel_color(game->texture.west, texX, texY);
-        if (side == SIDE_Y)
+        if (side == SIDE_X && rayDirX > 0)
+            color = get_pixel_color(game->texture.north, texX, texY);
+        else if (side == SIDE_X && rayDirX <= 0)
+            color = get_pixel_color(game->texture.south, texX, texY);
+        else if (side == SIDE_Y && rayDirY > 0)
             color = get_pixel_color(game->texture.east, texX, texY);
+        else if (side == SIDE_Y && rayDirY <= 0)
+            color = get_pixel_color(game->texture.west, texX, texY);
           //  color = (color >> 1) & 8355711; // macete pra escurecer a cor.
         my_mlx_pixel_put(game, display_x, y++, color);
     }
     while (y < DISPLAY_HEIGHT)
         my_mlx_pixel_put(game, display_x, y++, create_trgb(0,
              game->texture.floor.red, game->texture.floor.green,
-             game->texture.floor.blue));
+             game->texture.floor.blue) * 0);
 }

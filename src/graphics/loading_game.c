@@ -65,8 +65,8 @@ void	load_texture(t_game *game, t_data *texture, char *texture_path)
 void initialize_graphics(t_game *game)
 {
 	init_player(game);
-	load_texture(game, &game->texture.north, "./src/textures/d-evil-s.xpm"); // esse caminho já deve estar setado do .cub
-	load_texture(game, &game->texture.south, "./src/textures/Marshmallow.xpm");
+	load_texture(game, &game->texture.north, "./src/textures/akali.xpm"); // esse caminho já deve estar setado do .cub
+	load_texture(game, &game->texture.south, "./src/textures/project_kat.xpm");
 	load_texture(game, &game->texture.east, "./src/textures/katarina.xpm");
 	load_texture(game, &game->texture.west, "./src/textures/kat_battle_queen.xpm");
 

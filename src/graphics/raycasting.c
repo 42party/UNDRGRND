@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/06 22:46:55 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:11:20 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,10 @@ int raycasting(t_game *game)
 
 		textPos = (draw_start - DISPLAY_HEIGHT / 2 + line_height / 2) * step;
 
-		draw_texturized_vertical_line(x, draw_start, draw_end, step, textPos, side, texX, game);
+//		printf("raydirx %f\n", rayDirX);
+//		printf("raydiry %f\n", rayDirY);
+
+		draw_texturized_vertical_line(x, draw_start, draw_end, step, textPos, side, texX, game, rayDirX, rayDirY);
 /* 		if (side == 0)
 			color = 0x0080FF;
 		else

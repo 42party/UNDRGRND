@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/09 11:33:29 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:10:28 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ enum {
 	WALL = '1',
 	FLOOR = '0',
 	SIDE_X = 0,
-	SIDE_Y = 0,
+	SIDE_Y = 1,
 };
 
 typedef struct s_color {
@@ -222,7 +222,7 @@ int		raycasting(t_game *game);
 void    draw_vertical_line(int  display_X, int draw_start,
             int draw_end, int color, t_game *game);
 void    draw_texturized_vertical_line(int  display_x, int draw_start,
-            int draw_end, double step, double textPos, int side, int texX, t_game *game);
+            int draw_end, double step, double textPos, int side, int texX, t_game *game, double rayDirX, double rayDirY);
 
 
 // exit functions
