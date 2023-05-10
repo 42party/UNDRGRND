@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/09 11:33:29 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:08:36 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ int		validations(t_map *maps, char **argv);
 int		separete_cub(t_map *maps);
 void	get_max_col(t_map *maps);
 void	square_map(t_map *maps);
+char	**ft_split_mod(char const *s);
 char	*my_realloc(char *str, size_t new_size);
 
 
