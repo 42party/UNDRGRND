@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 16:47:26 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 12:11:08 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:21:13 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	get_player_position(t_map *maps, t_player *player)
 				|| maps->map_square[i][j] == 'S'
 				|| maps->map_square[i][j] == 'E')
 			{
-				player->posX = j;
-				player->posY = i;
+				player->pos_x = j;
+				player->pos_y = i;
 				player->line = i;
 				player->column = j;
 				player->start_pos = maps->map_square[i][j];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/10 14:08:36 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/10 14:09:47 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,30 @@ enum {
 	WALL = '1',
 	FLOOR = '0',
 	SIDE_X = 0,
-	SIDE_Y = 0,
+	SIDE_Y = 1,
 };
+
+typedef struct s_vars {
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit_wall; // n precisa
+	int		hit_side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	double	tex_step;
+	double	tex_pos;
+}				t_vars;
 
 typedef struct s_color {
 	int	red;
@@ -111,16 +133,16 @@ typedef struct s_player
 	char	start_pos;
 	int		line;
 	int		column;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	int		mapX;
-	int		mapY;
-	double	planeX;
-	double	planeY;
-	double	moveSpeed;
-	double	rotSpeed;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 }				t_player;
 
 typedef struct s_fps {
@@ -222,8 +244,7 @@ void	init_game(t_game *game);
 int		raycasting(t_game *game);
 void    draw_vertical_line(int  display_X, int draw_start,
             int draw_end, int color, t_game *game);
-void    draw_texturized_vertical_line(int  display_x, int draw_start,
-            int draw_end, double step, double textPos, int side, int texX, t_game *game);
+void    draw_texturized_vertical_line(t_game *game, t_vars *vars, int display_x);
 
 
 // exit functions

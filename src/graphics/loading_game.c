@@ -15,18 +15,18 @@
 void	init_player(t_game	*game)
 {
 	// inicializando com valores de teste;
-	game->player.mapX = 0;
-	game->player.mapY = 0;
-	game->player.posX = game->player.column;
-	game->player.posY = game->player.line;
-	game->player.dirX = 1;
-	game->player.dirY = 0;
-	game->player.planeX = 0;
-	game->player.planeY = 0.666;
+	game->player.map_x = 0;
+	game->player.map_y = 0;
+	game->player.pos_x = game->player.column;
+	game->player.pos_y = game->player.line;
+	game->player.dir_x = 1;
+	game->player.dir_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0.666;
 	game->fps.time = 0;
 	game->fps.old_time = 0;
-	game->player.moveSpeed = 0.3;
-	game->player.rotSpeed = 0.1;
+	game->player.move_speed = 0.3;
+	game->player.rot_speed = 0.1;
 	game->texture.ceiling = game->map.ceiling; // kkkk consertar isso dps
 	game->texture.floor = game->map.floor;
 }
@@ -64,8 +64,8 @@ void	load_texture(t_game *game, t_data *texture, char *texture_path)
 void initialize_graphics(t_game *game)
 {
 	init_player(game);
-	load_texture(game, &game->texture.north, "./src/textures/d-evil-s.xpm"); // esse caminho já deve estar setado do .cub
-	load_texture(game, &game->texture.south, "./src/textures/Marshmallow.xpm");
+	load_texture(game, &game->texture.north, "./src/textures/akali.xpm"); // esse caminho já deve estar setado do .cub
+	load_texture(game, &game->texture.south, "./src/textures/project_kat.xpm");
 	load_texture(game, &game->texture.east, "./src/textures/katarina.xpm");
 	load_texture(game, &game->texture.west, "./src/textures/kat_battle_queen.xpm");
 

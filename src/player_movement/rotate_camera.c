@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 12:10:18 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/06 18:36:17 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:18:23 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void    rotate_camera_left(t_game *game)
 {
-    double oldDirX;
-    double oldPlaneX;
+    double old_dir_x;
+    double old_plane_x;
 
-	oldDirX = game->player.dirX;
-	game->player.dirX = game->player.dirX * cos(-game->player.rotSpeed) - game->player.dirY * sin(-game->player.rotSpeed);
-	game->player.dirY = oldDirX * sin(-game->player.rotSpeed) + game->player.dirY * cos(-game->player.rotSpeed);
-	oldPlaneX = game->player.planeX;
-	game->player.planeX = game->player.planeX * cos(-game->player.rotSpeed) - game->player.planeY * sin(-game->player.rotSpeed);
-	game->player.planeY = oldPlaneX * sin(-game->player.rotSpeed) + game->player.planeY * cos(-game->player.rotSpeed);
+	old_dir_x = game->player.dir_x;
+	game->player.dir_x = game->player.dir_x * cos(-game->player.rot_speed) - game->player.dir_y * sin(-game->player.rot_speed);
+	game->player.dir_y = old_dir_x * sin(-game->player.rot_speed) + game->player.dir_y * cos(-game->player.rot_speed);
+	old_plane_x = game->player.plane_x;
+	game->player.plane_x = game->player.plane_x * cos(-game->player.rot_speed) - game->player.plane_y * sin(-game->player.rot_speed);
+	game->player.plane_y = old_plane_x * sin(-game->player.rot_speed) + game->player.plane_y * cos(-game->player.rot_speed);
 	raycasting(game);
 }
 
 void    rotate_camera_right(t_game *game)
 {
-    double oldDirX;
-    double oldPlaneX;
+    double old_dir_x;
+    double old_plane_x;
 
-	oldDirX = game->player.dirX;
-	game->player.dirX = game->player.dirX * cos(game->player.rotSpeed) - game->player.dirY * sin(game->player.rotSpeed);
-	game->player.dirY = oldDirX * sin(game->player.rotSpeed) + game->player.dirY * cos(game->player.rotSpeed);
-    oldPlaneX = game->player.planeX;
-	game->player.planeX = game->player.planeX * cos(game->player.rotSpeed) - game->player.planeY * sin(game->player.rotSpeed);
-	game->player.planeY = oldPlaneX * sin(game->player.rotSpeed) + game->player.planeY * cos(game->player.rotSpeed);
+	old_dir_x = game->player.dir_x;
+	game->player.dir_x = game->player.dir_x * cos(game->player.rot_speed) - game->player.dir_y * sin(game->player.rot_speed);
+	game->player.dir_y = old_dir_x * sin(game->player.rot_speed) + game->player.dir_y * cos(game->player.rot_speed);
+    old_plane_x = game->player.plane_x;
+	game->player.plane_x = game->player.plane_x * cos(game->player.rot_speed) - game->player.plane_y * sin(game->player.rot_speed);
+	game->player.plane_y = old_plane_x * sin(game->player.rot_speed) + game->player.plane_y * cos(game->player.rot_speed);
 	raycasting(game);
 }
 
