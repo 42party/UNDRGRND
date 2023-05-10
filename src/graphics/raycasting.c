@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/10 14:21:58 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:03:43 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ dda_rasterizer(t_game *game, t_vars *vars)
 			vars->side_dist_y += vars->delta_dist_y;
 			game->player.map_y += vars->step_y;
 		}
-		if (game->map.map_square[game->player.map_y][game->player.map_x] != 0)
+		if (game->map.map_square[game->player.map_y][game->player.map_x] != '0')
 			break ;
 	}
 }
@@ -86,7 +86,7 @@ void	wall_size(t_game *game, t_vars *vars)
 	else
 		vars->perp_wall_dist = vars->side_dist_y - vars->delta_dist_y;
 	//printf("perp_wall_dist: %f\n", vars->perp_wall_dist); // tira isso.
-	vars->line_height = DISPLAY_HEIGHT / vars->perp_wall_dist;
+	vars->line_height = (int)(DISPLAY_HEIGHT / vars->perp_wall_dist);
 	vars->draw_start = -vars->line_height / 2 + DISPLAY_HEIGHT / 2;
 	if (vars->draw_start < 0)
 		vars->draw_start = 0;
@@ -108,8 +108,32 @@ void	calc_texture_x(t_game *game, t_vars *vars)
 		vars->tex_x = game->texture.north.sprite_width - vars->tex_x - 1;
 	if (vars->hit_side == SIDE_Y && vars->ray_dir_y < 0)
 		vars->tex_x = game->texture.north.sprite_width - vars->tex_x - 1;
+		
 	vars->tex_step = 1.0 * game->texture.north.sprite_height / vars->line_height;
 	vars->tex_pos = (vars->draw_start - DISPLAY_HEIGHT / 2 + vars->line_height / 2) * vars->tex_step;
+}
+
+void	set_values(t_vars *vars)
+{
+	vars->camera_x = 0;
+	vars->ray_dir_x = 0;
+	vars->ray_dir_y = 0;
+	vars->side_dist_x = 0;
+	vars->side_dist_y = 0;
+	vars->delta_dist_x = 0;
+	vars->delta_dist_y = 0;
+	vars->perp_wall_dist = 0;
+	vars->step_x = 0;
+	vars->step_y = 0;
+	vars->hit_wall = 0; // n precisa
+	vars->hit_side = 0;
+	vars->line_height = 0;
+	vars->draw_start = 0;
+	vars->draw_end = 0;
+	vars->wall_x = 0;
+	vars->tex_x = 0;
+	vars->tex_step = 0;
+	vars->tex_pos = 0;
 }
 
 int raycasting(t_game *game)
@@ -121,6 +145,7 @@ int raycasting(t_game *game)
     while (x < DISPLAY_WIDTH)
     {
 		ft_bzero(&vars, sizeof(t_vars));
+	//	set_values(&vars);
 		ray_direction(game, &vars, x);
 		calc_delta_dist(game, &vars);
 		calc_side_dist(game, &vars);

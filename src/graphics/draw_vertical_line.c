@@ -45,7 +45,7 @@ void    draw_texturized_vertical_line(t_game *game, t_vars *vars, int display_x)
     {
         tex_y = (int)vars->tex_pos & (game->texture.north.sprite_height - 1);
         vars->tex_pos += vars->tex_step;
-        if (vars->hit_side == SIDE_X && vars->ray_dir_x) // poderia usar step_x e step_y
+        if (vars->hit_side == SIDE_X && vars->ray_dir_x > 0) // poderia usar step_x e step_y
             color = get_pixel_color(game->texture.north, vars->tex_x, tex_y);
         else if (vars->hit_side == SIDE_X && vars->ray_dir_x <= 0)
             color = get_pixel_color(game->texture.south, vars->tex_x, tex_y);
