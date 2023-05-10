@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/10 09:34:12 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:09:47 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_vars {
 	double	perp_wall_dist;
 	int		step_x;
 	int		step_y;
-	int		hit_wall;
-	int		side;
+	int		hit_wall; // n precisa
+	int		hit_side;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -133,16 +133,16 @@ typedef struct s_player
 	char	start_pos;
 	int		line;
 	int		column;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	int		mapX;
-	int		mapY;
-	double	planeX;
-	double	planeY;
-	double	moveSpeed;
-	double	rotSpeed;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 }				t_player;
 
 typedef struct s_fps {
@@ -243,8 +243,7 @@ void	init_game(t_game *game);
 int		raycasting(t_game *game);
 void    draw_vertical_line(int  display_X, int draw_start,
             int draw_end, int color, t_game *game);
-void    draw_texturized_vertical_line(int  display_x, int draw_start,
-            int draw_end, double step, double textPos, int side, int texX, t_game *game, double rayDirX, double rayDirY);
+void    draw_texturized_vertical_line(t_game *game, t_vars *vars, int display_x);
 
 
 // exit functions
