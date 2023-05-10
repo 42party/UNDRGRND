@@ -59,7 +59,6 @@ void	load_texture(t_game *game, t_data *texture, char *texture_path)
 									&texture->bits_per_pixel,
 									&texture->line_length,
 									&texture->endian);
-	printf("color %x\n", get_pixel_color(*texture, 2, 2));
 }
 
 void initialize_graphics(t_game *game)

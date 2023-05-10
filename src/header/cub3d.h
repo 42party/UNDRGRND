@@ -217,6 +217,7 @@ int		validations(t_map *maps, char **argv);
 int		separete_cub(t_map *maps);
 void	get_max_col(t_map *maps);
 void	square_map(t_map *maps);
+char	**ft_split_mod(char const *s);
 char	*my_realloc(char *str, size_t new_size);
 
 
