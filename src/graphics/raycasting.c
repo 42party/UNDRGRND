@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/09 15:11:20 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/10 09:37:32 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int raycasting(t_game *game)
     while (x < DISPLAY_WIDTH)
     {
 
+//	init_vars(game);
     double  cameraX = 0;
     double  rayDirX = 0;
     double  rayDirY = 0;
@@ -42,9 +43,6 @@ int raycasting(t_game *game)
 	int		line_height = 0;
 	int		draw_start = 0;
 	int		draw_end = 0;
-
-	int		color = 0;
-
 
         cameraX = 2 * x / (double)DISPLAY_WIDTH - 1;
 		
@@ -149,16 +147,8 @@ int raycasting(t_game *game)
 
 		textPos = (draw_start - DISPLAY_HEIGHT / 2 + line_height / 2) * step;
 
-//		printf("raydirx %f\n", rayDirX);
-//		printf("raydiry %f\n", rayDirY);
-
 		draw_texturized_vertical_line(x, draw_start, draw_end, step, textPos, side, texX, game, rayDirX, rayDirY);
-/* 		if (side == 0)
-			color = 0x0080FF;
-		else
-			color = 0x0000FF;
 		
-		draw_vertical_line(x, draw_start, draw_end, color, game); */
         x += 1;
     }
 
