@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/09 15:26:57 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/10 11:45:27 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,8 @@ int	check_map_validations_ceilling(t_map *maps)
 
 	flag = 0;
 	i = 0;
-	maps->ceiling.red = -1;
-	maps->ceiling.green = -1;
-	maps->ceiling.blue = -1;
-	maps->floor.red = -1;
-	maps->floor.green = -1;
-	maps->floor.blue = -1;
 	while (maps->floor_ceilling[i])
-		flag = check_map_floor_ceilling(maps, maps->floor_ceilling[i++], flag);
+		check_map_floor_ceilling(maps, maps->floor_ceilling[i++], flag);
 	return (flag);
 }
 
