@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/10 16:03:43 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/11 09:09:22 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ void	ray_direction(t_game *game, t_vars *vars, int x)
 	vars->ray_dir_y = game->player.dir_y + game->player.plane_y * vars->camera_x;
 }
 
-void	calc_delta_dist(t_game *game, t_vars *vars)
+void	calc_delta_dist(t_vars *vars)
 {
 	// delta dist é a distancia entre um x e outro x;
-	if (vars->ray_dir_x != 0)
+	if (vars->ray_dir_x == 0)
+		vars->delta_dist_x = 1e30; // precisa disso pra rodar no linux. no mac não
+	else
 		vars->delta_dist_x = sqrt(1 + (pow(vars->ray_dir_y, 2) / pow(vars->ray_dir_x, 2)));
-	if (vars->ray_dir_y != 0)
+	if (vars->ray_dir_y == 0)
+		vars->delta_dist_y = 1e30;
+	else
 		vars->delta_dist_y = sqrt(1 + (pow(vars->ray_dir_x, 2) / pow(vars->ray_dir_y, 2)));
 }
 
@@ -58,7 +62,7 @@ void	calc_side_dist(t_game *game, t_vars *vars)
 	}
 }
 
-dda_rasterizer(t_game *game, t_vars *vars)
+void	dda_rasterizer(t_game *game, t_vars *vars)
 {
 	while (666)
 	{
@@ -79,7 +83,7 @@ dda_rasterizer(t_game *game, t_vars *vars)
 	}
 }
 
-void	wall_size(t_game *game, t_vars *vars)
+void	wall_size(t_vars *vars)
 {
 	if (vars->hit_side == SIDE_X)
 		vars->perp_wall_dist = vars->side_dist_x - vars->delta_dist_x;
@@ -144,13 +148,13 @@ int raycasting(t_game *game)
     x = 0;
     while (x < DISPLAY_WIDTH)
     {
-		ft_bzero(&vars, sizeof(t_vars));
-	//	set_values(&vars);
+	//	ft_bzero(&vars, sizeof(t_vars));
+		set_values(&vars);
 		ray_direction(game, &vars, x);
-		calc_delta_dist(game, &vars);
+		calc_delta_dist(&vars);
 		calc_side_dist(game, &vars);
 		dda_rasterizer(game, &vars);
-		wall_size(game, &vars);	
+		wall_size(&vars);	
 		calc_texture_x(game, &vars);
 		draw_texturized_vertical_line(game, &vars, x);
         x += 1;

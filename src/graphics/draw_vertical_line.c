@@ -40,7 +40,7 @@ void    draw_texturized_vertical_line(t_game *game, t_vars *vars, int display_x)
     while (y < vars->draw_start)
         my_mlx_pixel_put(game, display_x, y++, create_trgb(0,
              game->texture.ceiling.red, game->texture.ceiling.green,
-             game->texture.ceiling.blue) * 0);
+             game->texture.ceiling.blue));
     while (y >= vars->draw_start && y <= vars->draw_end)
     {
         tex_y = (int)vars->tex_pos & (game->texture.north.sprite_height - 1);
@@ -55,9 +55,9 @@ void    draw_texturized_vertical_line(t_game *game, t_vars *vars, int display_x)
             color = get_pixel_color(game->texture.west, vars->tex_x, tex_y);
           //  color = (color >> 1) & 8355711; // macete pra escurecer a cor.
         my_mlx_pixel_put(game, display_x, y++, color);
-    }
+    } 
     while (y < DISPLAY_HEIGHT)
         my_mlx_pixel_put(game, display_x, y++, create_trgb(0,
              game->texture.floor.red, game->texture.floor.green,
-             game->texture.floor.blue) * 0);
+             game->texture.floor.blue));
 }
