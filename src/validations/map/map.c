@@ -35,6 +35,8 @@ int	check_map_validations_texture(t_map *maps)
 			free_matrix(split_line);
 			return (1);
 		}
+		free(maps->textures[i]);
+		maps->textures[i] = ft_strdup(split_line[1]);
 		close(fd);
 		free_matrix(split_line);
 		i++;
