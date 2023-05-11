@@ -198,6 +198,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		free_matrix(char **matrix);
 char	**matrix_dup(char **mat);
 void	free_maps(t_map *maps);
+void	free_textures_floor(t_map *maps);
 
 //validations-main
 void	argc_verify(int argc);

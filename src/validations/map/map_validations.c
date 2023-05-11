@@ -12,24 +12,6 @@
 
 #include "../../header/cub3d.h"
 
-static void free_textures_floor(t_map *maps)
-{
-	if (maps->textures && maps->textures[0])
-		free(maps->textures[0]);
-	if (maps->textures && maps->textures[1])
-		free(maps->textures[1]);
-	if (maps->textures && maps->textures[2])
-		free(maps->textures[2]);
-	if (maps->textures && maps->textures[3])
-		free(maps->textures[3]);
-	if (maps->floor_ceilling && maps->floor_ceilling[0])
-		free(maps->floor_ceilling[0]);
-	if (maps->floor_ceilling && maps->floor_ceilling[1])
-		free(maps->floor_ceilling[1]);
-	free(maps->textures);
-	free(maps->floor_ceilling);
-}
-
 int	validations(t_map *maps, char **argv)
 {
 	if (check_map_extension(argv[1]))
