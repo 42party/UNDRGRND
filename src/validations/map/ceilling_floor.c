@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ceilling_floor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:29:20 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/10 14:15:39 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/11 08:53:09 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	check_map_floor_ceilling_utils(t_map *maps, char **split_line, int fl
 int	check_map_floor_ceilling(t_map *maps, char *map, int flag)
 {
 	char	**split_line;
-	char	**temp;
+	//char	**temp;
 	size_t	size;
 
 	split_line = ft_split_mod(map);

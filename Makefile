@@ -40,7 +40,7 @@ OBJ			=		$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 CC			=		cc
 
-CFLAGS		=		-g -Wall -Wextra #-Werror
+CFLAGS		=		-g -Wall -Wextra -Werror
 #-fsanitize=leak
 
 LIBFT		=		src/libs/libft/libft.a
