@@ -12,12 +12,13 @@
 
 #include "../../header/cub3d.h"
 
-static int loop_check_floor_ceilling(char **split_numbers, int i, int j)
+static int loop_check_floor_ceilling(char **split_numbers, int i)
 {
-	if (my_atoi(split_numbers[i]) < 0
-		|| my_atoi(split_numbers[i]) > 255
-		|| !ft_isdigit(split_numbers[i][j]))
-			return (1);
+	int ret_value;
+
+	ret_value = my_atoi(split_numbers[i]);
+	if (ret_value < 0 || ret_value > 255)
+		return(1);
 	return (0);
 }
 
@@ -47,18 +48,13 @@ static void floor_ceiling_color(t_map *maps, char **split_numbers, char floor_ce
 static int	check_map_floor_ceilling_utils_2(t_map *maps, char **split_numbers)
 {
 	int	i;
-	int	j;
 
 	i = 1;
-
 	while (split_numbers[i])
 	{
-		j = 0;
-		while (split_numbers[i][j])
-		{
-			if (loop_check_floor_ceilling(split_numbers, i, j++))
-				return (ret_value(1, "Only numbers [0-255]"));
-		}
+		if (loop_check_floor_ceilling(split_numbers, i))
+			return (ret_value(1, "Format incompatible F or C "
+				"following [0-255], [0-255], [0-255]"));
 		floor_ceiling_color(maps, split_numbers, split_numbers[0][0], i);
 		i++;
 	}
@@ -67,30 +63,32 @@ static int	check_map_floor_ceilling_utils_2(t_map *maps, char **split_numbers)
 
 
 
-static int	check_map_floor_ceilling_utils(t_map *maps, char **split_line, int flag)
+static int	check_map_floor_ceilling_utils(t_map *maps, char **split_line)
 {
 
-	check_map_floor_ceilling_utils_2(maps, split_line);
-
-	free_matrix(split_line);
-	return (flag);
-}
-
-int	check_map_floor_ceilling(t_map *maps, char *map, int flag)
-{
-	char	**split_line;
-	//char	**temp;
-	size_t	size;
-
-	split_line = ft_split_mod(map);
-	size = array_counter(split_line);
-
-	if (!split_line || size != 4)
+	if (check_map_floor_ceilling_utils_2(maps, split_line))
 	{
 		free_matrix(split_line);
 		return (1);
 	}
+	free_matrix(split_line);
+	return (0);
+}
 
-	flag += check_map_floor_ceilling_utils(maps, split_line, flag);
-	return (flag);
+int	check_map_floor_ceilling(t_map *maps, char *map)
+{
+	char	**split_line;
+	size_t	size;
+
+	split_line = ft_split_mod(map);
+	size = array_counter(split_line);
+	if (!split_line || size != 4)
+	{
+		free_matrix(split_line);
+		return (ret_value(1, "Format incompatible F or C "
+				"following [0-255], [0-255], [0-255]"));
+	}
+	if (check_map_floor_ceilling_utils(maps, split_line))
+		return (1);
+	return (0);
 }

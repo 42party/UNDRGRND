@@ -56,5 +56,5 @@ int	my_atoi(const char *str)
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
-	return (0);
+	return (res);
 }

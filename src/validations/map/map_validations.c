@@ -12,6 +12,24 @@
 
 #include "../../header/cub3d.h"
 
+static void free_textures_floor(t_map *maps)
+{
+	if (maps->textures && maps->textures[0])
+		free(maps->textures[0]);
+	if (maps->textures && maps->textures[1])
+		free(maps->textures[1]);
+	if (maps->textures && maps->textures[2])
+		free(maps->textures[2]);
+	if (maps->textures && maps->textures[3])
+		free(maps->textures[3]);
+	if (maps->floor_ceilling && maps->floor_ceilling[0])
+		free(maps->floor_ceilling[0]);
+	if (maps->floor_ceilling && maps->floor_ceilling[1])
+		free(maps->floor_ceilling[1]);
+	free(maps->textures);
+	free(maps->floor_ceilling);
+}
+
 int	validations(t_map *maps, char **argv)
 {
 	if (check_map_extension(argv[1]))
@@ -33,8 +51,7 @@ int	validations(t_map *maps, char **argv)
 	if (check_map_validations(maps))
 	{
 		free_matrix(maps->filecub);
-		free_matrix(maps->textures);
-		free_matrix(maps->floor_ceilling);
+		free_textures_floor(maps);
 		free_matrix(maps->map);
 		free(maps);
 		return (1);
@@ -141,7 +158,7 @@ int	check_map_validations(t_map *maps)
 		return (1);
 	if (check_map_validations_texture(maps))
 		return (1);
-	if (check_map_validations_ceilling(maps) == 1)
+	if (check_map_validations_ceilling(maps))
 		return (1);
 	if (check_map_validations_mapxy(maps))
 		return (1);

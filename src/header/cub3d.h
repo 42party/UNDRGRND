@@ -205,7 +205,7 @@ void	argc_verify(int argc);
 //validations-map
 int		check_map_extension(char *map_name);
 int		check_map_path_texture(t_map *maps, char *map);
-int		check_map_floor_ceilling(t_map *maps, char *map, int flag);
+int		check_map_floor_ceilling(t_map *maps, char *map);
 int		check_map_validations(t_map *maps);
 int		check_map_validations_texture(t_map *maps);
 int		check_map_validations_ceilling(t_map *maps);
