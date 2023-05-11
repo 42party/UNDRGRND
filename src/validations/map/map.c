@@ -22,7 +22,12 @@ int	check_map_validations_texture(t_map *maps)
 	while (maps->textures[i])
 	{
 		split_line = ft_split(maps->textures[i], 32);
-		fd = open(split_line[i], O_RDONLY);
+		if(array_counter(split_line) !=  2)
+		{
+			free_matrix(split_line);
+			return (1);
+		}
+		fd = open(split_line[1], O_RDONLY);
 		if (fd == -1)
 		{
 			close(fd);
@@ -30,13 +35,10 @@ int	check_map_validations_texture(t_map *maps)
 			free_matrix(split_line);
 			return (1);
 		}
-		else
-		{
-			free(split_line);
-			close(fd);
-		}
+		close(fd);
 		free_matrix(split_line);
 		i++;
+
 	}
 
 	return (0);
