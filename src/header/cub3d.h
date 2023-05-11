@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/10 14:09:47 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:29:50 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# define _USE_MATH_DEFINES
 # include <math.h>
 # include <fcntl.h>
 
@@ -61,6 +62,8 @@ enum {
 	FLOOR = '0',
 	SIDE_X = 0,
 	SIDE_Y = 1,
+	DIR_LEFT = -1,
+	DIR_RIGHT = 1,
 };
 
 typedef struct s_vars {
@@ -233,8 +236,8 @@ void    move_forward(t_game *game);
 void    move_backward(t_game *game);
 void    move_left(t_game *game);
 void    move_right(t_game *game);
-void    rotate_camera_left(t_game *game);
-void    rotate_camera_right(t_game *game);
+void    rotate_camera(t_game *game, double rot_speed, int dir);
+
 
 // window management
 unsigned int	get_pixel_color(t_data	img, int x, int y);
