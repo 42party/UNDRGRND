@@ -1,7 +1,7 @@
-NO ../textures/north
-SO ../textures/south
-WE ../textures/west
-EA ../textures/east
+NO src/textures/akali.xpm
+SO src/textures/project_kat.xpm
+WE src/textures/katarina.xpm
+EA src/textures/kat_battle_queen.xpm
 
 C  10, 111, 101
 F  210, 22, 3
