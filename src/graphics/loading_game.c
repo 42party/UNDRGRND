@@ -17,8 +17,8 @@ void	init_player(t_game	*game)
 	// inicializando com valores de teste;
 	game->player.map_x = 0;
 	game->player.map_y = 0;
-	game->player.pos_x = game->player.column;
-	game->player.pos_y = game->player.line;
+	game->player.pos_x = game->player.column + 0.5;
+	game->player.pos_y = game->player.line + 0.5;
 	game->player.dir_x = 1;
 	game->player.dir_y = 0;
 	game->player.plane_x = 0;
@@ -52,13 +52,25 @@ void	load_texture(t_game *game, t_data *texture, char *texture_path)
 									&texture->sprite_height);
 	if (texture->img == NULL)
 	{
-		printf("error\n");
+		printf("error\n"); // tiraar issso
 		exit(0);
 	}
  	texture->addr = mlx_get_data_addr(texture->img,
 									&texture->bits_per_pixel,
 									&texture->line_length,
 									&texture->endian);
+}
+
+void	view_direction(t_game *game)
+{
+	if (game->player.start_pos == 'N')
+		raycasting(game);
+	else if (game->player.start_pos == 'S')
+		rotate_camera(game, M_PI, DIR_RIGHT);
+	else if (game->player.start_pos == 'E')
+		rotate_camera(game, M_PI / 2, DIR_RIGHT);
+	else if (game->player.start_pos == 'W')
+		rotate_camera(game, M_PI / 2, DIR_LEFT);
 }
 
 void initialize_graphics(t_game *game)
@@ -70,5 +82,6 @@ void initialize_graphics(t_game *game)
 	load_texture(game, &game->texture.west, "./src/textures/kat_battle_queen.xpm");
 
 	// first raycasting
-	raycasting(game);
+	view_direction(game);
+
 }
