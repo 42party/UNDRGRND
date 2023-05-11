@@ -26,7 +26,7 @@ void	init_player(t_game	*game)
 	game->fps.time = 0;
 	game->fps.old_time = 0;
 	game->player.move_speed = 0.3;
-	game->player.rot_speed = 0.1;
+	game->player.rot_speed = M_PI / 32;
 	game->texture.ceiling = game->map.ceiling; // kkkk consertar isso dps
 	game->texture.floor = game->map.floor;
 }

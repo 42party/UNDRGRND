@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 11:28:57 by sxpph             #+#    #+#             */
-/*   Updated: 2023/05/11 09:09:22 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/11 09:57:46 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int raycasting(t_game *game)
     x = 0;
     while (x < DISPLAY_WIDTH)
     {
-	//	ft_bzero(&vars, sizeof(t_vars));
+		ft_bzero(&vars, sizeof(t_vars));
 		set_values(&vars);
 		ray_direction(game, &vars, x);
 		calc_delta_dist(&vars);
