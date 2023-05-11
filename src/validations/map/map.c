@@ -45,13 +45,12 @@ int	check_map_validations_texture(t_map *maps)
 int	check_map_validations_ceilling(t_map *maps)
 {
 	int	i;
-	int	flag;
 
-	flag = 0;
 	i = 0;
 	while (maps->floor_ceilling[i])
-		check_map_floor_ceilling(maps, maps->floor_ceilling[i++], flag);
-	return (flag);
+		if (check_map_floor_ceilling(maps, maps->floor_ceilling[i++]))
+			return (1);
+	return (0);
 }
 
 static int	check_map_breakline(t_map *maps)
