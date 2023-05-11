@@ -16,27 +16,31 @@ int	check_map_validations_texture(t_map *maps)
 {
 	char	**split_line;
 	int		i;
-//	int		fd;
+	int		fd;
 
 	i = 0;
 	while (maps->textures[i])
 	{
 		split_line = ft_split(maps->textures[i], 32);
-		/* fd = open(split_line[1], O_RDONLY);
-		if (fd == -1)
+		if(array_counter(split_line) !=  2)
 		{
-			close(fd);
-			printf("Error\n%s: File does not exist\n", split_line[1]);
 			free_matrix(split_line);
 			return (1);
 		}
-		else
+		fd = open(split_line[1], O_RDONLY);
+		if (fd == -1)
 		{
-			free(split_line);
 			close(fd);
-		} */
+			printf("Error\n%s: File does not exist\n", split_line[i]);
+			free_matrix(split_line);
+			return (1);
+		}
+		free(maps->textures[i]);
+		maps->textures[i] = ft_strdup(split_line[1]);
+		close(fd);
 		free_matrix(split_line);
 		i++;
+
 	}
 
 	return (0);

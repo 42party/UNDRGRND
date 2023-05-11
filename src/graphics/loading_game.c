@@ -76,10 +76,11 @@ void	view_direction(t_game *game)
 void initialize_graphics(t_game *game)
 {
 	init_player(game);
-	load_texture(game, &game->texture.north, "./src/textures/akali.xpm"); // esse caminho já deve estar setado do .cub
-	load_texture(game, &game->texture.south, "./src/textures/project_kat.xpm");
-	load_texture(game, &game->texture.east, "./src/textures/katarina.xpm");
-	load_texture(game, &game->texture.west, "./src/textures/kat_battle_queen.xpm");
+	printf("%s\n", game->map.textures[0]);
+	load_texture(game, &game->texture.north, game->map.textures[0]); // esse caminho já deve estar setado do .cub
+	load_texture(game, &game->texture.south, game->map.textures[1]);
+	load_texture(game, &game->texture.east, game->map.textures[2]);
+	load_texture(game, &game->texture.west, game->map.textures[3]);
 
 	// first raycasting
 	view_direction(game);
