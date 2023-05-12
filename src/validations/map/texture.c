@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:10:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 14:11:01 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/12 13:33:55 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
-
 
 /* int	check_map_path_texture(t_map *maps, char *map)
 {
@@ -30,7 +29,6 @@
 	free_matrix(split_line);
 	return (flag);
 } */
-
 /* if (my_strncmp("F", split_0))
 		maps->floor_ceilling[0] = ft_strjoin("F", split_1);
 	if (my_strncmp("C", split_0))

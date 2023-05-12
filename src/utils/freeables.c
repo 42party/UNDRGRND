@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freeables.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 13:41:06 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/02 10:37:11 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/12 13:26:30 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_maps(t_map *maps)
 	free(maps);
 }
 
-void free_textures_floor(t_map *maps)
+void	free_textures_floor(t_map *maps)
 {
 	if (maps->textures && maps->textures[0])
 		free(maps->textures[0]);

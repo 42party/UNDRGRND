@@ -20,7 +20,6 @@ SRCS		=		src/main.c								\
 					src/validations/map/map_valid.c			\
 					src/exit_functions/close_game.c			\
 					src/window_management/init_window.c		\
-					src/window_management/load_game.c		\
 					src/player/get_player_position.c		\
 					src/graphics/loading_game.c				\
 					src/graphics/raycasting.c				\

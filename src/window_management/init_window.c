@@ -19,6 +19,5 @@ void	init_game(t_game *game)
 			DISPLAY_WIDTH, DISPLAY_HEIGHT, "fvck!");
 	game->img.img = mlx_new_image(game->mlx, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel,
-								&game->img.line_length,
-								&game->img.endian);
+			&game->img.line_length, &game->img.endian);
 }
