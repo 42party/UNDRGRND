@@ -28,7 +28,7 @@ int	check_map_validations_texture(t_map *maps)
 		if (fd == -1)
 		{
 			close(fd);
-			printf("Error\n%s: File does not exist\n", split_line[i]);
+			printf("Error\nSome file texture does not exist\n");
 			free_matrix(split_line);
 			return (1);
 		}
