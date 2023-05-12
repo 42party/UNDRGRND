@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/11 08:53:56 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:25:41 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ int	check_map_validations_texture(t_map *maps)
 	while (maps->textures[i])
 	{
 		split_line = ft_split(maps->textures[i], 32);
-		if(array_counter(split_line) !=  2)
-		{
-			free_matrix(split_line);
-			return (1);
-		}
+		if (array_counter(split_line) != 2)
+			return (free_matrix(split_line));
 		fd = open(split_line[1], O_RDONLY);
 		if (fd == -1)
 		{
@@ -40,9 +37,7 @@ int	check_map_validations_texture(t_map *maps)
 		close(fd);
 		free_matrix(split_line);
 		i++;
-
 	}
-
 	return (0);
 }
 
