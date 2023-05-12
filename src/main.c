@@ -6,13 +6,11 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/12 08:36:13 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:30:30 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header/cub3d.h"
-
-// ligar o -Werror no makefile
 
 int	main(int argc, char **argv)
 {
