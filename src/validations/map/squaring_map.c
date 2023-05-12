@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   squaring_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 08:54:27 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/02 10:38:26 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/12 09:56:36 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*fill_space(char *str, int max_col)
 	return (temp_str);
 }
 
-void square_map(t_map *maps)
+void	square_map(t_map *maps)
 {
 	int		i;
 	char	*temp;

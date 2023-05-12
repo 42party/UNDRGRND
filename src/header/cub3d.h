@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/11 10:29:50 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:56:45 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ enum {
 	DIR_RIGHT = 1,
 };
 
+typedef unsigned int	t_uint;
 typedef struct s_vars {
 	double	camera_x;
 	double	ray_dir_x;
@@ -77,7 +78,6 @@ typedef struct s_vars {
 	double	perp_wall_dist;
 	int		step_x;
 	int		step_y;
-	int		hit_wall; // n precisa
 	int		hit_side;
 	int		line_height;
 	int		draw_start;
@@ -86,6 +86,7 @@ typedef struct s_vars {
 	int		tex_x;
 	double	tex_step;
 	double	tex_pos;
+	int		slice_y;
 }				t_vars;
 
 typedef struct s_color {
@@ -109,7 +110,7 @@ typedef struct s_map {
 	int		max_line;
 	int		size_map;
 	size_t	max_col;
-	t_color	ceiling; // mudar isso para a t_texture;
+	t_color	ceiling;
 	t_color	floor;
 }				t_map;
 
@@ -119,15 +120,9 @@ typedef struct s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	// for texture only usage
 	int		sprite_width;
 	int		sprite_height;
 }				t_data;
-
-typedef struct s_position{
-	int	x;
-	int	y;
-}				t_position;
 
 # define FOV 60
 
@@ -146,14 +141,7 @@ typedef struct s_player
 	double	plane_y;
 	double	move_speed;
 	double	rot_speed;
-}				t_player;
-
-typedef struct s_fps {
-	double	time;
-	double	old_time;
-} t_fps;
-
-
+}	t_player;
 typedef struct s_texture {
 	t_data	north;
 	t_data	south;
@@ -161,32 +149,28 @@ typedef struct s_texture {
 	t_data	west;
 	t_color	ceiling;
 	t_color	floor;
-} t_texture;
-
-
-typedef struct s_config {
-	char	*path_N_texture;
-	char	*path_S_texture;
-	char	*path_E_texture;
-	char	*path_W_texture;
-} t_config;
-
+}	t_texture;
 
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
-	t_data		img; // renomerar para layner // layer do 3d
-	t_data		minimap_layer;
+	t_data		img;
 	t_map		map;
 	t_player	player;
-	t_fps		fps;
 	t_texture	texture;
-	t_config	texture_conf;
 }	t_game;
 
 // graphics
-void initialize_graphics(t_game *game);
-void	pait_square(t_map *maps, t_game *game);
+void	initialize_graphics(t_game *game);
+
+// raycasting
+void	set_values(t_vars *vars);
+void	calc_texture_x(t_game *game, t_vars *vars);
+void	ray_direction(t_game *game, t_vars *vars, int x);
+void	calc_delta_dist(t_game *game, t_vars *vars);
+void	calc_side_dist(t_game *game, t_vars *vars);
+void	dda_rasterizer(t_game *game, t_vars *vars);
+void	wall_size(t_vars *vars);
 
 //utils
 int		my_atoi(const char *str);
@@ -224,32 +208,27 @@ void	square_map(t_map *maps);
 char	**ft_split_mod(char const *s);
 char	*my_realloc(char *str, size_t new_size);
 
-
 //player
 void	get_player_position(t_map *maps, t_player *player);
-int		move_player(t_game *game, t_player *players, t_map *maps, int keycode);
-void	square(t_game *game, int color);
 
 // player movement and camera view
 
 int		get_key(int keycode, t_game *game);
-void    move_forward(t_game *game);
-void    move_backward(t_game *game);
-void    move_left(t_game *game);
-void    move_right(t_game *game);
-void    rotate_camera(t_game *game, double rot_speed, int dir);
-
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	rotate_camera(t_game *game, double rot_speed, int dir);
 
 // window management
-unsigned int	get_pixel_color(t_data	img, int x, int y);
+t_uint	get_pixel_color(t_data	img, int x, int y);
 int		get_addr_locale(t_data img, int x, int y);
 void	load_game(t_game *game);
 void	init_game(t_game *game);
 int		raycasting(t_game *game);
-void    draw_vertical_line(int  display_X, int draw_start,
-            int draw_end, int color, t_game *game);
-void    draw_texturized_vertical_line(t_game *game, t_vars *vars, int display_x);
 
+void	draw_texturized_vertical_line(t_game *game, t_vars *vars,
+			int display_x);
 
 // exit functions
 int		close_game(t_game *game);

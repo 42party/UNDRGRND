@@ -22,14 +22,15 @@ SRCS		=		src/main.c								\
 					src/window_management/init_window.c		\
 					src/window_management/load_game.c		\
 					src/player/get_player_position.c		\
-					src/player/move_player.c				\
 					src/graphics/loading_game.c				\
 					src/graphics/raycasting.c				\
-					src/graphics/paint_pixels.c				\
 					src/graphics/draw_vertical_line.c		\
 					src/player_movement/get_key.c			\
 					src/player_movement/wasd_mov.c			\
-					src/player_movement/rotate_camera.c
+					src/player_movement/rotate_camera.c		\
+					src/graphics/mlx_handling.c				\
+					src/graphics/raycasting_calcs.c			\
+					src/graphics/raycasting_calcs2.c		\
 
 
 HEADER 		= 		src/header/cub3d.h
