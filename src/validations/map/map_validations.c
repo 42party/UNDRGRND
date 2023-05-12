@@ -41,6 +41,16 @@ int	validations(t_map *maps, char **argv)
 	return (0);
 }
 
+static void aux_loop_texture(t_map *maps, char *split_0, char *split_1)
+{
+	if (my_strncmp("EA", split_0))
+	{
+		if (!maps->textures[3])
+			maps->textures[3] = ft_strjoin("EA ", split_1);
+		maps->count_texture++;
+		maps->flag += 1;
+	}
+}
 static void	loop_aux_texture(t_map *maps, char *split_0, char *split_1)
 {
 	if (my_strncmp("NO", split_0))
@@ -64,13 +74,7 @@ static void	loop_aux_texture(t_map *maps, char *split_0, char *split_1)
 		maps->count_texture++;
 		maps->flag += 2;
 	}
-	if (my_strncmp("EA", split_0))
-	{
-		if (!maps->textures[3])
-			maps->textures[3] = ft_strjoin("EA ", split_1);
-		maps->count_texture++;
-		maps->flag += 1;
-	}
+	aux_loop_texture(maps, split_0, split_1);
 }
 
 static void	loop_aux_floor_ceiling(t_map *maps, char **split, char *str)
@@ -91,6 +95,30 @@ static void	loop_aux_floor_ceiling(t_map *maps, char **split, char *str)
 	}
 }
 
+static int aux_separete(t_map *maps, char **split_line, int i)
+{
+	if (split_line && split_line[0][0] != '\n'
+				&& array_counter(split_line) == 1)
+	{
+		free_matrix(split_line);
+		maps->ctrl_line = i;
+		return (1);
+	}
+	free_matrix(split_line);
+
+	return (0);
+}
+
+static void aux_loop_separete(t_map *maps, char **split_line, int i)
+{
+	if (split_line && split_line[0][0] != '\n'
+			&& array_counter(split_line) == 2)
+			loop_aux_texture(maps, split_line[0], split_line[1]);
+		if (split_line && split_line[0][0] != '\n'
+			&& array_counter(split_line) >= 2)
+			loop_aux_floor_ceiling(maps, split_line, maps->filecub[i]);
+}
+
 int	separete_cub(t_map *maps)
 {
 	char	**split_line;
@@ -100,12 +128,7 @@ int	separete_cub(t_map *maps)
 	split_line = ft_split(maps->filecub[i], 32);
 	while (maps->filecub[i])
 	{
-		if (split_line && split_line[0][0] != '\n'
-			&& array_counter(split_line) == 2)
-			loop_aux_texture(maps, split_line[0], split_line[1]);
-		if (split_line && split_line[0][0] != '\n'
-			&& array_counter(split_line) >= 2)
-			loop_aux_floor_ceiling(maps, split_line, maps->filecub[i]);
+		aux_loop_separete(maps, split_line, i);
 		if (split_line && split_line[0][0] != '\n'
 			&& array_counter(split_line) == 1 && maps->flag != 63)
 		{
@@ -113,14 +136,8 @@ int	separete_cub(t_map *maps)
 			return (ret_value(1, "Map position only end of file or "
 					"textures floor ceiling repeating"));
 		}
-		if (split_line && split_line[0][0] != '\n'
-				&& array_counter(split_line) == 1)
-		{
-			free_matrix(split_line);
-			maps->ctrl_line = i;
+		if (aux_separete(maps, split_line, i))
 			return (0);
-		}
-		free_matrix(split_line);
 		i++;
 		split_line = ft_split(maps->filecub[i], 32);
 	}
