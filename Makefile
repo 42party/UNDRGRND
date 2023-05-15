@@ -18,6 +18,8 @@ SRCS		=		src/main.c								\
 					src/validations/map/squaring_map.c		\
 					src/validations/map/temp_map.c			\
 					src/validations/map/map_valid.c			\
+					src/validations/map/separete.c			\
+					src/validations/map/separete_utils.c	\
 					src/exit_functions/close_game.c			\
 					src/window_management/init_window.c		\
 					src/player/get_player_position.c		\

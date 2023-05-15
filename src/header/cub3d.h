@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/12 10:56:45 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/15 06:42:41 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ void	get_max_col(t_map *maps);
 void	square_map(t_map *maps);
 char	**ft_split_mod(char const *s);
 char	*my_realloc(char *str, size_t new_size);
+void	aux_loop_texture(t_map *maps, char *split_0, char *split_1);
 
 //player
 void	get_player_position(t_map *maps, t_player *player);
