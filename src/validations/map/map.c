@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/12 13:25:41 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:09:09 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	check_map_validations_texture(t_map *maps)
 		fd = open(split_line[1], O_RDONLY);
 		if (fd == -1)
 		{
-			close(fd);
 			printf("Error\nSome file texture does not exist\n");
 			free_matrix(split_line);
 			return (1);
