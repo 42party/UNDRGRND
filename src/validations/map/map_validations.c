@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 13:33:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/15 06:37:34 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/15 09:43:22 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	validations(t_map *maps, char **argv)
 	}
 	if (get_line_map(maps, argv[1]))
 	{
-		free_matrix(maps->map);
+		free(maps);
 		return (1);
 	}
 	if (get_info_map(maps, argv[1]))
@@ -41,6 +41,19 @@ int	validations(t_map *maps, char **argv)
 	return (0);
 }
 
+static int	check_texture_extension(t_map *maps)
+{
+	int	i;
+
+	i = 0;
+	while (maps->textures[i])
+	{
+		if (check_xpm_extension(maps->textures[i++]))
+			return (1);
+	}
+	return (0);
+}
+
 int	check_map_validations(t_map *maps)
 {
 	maps->flag = 0;
@@ -54,6 +67,8 @@ int	check_map_validations(t_map *maps)
 		|| maps->count_texture != 4 || maps->flag != 63)
 		return (1);
 	if (check_map_validations_texture(maps))
+		return (1);
+	if (check_texture_extension(maps))
 		return (1);
 	if (check_map_validations_ceilling(maps))
 		return (1);
