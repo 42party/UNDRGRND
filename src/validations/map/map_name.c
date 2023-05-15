@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:44:54 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/20 09:45:06 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/15 09:26:44 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,19 @@ int	check_map_extension(char *map_name)
 	if (fd == -1)
 		return (ret_value(1, "File does not exist"));
 	close(fd);
+	return (0);
+}
+
+int	check_xpm_extension(char *map_name)
+{
+	char	*extension;
+	char	*temp_name;
+
+	if (!map_name)
+		return (ret_value(1, "Missing map name: format namefile.xpm"));
+	extension = ".xpm";
+	temp_name = ft_strrchr(map_name, '.');
+	if (!my_strncmp(temp_name, extension))
+		return (ret_value(1, "Missing extension\nexample: namefile.xpm"));
 	return (0);
 }

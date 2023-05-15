@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/15 06:42:41 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/15 09:26:46 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ void	argc_verify(int argc);
 
 //validations-map
 int		check_map_extension(char *map_name);
+int		check_xpm_extension(char *map_name);
 int		check_map_path_texture(t_map *maps, char *map);
 int		check_map_floor_ceilling(t_map *maps, char *map);
 int		check_map_validations(t_map *maps);
