@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 13:33:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/15 06:37:34 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/15 07:24:54 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	validations(t_map *maps, char **argv)
 	}
 	if (get_line_map(maps, argv[1]))
 	{
-		free_matrix(maps->map);
+		free(maps);
 		return (1);
 	}
 	if (get_info_map(maps, argv[1]))
