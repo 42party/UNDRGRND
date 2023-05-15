@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loading_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:36 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/12 10:14:04 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:50:47 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void	load_texture(t_game *game, t_data *texture, char *texture_path)
 			texture_path,
 			&texture->sprite_width,
 			&texture->sprite_height);
-	if (texture->img == NULL)
-	{
-		printf("error mlx\n");
-		exit(0);
-	}
 	texture->addr = mlx_get_data_addr(texture->img,
 			&texture->bits_per_pixel,
 			&texture->line_length,
