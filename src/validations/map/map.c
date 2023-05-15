@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:31 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/15 10:09:09 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/15 10:12:46 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_map_validations_texture(t_map *maps)
 		split_line = ft_split(maps->textures[i], 32);
 		if (array_counter(split_line) != 2)
 			return (free_matrix(split_line));
-		fd = open(split_line[1], O_RDONLY);
+		fd = open(split_line[1], F_OK | O_RDONLY);
 		if (fd == -1)
 		{
 			printf("Error\nSome file texture does not exist\n");
