@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   send_msg_errors.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:01:39 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 13:52:51 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 13:35:05 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ret_value(int i, char *msg)
 {
-	printf("Error: \n%s\n", msg);
+	printf("Error\n%s\n", msg);
 	return (i);
 }
