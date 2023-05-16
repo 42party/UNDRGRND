@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 14:03:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/16 10:47:01 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:39:06 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_game		game;
 
 	argc_verify(argc);
-	if (validations(&((((((game.map)))))), argv))
+	if (validations(&game.map, argv))
 		exit(1);
 	square_map(&game.map);
 	get_player_position(&game.map, &game.player);

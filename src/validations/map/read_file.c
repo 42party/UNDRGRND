@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:17:42 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 14:17:59 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 11:36:26 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_line_map(t_map *maps, char *map_file)
 	free(temp_map_line);
 	close(fd);
 	if (maps->max_line < 11)
-		return (1);
+		return (ret_value(1, "Missing some parameters"));
 	return (0);
 }
 
