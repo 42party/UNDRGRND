@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 13:33:30 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/15 10:37:51 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 11:08:54 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 int	validations(t_map *maps, char **argv)
 {
 	if (check_map_extension(argv[1]))
-	{
-		free(maps);
 		return (1);
-	}
 	if (get_line_map(maps, argv[1]))
-	{
-		free(maps);
 		return (1);
-	}
 	if (get_info_map(maps, argv[1]))
 	{
 		free_matrix(maps->filecub);
@@ -34,7 +28,6 @@ int	validations(t_map *maps, char **argv)
 	{
 		free_matrix(maps->filecub);
 		free_textures_floor(maps);
-		free(maps);
 		return (1);
 	}
 	return (0);
