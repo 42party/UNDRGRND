@@ -6,11 +6,18 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:22:45 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 14:03:07 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 14:24:22 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/cub3d.h"
+
+int	pulse(char x)
+{
+	if (x == '0' || x == 'N' || x == 'S' || x == 'E' || x == 'W')
+		return (1);
+	return (0);
+}
 
 int	verify_content(t_map *maps, int flag)
 {

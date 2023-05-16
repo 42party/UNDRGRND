@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:57:00 by rgorki            #+#    #+#             */
-/*   Updated: 2023/04/19 14:51:31 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 14:23:59 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,26 @@ static int	radar_pulse(t_map *maps, int line, int col)
 {
 	if (maps->temp_map[line])
 	{
-		if (line != 0 && col != 0 && maps->temp_map[line - 1][col - 1] == '0')
+		if (line != 0 && col != 0 && pulse(maps->temp_map[line - 1][col - 1]))
 			return (1);
-		if (col != 0 && maps->temp_map[line][col - 1] == '0')
+		if (col != 0 && pulse(maps->temp_map[line][col - 1]))
 			return (1);
 		if (line < maps->tmp_max_line && col != 0
-			&& maps->temp_map[line + 1][col - 1] == '0')
+			&& pulse(maps->temp_map[line + 1][col - 1]))
 			return (1);
-		if (line != 0 && maps->temp_map[line - 1][col] == '0')
+		if (line != 0 && pulse(maps->temp_map[line - 1][col]))
 			return (1);
-		if (maps->temp_map[line][col] == '0')
+		if (pulse(maps->temp_map[line][col]))
 			return (1);
-		if (line < maps->tmp_max_line && maps->temp_map[line + 1][col] == '0')
+		if (line < maps->tmp_max_line && pulse(maps->temp_map[line + 1][col]))
 			return (1);
 		if (line != 0 && col < maps->tmp_max_col
-			&& maps->temp_map[line - 1][col + 1] == '0')
+			&& pulse(maps->temp_map[line - 1][col + 1]))
 			return (1);
-		if (col < maps->tmp_max_col && maps->temp_map[line][col + 1] == '0')
+		if (col < maps->tmp_max_col && pulse(maps->temp_map[line][col + 1]))
 			return (1);
 		if (line < maps->tmp_max_line && col < maps->tmp_max_col
-			&& maps->temp_map[line + 1][col + 1] == '0')
+			&& pulse(maps->temp_map[line + 1][col + 1]))
 			return (1);
 	}
 	return (0);

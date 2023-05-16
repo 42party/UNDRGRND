@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/15 10:36:39 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 14:25:27 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ void	square_map(t_map *maps);
 char	**ft_split_mod(char const *s);
 char	*my_realloc(char *str, size_t new_size);
 void	aux_loop_texture(t_map *maps, char *split_0, char *split_1);
+int		pulse(char x);
 
 //player
 void	get_player_position(t_map *maps, t_player *player);
