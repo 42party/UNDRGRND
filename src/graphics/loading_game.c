@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loading_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:29:36 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/15 10:50:47 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/16 10:31:13 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	initialize_graphics(t_game *game)
 	init_player(game);
 	load_texture(game, &game->texture.north, game->map.textures[0]);
 	load_texture(game, &game->texture.south, game->map.textures[1]);
-	load_texture(game, &game->texture.east, game->map.textures[2]);
-	load_texture(game, &game->texture.west, game->map.textures[3]);
+	load_texture(game, &game->texture.west, game->map.textures[2]);
+	load_texture(game, &game->texture.east, game->map.textures[3]);
 	view_direction(game);
 }

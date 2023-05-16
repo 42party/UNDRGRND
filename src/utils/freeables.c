@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 13:41:06 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/12 13:26:30 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:48:07 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	free_maps(t_map *maps)
 	free_matrix(maps->map_square);
 	free_matrix(maps->filecub);
 	free_matrix(maps->map);
-	free(maps);
 }
 
 void	free_textures_floor(t_map *maps)
