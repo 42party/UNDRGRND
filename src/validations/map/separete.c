@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 06:39:36 by rgorki            #+#    #+#             */
-/*   Updated: 2023/05/15 06:42:56 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/18 09:13:10 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	loop_aux_floor_ceiling(t_map *maps, char **split, char *str)
 static int	aux_separete(t_map *maps, char **split_line, int i)
 {
 	if (split_line && split_line[0][0] != '\n'
-				&& array_counter(split_line) == 1)
+				&& ft_isdigit(split_line[0][0]))
 	{
 		free_matrix(split_line);
 		maps->ctrl_line = i;
@@ -90,7 +90,7 @@ int	separete_cub(t_map *maps)
 	{
 		aux_loop_separete(maps, split_line, i);
 		if (split_line && split_line[0][0] != '\n'
-			&& array_counter(split_line) == 1 && maps->flag != 63)
+			&& ft_isdigit(split_line[0][0]) && maps->flag != 63)
 		{
 			free_matrix(split_line);
 			return (ret_value(1, "Map position only end of file or "
