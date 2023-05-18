@@ -6,7 +6,7 @@
 /*   By: rgorki < rgorki@student.42.rio>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:52:27 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/16 14:25:27 by rgorki           ###   ########.fr       */
+/*   Updated: 2023/05/18 09:59:08 by rgorki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,6 @@ int		create_trgb(int t, int r, int g, int b);
 int		array_counter(char **arr);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		free_matrix(char **matrix);
-char	**matrix_dup(char **mat);
 void	free_maps(t_map *maps);
 void	free_textures_floor(t_map *maps);
 
@@ -190,7 +189,6 @@ void	argc_verify(int argc);
 //validations-map
 int		check_map_extension(char *map_name);
 int		check_xpm_extension(char *map_name);
-int		check_map_path_texture(t_map *maps, char *map);
 int		check_map_floor_ceilling(t_map *maps, char *map);
 int		check_map_validations(t_map *maps);
 int		check_map_validations_texture(t_map *maps);
@@ -226,7 +224,6 @@ void	rotate_camera(t_game *game, double rot_speed, int dir);
 // window management
 t_uint	get_pixel_color(t_data	img, int x, int y);
 int		get_addr_locale(t_data img, int x, int y);
-void	load_game(t_game *game);
 void	init_game(t_game *game);
 int		raycasting(t_game *game);
 
