@@ -6,7 +6,7 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:52:18 by vipereir          #+#    #+#             */
-/*   Updated: 2023/05/12 10:55:54 by vipereir         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:22:33 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	calc_delta_dist(t_game *game, t_vars *vars)
 	if (vars->ray_dir_x == 0)
 		vars->delta_dist_x = 1e30;
 	else
-		vars->delta_dist_x = sqrt(1 + (pow(vars->ray_dir_y, 2)
-					/ pow(vars->ray_dir_x, 2)));
+		vars->delta_dist_x = sqrt(1 + (pow(vars->ray_dir_y, 2)/ pow(vars->ray_dir_x, 2)));
 	if (vars->ray_dir_y == 0)
 		vars->delta_dist_y = 1e30;
 	else
