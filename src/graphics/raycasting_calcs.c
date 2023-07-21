@@ -26,12 +26,11 @@ void	calc_delta_dist(t_game *game, t_vars *vars)
 	if (vars->ray_dir_x == 0)
 		vars->delta_dist_x = 1e30;
 	else
-		vars->delta_dist_x = sqrt(1 + (pow(vars->ray_dir_y, 2)/ pow(vars->ray_dir_x, 2)));
+		vars->delta_dist_x = fabs(1 / vars->ray_dir_x);  //sqrt(1 + (pow(vars->ray_dir_y, 2)/ pow(vars->ray_dir_x, 2)));
 	if (vars->ray_dir_y == 0)
 		vars->delta_dist_y = 1e30;
 	else
-		vars->delta_dist_y = sqrt(1 + (pow(vars->ray_dir_x, 2)
-					/ pow(vars->ray_dir_y, 2)));
+		vars->delta_dist_y = fabs(1 / vars->ray_dir_y); //sqrt(1 + (pow(vars->ray_dir_x, 2) / pow(vars->ray_dir_y, 2))); fisheye
 	game->player.map_x = (int)game->player.pos_x;
 	game->player.map_y = (int)game->player.pos_y;
 }
