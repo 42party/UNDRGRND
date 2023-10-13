@@ -12,12 +12,15 @@
 
 #include "../../header/cub3d.h"
 
-void	argc_verify(int argc)
+int	argc_verify(int argc)
 {
 	if (argc != 2)
 	{
 		printf("Invalid map or format\n");
 		printf("example: ./cub3D src/maps/mapname.cub\n");
-		exit(1);
+		printf("using default map instead\n");
+		return (1);
+		//exit(1);
 	}
+	return (0);
 }

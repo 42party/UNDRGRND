@@ -184,7 +184,7 @@ void	free_maps(t_map *maps);
 void	free_textures_floor(t_map *maps);
 
 //validations-main
-void	argc_verify(int argc);
+int	argc_verify(int argc);
 
 //validations-map
 int		check_map_extension(char *map_name);
@@ -200,7 +200,7 @@ int		check_map_x_y(t_map *maps);
 int		verify_content(t_map *maps, int flag);
 int		clone_map(t_map *maps);
 int		radar_validation(t_map *maps);
-int		validations(t_map *maps, char **argv);
+int		validations(t_map *maps, char *map_path);
 int		separete_cub(t_map *maps);
 void	get_max_col(t_map *maps);
 void	square_map(t_map *maps);

@@ -15,9 +15,10 @@
 int	main(int argc, char **argv)
 {
 	t_game		game;
+	char*		map_path;
 
-	argc_verify(argc);
-	if (validations(&game.map, argv))
+	if (argc_verify(argc)) map_path = "src/maps/example.cub"; else map_path = argv[1];
+	if (validations(&game.map, map_path))
 		exit(1);
 	square_map(&game.map);
 	get_player_position(&game.map, &game.player);

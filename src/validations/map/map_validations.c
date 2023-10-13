@@ -12,13 +12,13 @@
 
 #include "../../header/cub3d.h"
 
-int	validations(t_map *maps, char **argv)
+int	validations(t_map *maps, char *map_path)
 {
-	if (check_map_extension(argv[1]))
+	if (check_map_extension(map_path))
 		return (1);
-	if (get_line_map(maps, argv[1]))
+	if (get_line_map(maps, map_path))
 		return (1);
-	if (get_info_map(maps, argv[1]))
+	if (get_info_map(maps, map_path))
 	{
 		free_matrix(maps->filecub);
 		free_matrix(maps->map);
