@@ -61,17 +61,18 @@ ifeq ($(shell uname -s), Darwin)
 	MLX			= src/libs/mlx/libmlx.a
 	MLX_FOLDER	= src/libs/mlx
 else
-	INCLUDES	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm -lz
+	INCLUDES	= -L/usr/lib -I/src/libs/mlx_linux -lXext -lX11 -lm
 	MLX			= src/libs/mlx_linux/libmlx.a
 	MLX_FOLDER	= src/libs/mlx_linux
 endif
 
+# rm -lz on includes 
 
 $(OBJ_DIR)%.o:	%.c
 		@mkdir -p $(OBJ_DIR)
 		@$(CC) $(CFLAGS) $(LIBFT) -c $< -o $@
 
-$(NAME):	$(SRCS) $(HEADER)
+$(NAME):	requirements $(SRCS) $(HEADER)
 
 	@echo "$(RED)entering libft$(RESET)"
 	@make -s -C src/libs/libft
@@ -83,6 +84,9 @@ $(NAME):	$(SRCS) $(HEADER)
 	@echo "$(CYAN)\tgenerate cub3D ...$(RESET)"
 	@$(CC) $(CFLAGS) $(SRCS) $(MLX) $(LIBFT) $(INCLUDES) -o $(NAME)
 	@echo "$(GREEN)generated successfully!!$(RESET)"
+
+requirements:
+	./check_requirements.sh
 
 all: $(NAME)
 
